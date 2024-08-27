@@ -15,7 +15,6 @@ module.exports = {
         'Comment',   // 주석 추가 및 변경
         'Remove',    // 파일, 폴더 삭제
         'Rename',    // 파일, 폴더명 수정
-        'CI'         // 통합 관련 작업
       ],
     ],
     'type-case': [2, 'always', 'pascal-case'], // 타입은 첫 글자만 대문자
