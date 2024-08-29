@@ -1,0 +1,14 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# 커밋 메시지 파일 경로
+COMMIT_MSG_FILE="$1"
+
+# 주석을 제거한 커밋 메시지 임시 파일 생성
+grep -v '^#' "$COMMIT_MSG_FILE" | grep -v '^$' > "$COMMIT_MSG_FILE.tmp"
+
+# yarn을 사용하여 주석을 제외한 커밋 메시지 내용을 commitlint로 검사
+yarn commitlint --edit "$COMMIT_MSG_FILE.tmp"
+
+# 임시 파일 삭제
+rm "$COMMIT_MSG_FILE.tmp"

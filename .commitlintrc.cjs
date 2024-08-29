@@ -23,7 +23,6 @@ module.exports = {
     'header-max-length': [2, 'always', 72], // 제목 최대 길이 제한
   },
   ignores: [
-    (commit) => commit.startsWith('#'), // 주석으로 시작하는 커밋 메시지 무시
-    (commit) => commit.includes('Merge'), // Merge 커밋 무시
+    (commit) => commit.includes('Merge'), // Merge 커밋 무시 
   ],
 };
