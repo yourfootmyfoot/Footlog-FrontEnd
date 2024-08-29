@@ -1,19 +1,21 @@
-// src/App.jsx
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Header from './components/Layout/Header';
-import Footer from './components/Layout/Footer';
+import { ThemeProvider } from '@emotion/react';
+import GlobalStyles from './theme/GlobalStyles';
+import theme from './theme/theme';
 import Landing from './pages/Landing';
+import Login from './pages/Login/Login';
 
 const App = () => {
   return (
-    <Router>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={Landing} />
-      </Switch>
-      <Footer />
-    </Router>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Router>
+        <Switch>
+          <Route path="/" exact component={Landing} />
+          <Route path="/login" component={Login} />
+        </Switch>
+      </Router>
+    </ThemeProvider>
   );
 };
 
