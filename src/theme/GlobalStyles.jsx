@@ -48,6 +48,7 @@ const GlobalStyles = () => (
       .responsive-container {
         width: 90vw; /* 뷰포트 너비의 90%로 설정 */
         max-width: 400px; /* 최대 너비 제한 */
+        height: 100vh;
         padding: 5vh 1vw; /* 상하, 좌우 여백을 vh, vw 단위로 설정 */
         margin: auto; /* 화면 중앙 정렬 */
         border-radius: 10px;
