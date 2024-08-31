@@ -7,8 +7,8 @@ function MatchDetail() {
     const { matchCode } = useParams();
 
     const [match, setMatch] = useState({
-        myClub: '',
-        enemyClub: '',
+        myClub: {},
+        enemyClub: {},
         matchName: '',
         matchPhoto: '',
         matchIntroduce: '',
