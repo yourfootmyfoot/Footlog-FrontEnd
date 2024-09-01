@@ -13,14 +13,13 @@ const FooterContainer = styled.footer`
   padding: 10px 0;
   background-color: #ffffff;
   border-top: 1px solid #e0e0e0;
-  position: fixed;
+  width: 100%; /* 부모 컨테이너에 맞게 너비 설정 */
+  max-width: 400px; /* 부모 컨테이너와 일치 */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  position: absolute; /* 부모 컨테이너의 하단에 고정 */
   bottom: 0;
-  width: 100%;
-  max-width: 400px; /* responsive-container와 동일한 최대 너비 */
-  margin: auto; /* 중앙 정렬 */
-  left: 0;
-  right: 0;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* 상단 그림자 추가 */
+  left: 50%; 
+  transform: translateX(-50%); /* 중앙 정렬 */
 
   @media (max-width: 768px) {
     padding: 12px 0;

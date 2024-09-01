@@ -44,23 +44,6 @@ const GlobalStyles = () => (
         cursor: pointer;
       }
 
-      /* 글로벌 모바일 레이아웃 설정 */
-      .responsive-container {
-        width: 90vw; /* 뷰포트 너비의 90%로 설정 */
-        max-width: 400px; /* 최대 너비 제한 */
-        height: 100vh;
-        padding: 5vh 1vw; /* 상하, 좌우 여백을 vh, vw 단위로 설정 */
-        margin: auto; /* 화면 중앙 정렬 */
-        border-radius: 10px;
-        background-color: #fff;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 70vh; /* 최소 높이 설정 */
-      }
-
       /* 반응형 디자인을 위한 미디어 쿼리 */
       @media (max-width: 768px) {
         .responsive-container {
