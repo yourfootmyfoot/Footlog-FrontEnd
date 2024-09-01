@@ -9,6 +9,7 @@ export function getMatchList() {
 
 // 
 export function getMatchDetail(matchCode) {
+    console.log(matches);
 
     return matches.filter(match => match.matchCode === parseInt(matchCode))[0];
 }

@@ -1,18 +1,20 @@
 // src/App.jsx
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Header from './components/Layout/Header';
-import Footer from './components/Layout/Footer';
+// import Header from './components/Layout/Header';
+// import Footer from './components/Layout/Footer';
 import Landing from './pages/Landing';
+import MatchDetail from './pages/match/MatchDetail';
 
 const App = () => {
   return (
     <Router>
-      <Header />
+     {/*  <Header /> */}
       <Switch>
         <Route exact path="/" component={Landing} />
       </Switch>
-      <Footer />
+      <MatchDetail></MatchDetail>
+      {/* <Footer /> */}
     </Router>
   );
 };
