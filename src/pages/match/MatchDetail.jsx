@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { getMatchDetail } from './apis/MatchAPI';
 import matchStyle from "./Match.module.css";
+import ImageSlider from './ImageSlider';
 
 
 
@@ -36,7 +37,14 @@ function MatchDetail() {
         []
     );
 
+    // 프리셋 라인업
     const slides = match.myClub.preSet;
+
+    const containerStyles = {
+        width: "500px",
+        height: "280px",
+        margin: "0 auto"
+    };
 
     return (
         <>{/*https://apis.map.kakao.com/web/guide/  - 카카오맵 api 사용하는 방법*/}
@@ -69,7 +77,7 @@ function MatchDetail() {
 
                 <h3>{match.myClub.clubName}의 라인업</h3>
 
-                <div>
+                <div style={containerStyles}>
                     <ImageSlider slides={slides} />
                 </div>
                 <button>참가하기</button>
