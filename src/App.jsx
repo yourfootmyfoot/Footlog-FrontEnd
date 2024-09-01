@@ -6,7 +6,7 @@ import Landing from './pages/Landing';
 import Login from './pages/Login/Login';
 import Footer from './components/Layout/Footer';
 import Match from './pages/Match/Match';
-import AppContainer from './components/layout/AppContainer';
+import AppContainer from './components/layout/AppContainer/AppContainer';
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
