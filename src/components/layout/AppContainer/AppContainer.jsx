@@ -18,13 +18,13 @@ const AppContainer = styled.div`
   position: relative; /* 자식 요소의 절대 위치를 위한 상대 위치 */
 
   @media (max-width: 768px) {
-    width: 95vw;
-    padding: 6vh 5vw;
+    width: 100vw;
+    padding: 6vh 1vw;
   }
 
   @media (max-width: 480px) {
     width: 100vw;
-    padding: 7vh 5vw;
+    padding: 7vh 1vw;
   }
 `;
 
