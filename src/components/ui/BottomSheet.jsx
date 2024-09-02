@@ -1,20 +1,20 @@
-// src/components/ui/BottomSheet.jsx
 
 import styled from '@emotion/styled';
 
+
 const Overlay = styled.div`
-  position: absolute;
+  position: absolute; /* Fixed positioning to cover the entire screen */
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
-  z-index: 1000;
+  z-index: 1001; /* Higher z-index than Footer */
 `;
 
 const SheetContainer = styled.div`
-  position: absolute;
+  position: absolute; /* Fixed positioning to slide up over the Footer */
   left: 0;
   right: 0;
   bottom: 0;
@@ -26,10 +26,10 @@ const SheetContainer = styled.div`
   overflow-y: auto;
   transform: ${({ isOpen }) => (isOpen ? 'translateY(0)' : 'translateY(100%)')};
   transition: transform 0.3s ease;
-  z-index: 1001;
+  z-index: 1002; /* Higher z-index than Overlay */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; 
 `;
 
 const GridContainer = styled.div`

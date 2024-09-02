@@ -1,6 +1,7 @@
 // src/pages/Match/MatchDetail.jsx
 
 import { useState, useEffect } from 'react';
+import { Map } from 'react-kakao-maps-sdk';
 import { getMatchDetail } from './apis/MatchAPI';
 import styled from '@emotion/styled';
 import ImageSlider from './ImageSlider';
@@ -53,24 +54,32 @@ const JoinButton = styled.button`
   }
 `;
 
+const MapContainer = styled.div`
+  width: 100%;
+  height: 400px;
+  margin-top: 2vh;
+  border-radius: 10px;
+  overflow: hidden;
+`;
+
 const MatchDetail = () => {
   const matchCode = 1;
 
   const [match, setMatch] = useState({
-matchCode: matchCode,
-myClub: {},
-enemyClub: {},
-matchName: '',
-matchPhoto: '',
-matchIntroduce: '',
-matchSchedule: {},
-matchPlayerQuantity: 0,
-quarterQuantity: 1,
-fieldLocation: '',
-matchCost: 0,
-clubLevel: '',
-pro: 0,
-gender: ''
+    matchCode: matchCode,
+    myClub: {},
+    enemyClub: {},
+    matchName: '',
+    matchPhoto: '',
+    matchIntroduce: '',
+    matchSchedule: {},
+    matchPlayerQuantity: 0,
+    quarterQuantity: 1,
+    fieldLocation: '',
+    matchCost: 0,
+    clubLevel: '',
+    pro: 0,
+    gender: ''
   });
 
   useEffect(() => {
@@ -112,7 +121,15 @@ gender: ''
           <li><h3>경기 인원 : {match.matchPlayerQuantity}명</h3></li>
           <li><h3>쿼터 수 : {match.matchSchedule.matchTime / 30}</h3></li>
           <li><h3>구장 정보 : {match.fieldLocation}</h3></li>
-          <li><h3>구장 정보-지도ver</h3></li>
+          <li>
+            <MapContainer>
+              <Map
+                center={{ lat: 33.5563, lng: 126.79581 }}
+                style={{ width: '100%', height: '100%' }}
+                level={3}
+              />
+            </MapContainer>
+          </li>
           <li><h3>매치 비용 : {match.matchCost}원</h3></li>
           <li><h3>구단 실력 : {match.clubLevel}</h3></li>
           <li><h3>선출 수 : {match.pro}</h3></li>

@@ -1,3 +1,4 @@
+
 import { Link, withRouter } from 'react-router-dom';
 import styled from '@emotion/styled';
 import matchIcon from '@/assets/match.svg';
@@ -13,13 +14,14 @@ const FooterContainer = styled.footer`
   padding: 10px 0;
   background-color: #ffffff;
   border-top: 1px solid #e0e0e0;
-  width: 100%; /* 부모 컨테이너에 맞게 너비 설정 */
-  max-width: 400px; /* 부모 컨테이너와 일치 */
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-  position: absolute; /* 부모 컨테이너의 하단에 고정 */
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  position: absolute; /* Always fixed at the bottom */
   bottom: 0;
-  left: 50%; 
-  transform: translateX(-50%); /* 중앙 정렬 */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000; /* High z-index to stay on top of other content */
 
   @media (max-width: 768px) {
     padding: 12px 0;
