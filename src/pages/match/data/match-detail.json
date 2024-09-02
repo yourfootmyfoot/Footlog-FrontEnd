@@ -14,7 +14,7 @@
             "clubName": "Tigers"
         },
         "matchName": "Lions과(와) Tigers의 경기",
-        "matchPhoto": "src/pages/match/images/1.PNG",
+        "matchPhoto": "src/pages/match/images/1.jpg",
         "matchIntroduce": "경기 1",
         "matchSchedule": {
             "matchDate": "2024-09-05",
@@ -39,7 +39,7 @@
             "clubName": "Wolves"
         },
         "matchName": "Eagles과(와) Wolves의 경기",
-        "matchPhoto": "src/pages/match/images/2.PNG",
+        "matchPhoto": "src/pages/match/images/2.jpg",
         "matchIntroduce": "경기 2",
         "matchSchedule": {
             "matchDate": "2024-09-12",
@@ -64,7 +64,7 @@
             "clubName": "Dolphins"
         },
         "matchName": "Sharks과(와) Dolphins의 경기",
-        "matchPhoto": "src/pages/match/images/3.PNG",
+        "matchPhoto": "src/pages/match/images/3.jpg",
         "matchIntroduce": "경기 3",
         "matchSchedule": {
             "matchDate": "2024-09-19",
@@ -89,7 +89,7 @@
             "clubName": "Cheetahs"
         },
         "matchName": "Panthers과(와) Cheetahs의 경기",
-        "matchPhoto": "src/pages/match/images/4.PNG",
+        "matchPhoto": "src/pages/match/images/4.jpg",
         "matchIntroduce": "경기 4",
         "matchSchedule": {
             "matchDate": "2024-09-26",
@@ -114,7 +114,7 @@
             "clubName": "Rams"
         },
         "matchName": "Bulls과(와) Rams의 경기",
-        "matchPhoto": "src/pages/match/images/5.PNG",
+        "matchPhoto": "src/pages/match/images/5.jpg",
         "matchIntroduce": "경기 5",
         "matchSchedule": {
             "matchDate": "2024-10-03",
@@ -139,7 +139,7 @@
             "clubName": "Phoenixes"
         },
         "matchName": "Dragons과(와) Phoenixes의 경기",
-        "matchPhoto": "src/pages/match/images/6.PNG",
+        "matchPhoto": "src/pages/match/images/6.jpg",
         "matchIntroduce": "경기 6",
         "matchSchedule": {
             "matchDate": "2024-10-10",
@@ -164,7 +164,7 @@
             "clubName": "Falcons"
         },
         "matchName": "Hawks과(와) Falcons의 경기",
-        "matchPhoto": "src/pages/match/images/7.PNG",
+        "matchPhoto": "src/pages/match/images/7.jpg",
         "matchIntroduce": "경기 7",
         "matchSchedule": {
             "matchDate": "2024-10-17",
@@ -189,7 +189,7 @@
             "clubName": "Gladiators"
         },
         "matchName": "Warriors과(와) Gladiators의 경기",
-        "matchPhoto": "src/pages/match/images/8.PNG",
+        "matchPhoto": "src/pages/match/images/8.jpg",
         "matchIntroduce": "경기 8",
         "matchSchedule": {
             "matchDate": "2024-10-24",
@@ -214,7 +214,7 @@
             "clubName": "Squires"
         },
         "matchName": "Knights과(와) Squires의 경기",
-        "matchPhoto": "src/pages/match/images/9.PNG",
+        "matchPhoto": "src/pages/match/images/9.jpg",
         "matchIntroduce": "경기 9",
         "matchSchedule": {
             "matchDate": "2024-10-31",
@@ -239,7 +239,7 @@
             "clubName": "Saxons"
         },
         "matchName": "Vikings과(와) Saxons의 경기",
-        "matchPhoto": "src/pages/match/images/10.PNG",
+        "matchPhoto": "src/pages/match/images/10.jpg",
         "matchIntroduce": "경기 10",
         "matchSchedule": {
             "matchDate": "2024-11-07",
@@ -250,256 +250,6 @@
         "matchPlayerQuantity": 9,
         "quarterQuantity": 4,
         "fieldLocation": "Valley Field",
-        "matchCost": 16000,
-        "clubLevel": "beginner",
-        "pro": "1",
-        "gender": "Male"
-    },
-    {
-        "matchCode": 11,
-        "myClub": {
-            "clubName": "Lions"
-        },
-        "enemyClub": {
-            "clubName": "Bears"
-        },
-        "matchName": "Lions과(와) Bears의 경기",
-        "matchPhoto": "src/pages/match/images/11.PNG",
-        "matchIntroduce": "경기 11",
-        "matchSchedule": {
-            "matchDate": "2024-11-14",
-            "matchStartTime": "10:00",
-            "matchEndTime": "12:00",
-            "matchTime": 120
-        },
-        "matchPlayerQuantity": 11,
-        "quarterQuantity": 4,
-        "fieldLocation": "Mountain Stadium",
-        "matchCost": 15000,
-        "clubLevel": "beginner",
-        "pro": "3",
-        "gender": "Mixed"
-    },
-    {
-        "matchCode": 12,
-        "myClub": {
-            "clubName": "Eagles"
-        },
-        "enemyClub": {
-            "clubName": "Falcons"
-        },
-        "matchName": "Eagles과(와) Falcons의 경기",
-        "matchPhoto": "src/pages/match/images/12.PNG",
-        "matchIntroduce": "경기 12",
-        "matchSchedule": {
-            "matchDate": "2024-11-21",
-            "matchStartTime": "14:00",
-            "matchEndTime": "16:00",
-            "matchTime": 120
-        },
-        "matchPlayerQuantity": 8,
-        "quarterQuantity": 4,
-        "fieldLocation": "Ocean Field",
-        "matchCost": 20000,
-        "clubLevel": "intermediate",
-        "pro": "4",
-        "gender": "Male"
-    },
-    {
-        "matchCode": 13,
-        "myClub": {
-            "clubName": "Sharks"
-        },
-        "enemyClub": {
-            "clubName": "Whales"
-        },
-        "matchName": "Sharks과(와) Whales의 경기",
-        "matchPhoto": "src/pages/match/images/13.PNG",
-        "matchIntroduce": "경기 13",
-        "matchSchedule": {
-            "matchDate": "2024-11-28",
-            "matchStartTime": "18:00",
-            "matchEndTime": "20:00",
-            "matchTime": 120
-        },
-        "matchPlayerQuantity": 10,
-        "quarterQuantity": 4,
-        "fieldLocation": "Seaside Stadium",
-        "matchCost": 12000,
-        "clubLevel": "intermediate",
-        "pro": "5",
-        "gender": "Female"
-    },
-    {
-        "matchCode": 14,
-        "myClub": {
-            "clubName": "Panthers"
-        },
-        "enemyClub": {
-            "clubName": "Leopards"
-        },
-        "matchName": "Panthers과(와) Leopards의 경기",
-        "matchPhoto": "src/pages/match/images/14.PNG",
-        "matchIntroduce": "경기 14",
-        "matchSchedule": {
-            "matchDate": "2024-12-05",
-            "matchStartTime": "16:00",
-            "matchEndTime": "18:00",
-            "matchTime": 120
-        },
-        "matchPlayerQuantity": 6,
-        "quarterQuantity": 4,
-        "fieldLocation": "Forest Arena",
-        "matchCost": 18000,
-        "clubLevel": "advanced",
-        "pro": "7",
-        "gender": "Mixed"
-    },
-    {
-        "matchCode": 15,
-        "myClub": {
-            "clubName": "Bulls"
-        },
-        "enemyClub": {
-            "clubName": "Bison"
-        },
-        "matchName": "Bulls과(와) Bison의 경기",
-        "matchPhoto": "src/pages/match/images/15.PNG",
-        "matchIntroduce": "경기 15",
-        "matchSchedule": {
-            "matchDate": "2024-12-12",
-            "matchStartTime": "15:00",
-            "matchEndTime": "17:00",
-            "matchTime": 120
-        },
-        "matchPlayerQuantity": 4,
-        "quarterQuantity": 4,
-        "fieldLocation": "Valley Stadium",
-        "matchCost": 13000,
-        "clubLevel": "beginner",
-        "pro": "4",
-        "gender": "Male"
-    },
-    {
-        "matchCode": 16,
-        "myClub": {
-            "clubName": "Dragons"
-        },
-        "enemyClub": {
-            "clubName": "Serpents"
-        },
-        "matchName": "Dragons과(와) Serpents의 경기",
-        "matchPhoto": "src/pages/match/images/16.PNG",
-        "matchIntroduce": "경기 16",
-        "matchSchedule": {
-            "matchDate": "2024-12-19",
-            "matchStartTime": "19:00",
-            "matchEndTime": "21:00",
-            "matchTime": 120
-        },
-        "matchPlayerQuantity": 7,
-        "quarterQuantity": 4,
-        "fieldLocation": "Mythic Field",
-        "matchCost": 25000,
-        "clubLevel": "advanced",
-        "pro": "5",
-        "gender": "Mixed"
-    },
-    {
-        "matchCode": 17,
-        "myClub": {
-            "clubName": "Hawks"
-        },
-        "enemyClub": {
-            "clubName": "Eagles"
-        },
-        "matchName": "Hawks과(와) Eagles의 경기",
-        "matchPhoto": "src/pages/match/images/17.PNG",
-        "matchIntroduce": "경기 17",
-        "matchSchedule": {
-            "matchDate": "2024-12-26",
-            "matchStartTime": "11:00",
-            "matchEndTime": "13:00",
-            "matchTime": 120
-        },
-        "matchPlayerQuantity": 8,
-        "quarterQuantity": 4,
-        "fieldLocation": "Sky Stadium",
-        "matchCost": 16000,
-        "clubLevel": "intermediate",
-        "pro": "3",
-        "gender": "Female"
-    },
-    {
-        "matchCode": 18,
-        "myClub": {
-            "clubName": "Warriors"
-        },
-        "enemyClub": {
-            "clubName": "Knights"
-        },
-        "matchName": "Warriors과(와) Knights의 경기",
-        "matchPhoto": "src/pages/match/images/18.PNG",
-        "matchIntroduce": "경기 18",
-        "matchSchedule": {
-            "matchDate": "2025-01-02",
-            "matchStartTime": "17:00",
-            "matchEndTime": "19:00",
-            "matchTime": 120
-        },
-        "matchPlayerQuantity": 11,
-        "quarterQuantity": 4,
-        "fieldLocation": "Battlefield Arena",
-        "matchCost": 30000,
-        "clubLevel": "advanced",
-        "pro": "8",
-        "gender": "Male"
-    },
-    {
-        "matchCode": 19,
-        "myClub": {
-            "clubName": "Knights"
-        },
-        "enemyClub": {
-            "clubName": "Crusaders"
-        },
-        "matchName": "Knights과(와) Crusaders의 경기",
-        "matchPhoto": "src/pages/match/images/19.PNG",
-        "matchIntroduce": "경기 19",
-        "matchSchedule": {
-            "matchDate": "2025-01-09",
-            "matchStartTime": "20:00",
-            "matchEndTime": "22:00",
-            "matchTime": 120
-        },
-        "matchPlayerQuantity": 5,
-        "quarterQuantity": 4,
-        "fieldLocation": "Medieval Grounds",
-        "matchCost": 22000,
-        "clubLevel": "intermediate",
-        "pro": "2",
-        "gender": "Mixed"
-    },
-    {
-        "matchCode": 20,
-        "myClub": {
-            "clubName": "Vikings"
-        },
-        "enemyClub": {
-            "clubName": "Gladiators"
-        },
-        "matchName": "Vikings과(와) Gladiators의 경기",
-        "matchPhoto": "src/pages/match/images/20.PNG",
-        "matchIntroduce": "경기 20",
-        "matchSchedule": {
-            "matchDate": "2025-01-16",
-            "matchStartTime": "09:00",
-            "matchEndTime": "11:00",
-            "matchTime": 120
-        },
-        "matchPlayerQuantity": 6,
-        "quarterQuantity": 4,
-        "fieldLocation": "Arena of Champions",
         "matchCost": 16000,
         "clubLevel": "beginner",
         "pro": "1",

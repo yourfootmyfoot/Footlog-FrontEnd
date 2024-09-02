@@ -66,17 +66,17 @@ const ImageSlider = ({ slides }) => {
 
     const slideStylesWidthBackground = {
         ...slideStyles,
-        backgroundImage: `url(${slides[currentIndex].url})`,
+        backgroundImage: `url(${slides[currentIndex]})`,
     };
 
     return (
         <div style={sliderStyles}>
             <div>
                 <div onClick={goToPrevious} style={leftArrowStyles}>
-                    ❰
+                    ⬅️
                 </div>
                 <div onClick={goToNext} style={rightArrowStyles}>
-                    ❱
+                    ➡️
                 </div>
             </div>
             <div style={slideStylesWidthBackground}></div>
@@ -87,7 +87,7 @@ const ImageSlider = ({ slides }) => {
                         key={slideIndex}
                         onClick={() => goToSlide(slideIndex)}
                     >
-                        ●
+                        ⚫
                     </div>
                 ))}
             </div>
