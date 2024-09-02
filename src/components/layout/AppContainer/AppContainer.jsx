@@ -2,7 +2,7 @@
 import styled from '@emotion/styled';
 
 const AppContainer = styled.div`
-  width: 90vw;
+  width: 100vw;
   max-width: 400px;
   height: 100vh;
   padding: 5vh 1vw;
@@ -13,8 +13,9 @@ const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* 컨텐츠가 위에서부터 시작하도록 조정 */
   min-height: 70vh;
+  position: relative; /* 자식 요소의 절대 위치를 위한 상대 위치 */
 
   @media (max-width: 768px) {
     width: 95vw;
