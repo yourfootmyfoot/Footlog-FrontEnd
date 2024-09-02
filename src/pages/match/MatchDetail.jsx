@@ -38,7 +38,12 @@ function MatchDetail() {
     );
 
     // 프리셋 라인업
-    const slides = match.myClub.preSet;
+    const slides = [
+        { url: 'src/pages/match/images/squad1.PNG', title: 'squad1' },
+        { url: 'src/pages/match/images/squad2.PNG', title: 'squad1' },
+        { url: 'src/pages/match/images/squad3.PNG', title: 'squad1' },
+        { url: 'src/pages/match/images/squad4.PNG', title: 'squad1' }
+    ]
 
     const containerStyles = {
         width: "500px",
