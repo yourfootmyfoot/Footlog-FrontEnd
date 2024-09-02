@@ -33,6 +33,7 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      "react/prop-types": "off", // react.configs.recommended.rules 먼저 적용되고 마지막에 추가해야함. 순서대로 적용.
     },
   },
 ]

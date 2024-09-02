@@ -1,0 +1,106 @@
+/* src/assets/styles/Login.css */
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+  padding: 1vh 0; /* 상하단에 여백 추가 */
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1vw 1vw;
+  border: 1px solid #f2f2f2;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 100vw;
+  height: 70vh; 
+  min-height: 500px; 
+  max-height: 100vh; 
+  margin: 5vh 0; /* 위아래 간격을 뷰포트 높이에 따라 조정 */
+}
+
+.login-image {
+  width: 15vw; /* 뷰포트 너비에 비례한 이미지 크기 */
+  height: auto;
+  margin-bottom: 3vh;
+}
+
+h2 {
+  margin-bottom: 3vh;
+  font-size: 1.5rem; /* 글자 크기를 rem 단위로 설정 */
+  max-width: 100%; /* 텍스트 최대 너비 설정 */
+  white-space: nowrap; /* 줄바꿈 방지 */
+  overflow: hidden; /* 넘치는 텍스트를 숨김 */
+}
+
+p {
+  margin-bottom: 3vh;
+  font-size: 1.2rem; /* 글자 크기를 rem 단위로 설정 */
+  max-width: 90%; /* 텍스트 최대 너비 설정 */
+}
+
+.login-services {
+  list-style: none;
+  padding: 0;
+  margin: 4vh 0;
+}
+
+.login-services li {
+  margin: 2.5vh 0;
+  font-size: 1rem; /* vw 대신 rem 단위로 설정하여 글자 크기 고정 */
+  max-width: 100%; /* 텍스트 최대 너비 설정 */
+}
+
+.button {
+  background-color: #fee500;
+  border: none;
+  color: #000;
+  padding: 1vw 1vw;
+  font-size: 1.5rem; /* vw 대신 rem 단위로 설정 */
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: auto; /* 위쪽 공간을 자동으로 채워서 버튼을 하단으로 이동 */
+  margin-bottom: 3vh; /* 버튼 아래쪽에 여백 추가 */
+}
+
+.button:hover {
+  background-color: #f0c400;
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media (min-width: 768px) {
+  .login-content {
+    width: 25vw;
+    max-width: 50vw;
+  }
+}
+
+@media (min-width: 1024px) {
+  .login-content {
+    width: 20vw;
+    max-width: 40vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-content {
+    width: 90vw;
+    max-width: 95vw;
+    height: auto; /* 작은 화면에서는 높이를 자동으로 조정 */
+    min-height: 70vh; /* 작은 화면에서 최소 높이 보장 */
+  }
+
+  .login-image {
+    width: 25vw; /* 작은 화면에서 이미지 크기 조정 */
+  }
+
+  .button {
+    font-size: 1.5rem; /* 작은 화면에서도 글자 크기 고정 */
+  }
+}
