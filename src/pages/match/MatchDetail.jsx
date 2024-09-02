@@ -1,3 +1,4 @@
+import { Map } from 'react-kakao-maps-sdk';
 import { useState, useEffect } from 'react';
 import { getMatchDetail } from './apis/MatchAPI';
 import matchStyle from "./Match.module.css";
@@ -73,7 +74,14 @@ function MatchDetail() {
                     <li><h3>경기 인원 : {match.matchPlayerQuantity}명</h3></li>
                     <li><h3>쿼터 수 : {match.matchSchedule.matchTime / 30}</h3></li>
                     <li><h3>구장 정보 : {match.fieldLocation}</h3></li>
-                    <li><h3>구장 정보-지도ver</h3></li>
+
+                    <Map
+                        center={{ lat: 33.5563, lng: 126.79581 }}   // 지도의 중심 좌표
+                        style={{ width: '100%', height: '400px' }} // 지도 크기
+                        level={3}                                   // 지도 확대 레벨
+                    >
+                    </Map>
+
                     <li><h3>매치 비용 : {match.matchCost}원</h3></li>
                     <li><h3>구단 실력 : {match.clubLevel}</h3></li>
                     <li><h3>선출 수 : {match.pro}</h3></li>
