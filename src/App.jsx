@@ -8,6 +8,7 @@ import Footer from './components/Layout/Footer';
 import Match from './pages/Match/Match';
 import MatchDetail from './pages/match/MatchDetail';
 import AppContainer from './components/layout/AppContainer/AppContainer';
+
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
