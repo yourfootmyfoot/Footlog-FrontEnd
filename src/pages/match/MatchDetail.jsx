@@ -105,7 +105,7 @@ const MatchDetail = () => {
 
   return (
     <MatchBox>
-      <h3>{match.myClub.clubName}와(과) {match.enemyClub.clubName}의 경기</h3>
+      <h3>{match.myClub.clubName}의 경기</h3>
       <img src={match.matchPhoto} alt={`Image${matchCode}`} style={{ width: '100%', borderRadius: '10px' }} />
 
       <h3>{match.myClub.clubName}의 매치 설명</h3>
@@ -124,9 +124,9 @@ const MatchDetail = () => {
           <li>
             <MapContainer>
               <Map
-                center={{ lat: 33.5563, lng: 126.79581 }}
+                center={{ lat: 37.569648162, lng: 126.899078322 }}
                 style={{ width: '100%', height: '100%' }}
-                level={3}
+                level={5}
               />
             </MapContainer>
           </li>
