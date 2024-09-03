@@ -126,7 +126,7 @@ const MatchDetail = () => {
               <Map
                 center={{ lat: 37.569648162, lng: 126.899078322 }}
                 style={{ width: '100%', height: '100%' }}
-                level={5}
+                level={4}
               />
             </MapContainer>
           </li>
