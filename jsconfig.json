@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src", // 절대경로를 src로 바꿔줌
+    "paths": {
+      "@/*": ["./*"]
+    }
+  }
+}

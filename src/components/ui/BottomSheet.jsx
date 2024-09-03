@@ -1,9 +1,7 @@
-
 import styled from '@emotion/styled';
 
-
 const Overlay = styled.div`
-  position: absolute; /* Fixed positioning to cover the entire screen */
+  position: fixed; /* Fixed positioning to cover the entire screen */
   top: 0;
   left: 0;
   right: 0;
@@ -14,10 +12,10 @@ const Overlay = styled.div`
 `;
 
 const SheetContainer = styled.div`
-  position: absolute; /* Fixed positioning to slide up over the Footer */
+  position: fixed; /* Fixed positioning to slide up over the Footer */
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: ${({ isOpen }) => (isOpen ? '0' : '-50vh')}; /* Initially hidden below the screen */
   background-color: white;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -25,7 +23,7 @@ const SheetContainer = styled.div`
   max-height: 50vh;
   overflow-y: auto;
   transform: ${({ isOpen }) => (isOpen ? 'translateY(0)' : 'translateY(100%)')};
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, bottom 0.3s ease; /* Transition bottom position as well */
   z-index: 1002; /* Higher z-index than Overlay */
   display: flex;
   flex-direction: column;
@@ -64,7 +62,7 @@ const Title = styled.h3`
 const BottomSheet = ({ options, title, isOpen, onClose }) => {
   return (
     <>
-      <Overlay isOpen={isOpen} onClick={onClose} />
+      {isOpen && <Overlay isOpen={isOpen} onClick={onClose} />} {/* Only show Overlay when open */}
       <SheetContainer isOpen={isOpen}>
         <Title>{title}</Title>
         <GridContainer>
