@@ -4,16 +4,19 @@ import GlobalStyles from './theme/GlobalStyles';
 import theme from './theme/theme';
 import Landing from './pages/Landing';
 import Login from './pages/Login/Login';
+import Header from './components/layout/Header';
 import Footer from './components/Layout/Footer';
 import Match from './pages/Match/Match';
 import MatchDetail from './pages/match/MatchDetail';
 import AppContainer from './components/layout/AppContainer/AppContainer';
+
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Router>
         <AppContainer>
+        <Header />
           <Switch>
             <Route path="/" exact component={Landing} />
             <Route path="/login" component={Login} />
