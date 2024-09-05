@@ -159,7 +159,7 @@ const MatchDetail = () => {
 
   return (
     <MatchBox>
-      <h3>{match.myClub.clubName}와(과) {match.enemyClub.clubName}의 경기</h3>
+      <h3>{match.myClub.clubName}의 경기</h3>
       <img src={match.matchPhoto} alt={`Image${matchCode}`} style={{ width: '100%', borderRadius: '10px' }} />
 
       <h3>{match.myClub.clubName}의 매치 설명</h3>
@@ -180,6 +180,11 @@ const MatchDetail = () => {
               {mapCenter && ( // mapCenter가 null이 아닐 때에만 지도를 렌더링
                 <div id="map" style={{ width: '100%', height: '100%' }}></div>
               )}
+              <Map
+                center={{ lat: 37.569648162, lng: 126.899078322 }}
+                style={{ width: '100%', height: '100%' }}
+                level={4}
+              />
             </MapContainer>
           </li>
           <InfoItem label="매치 비용" value={`${match.matchCost}원`} />
