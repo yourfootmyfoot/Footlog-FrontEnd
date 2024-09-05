@@ -9,6 +9,7 @@ import Footer from './components/Layout/Footer';
 import Match from './pages/Match/Match';
 import MatchDetail from './pages/match/MatchDetail';
 import AppContainer from './components/layout/AppContainer/AppContainer';
+import Settings from './pages/Settings/Settings'
 
 const App = () => {
   return (
@@ -24,8 +25,8 @@ const App = () => {
             <Route path="/matchDetail" component={MatchDetail} />
             {/*<Route path="/club" component={Club} />
             <Route path="/profile" component={Profile} />
-            <Route path="/guest" component={Guest} />
-            <Route path="/settings" component={Settings} />*/}
+            <Route path="/guest" component={Guest} />*/
+            <Route path="/settings" component={Settings} />}
           </Switch>
         </AppContainer>
       <Footer />
