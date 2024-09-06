@@ -180,7 +180,7 @@ const MatchDetail = () => {
               {mapCenter && ( // mapCenter가 null이 아닐 때에만 지도를 렌더링
                 <div id="map" style={{ width: '100%', height: '100%' }}></div>
               )}
-              <Map
+              <MapContainer
                 center={{ lat: 37.569648162, lng: 126.899078322 }}
                 style={{ width: '100%', height: '100%' }}
                 level={4}
