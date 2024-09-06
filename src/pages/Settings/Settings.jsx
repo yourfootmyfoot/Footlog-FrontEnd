@@ -4,12 +4,11 @@ import './Settings.css';
 
 const Settings = () => {
   const [nickname, setNickname] = useState('테스트 유저');
-  const [emailNotifications, setEmailNotifications] = useState(true);
+  const [notifications, setNotifications] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
   const handleSave = () => {
-    alert('Settings saved!');
-    // 여기에 저장 로직 추가
+    alert('변경 사항이 저장되었습니다!');
   };
 
   return (
@@ -21,37 +20,51 @@ const Settings = () => {
           type="text" 
           value={nickname} 
           onChange={(e) => setNickname(e.target.value)} 
-          placeholder="Enter new nickname"
+          placeholder="새로운 닉네임을 입력하세요."
         />
       </div>
 
       {/* 알림 설정 */}
       <div className="setting-item">
-        <h3>알림 수신 설정</h3>
-        <label>
-          <input 
-            type="checkbox" 
-            checked={emailNotifications} 
-            onChange={() => setEmailNotifications(!emailNotifications)} 
-          />
-          알림을 수신합니다.
-        </label>
+        <h3>알림</h3>
+        <div className="toggle-buttons">
+          <button
+            className={notifications ? "active" : ""}
+            onClick={() => setNotifications(true)}
+          >
+            켜짐
+          </button>
+          <button
+            className={!notifications ? "active" : ""}
+            onClick={() => setNotifications(false)}
+          >
+            꺼짐
+          </button>
+        </div>
       </div>
 
       {/* 다크 모드 설정 */}
       <div className="setting-item">
-        <h3>다크모드 설정</h3>
-        <label>
-          <input 
-            type="checkbox" 
-            checked={darkMode} 
-            onChange={() => setDarkMode(!darkMode)} 
-          />
-          다크모드를 사용합니다.
-        </label>
+        <h3>다크 모드</h3>
+        <div className="toggle-buttons">
+          <button
+            className={darkMode ? "active" : ""}
+            onClick={() => setDarkMode(true)}
+          >
+            켜짐
+          </button>
+          <button
+            className={!darkMode ? "active" : ""}
+            onClick={() => setDarkMode(false)}
+          >
+            꺼짐
+          </button>
+        </div>
       </div>
 
-      <button onClick={handleSave}>Save Changes</button>
+      <div className="save-button-container">
+        <button className="save-button" onClick={handleSave}>저장</button>
+      </div>
     </div>
   );
 };

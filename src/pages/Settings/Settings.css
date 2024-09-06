@@ -1,10 +1,12 @@
-/* Settings.css */
 .settings-page {
   width: 100%;
   max-width: 1200px;
   margin: 0;
   padding: 20px;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 h2 {
@@ -17,6 +19,7 @@ h2 {
   width: 100%;
   padding: 20px;
   border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
 }
 
 .setting-item h3 {
@@ -24,8 +27,7 @@ h2 {
   font-size: 18px;
 }
 
-.setting-item input[type="text"],
-.setting-item input[type="password"] {
+.setting-item input[type="text"] {
   width: 100%;
   padding: 10px;
   border-radius: 4px;
@@ -34,30 +36,47 @@ h2 {
   font-size: 16px;
 }
 
-.setting-item label {
+.toggle-buttons {
   display: flex;
-  align-items: center;
-  margin-top: 10px;
+}
+
+.toggle-buttons button {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f5f5f5;
+  cursor: pointer;
   font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
-.setting-item input[type="checkbox"] {
-  margin-right: 10px;
-  transform: scale(1.2);
+.toggle-buttons button.active {
+  background-color: #4CAF50;
+  color: white;
 }
 
-button {
-  width: 100%;
-  padding: 15px;
+.toggle-buttons button:not(.active):hover {
+  background-color: #eee;
+}
+
+.save-button-container {
+  margin-top: auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.save-button {
+  padding: 15px 30px;
+  font-size: 18px;
   background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 18px;
-  margin-top: 20px;
+  width: 100%;
+  max-width: 300px; /* 버튼 크기 조정 */
 }
 
-button:hover {
-  color: #45a049;
+.save-button:hover {
+  background-color: #45a049;
 }
