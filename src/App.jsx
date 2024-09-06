@@ -9,6 +9,7 @@ import Footer from './components/Layout/Footer';
 import Match from './pages/Match/Match';
 import MatchDetail from './pages/match/MatchDetail';
 import AppContainer from './components/layout/AppContainer/AppContainer';
+import MercenaryApplicationList from './pages/Mercenary/MercenaryApplicationList';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
             <Route path="/login" component={Login} />
             <Route path="/match" component={Match} />
             <Route path="/matchDetail" component={MatchDetail} />
+            <Route path="/MercenaryApplicationList" component={MercenaryApplicationList} />
             {/*<Route path="/club" component={Club} />
             <Route path="/profile" component={Profile} />
             <Route path="/guest" component={Guest} />
