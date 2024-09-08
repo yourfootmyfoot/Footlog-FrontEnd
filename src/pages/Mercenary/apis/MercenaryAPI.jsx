@@ -1,19 +1,15 @@
 // JSON 파일로부터 매치 정보를 가져와서 여러 가지 함수로 검색 및 필터링하는 모듈
-import mercenaries from '../data/Mercenary.json';
+import mercenariesApp from '../data/MercenaryApp.json';
 
-// matches
-export function getMercenaryList() {
+// mercenaryAppList
+export function getMercenaryAppList() {
 
-    return mercenaries;
+    return mercenariesApp;
 }
 
-// 
-export function getMercenaryDetail(MercenaryCode) {
-    console.log(mercenaries);
+// MercenaryApp 정보를 가져온다.
+export function getMercenaryAppInfo(MercenaryAppCode) {
+    console.log(mercenariesApp);
 
-    return mercenaries.filter(match => match.matchCode === parseInt(MercenaryCode))[0];
-}
-
-export function searchMercenary(searchMercenaryName) {
-    return mercenaries.filter(mercenary => mercenary.mercenaryName.match(searchMercenaryName));
+    return mercenariesApp.filter(mercenary => mercenary.Code === parseInt(MercenaryAppCode))[0];
 }
