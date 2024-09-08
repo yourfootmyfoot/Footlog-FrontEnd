@@ -1,0 +1,11 @@
+.matchContainer {
+    background-color: rgb(189, 189, 189);
+    cursor: pointer;
+    width: 300px;
+    margin : 5px;
+  }
+  
+  .matchContainer:hover {
+    background-color: rgb(241, 254, 239);
+    color: rgb(0, 0, 0);
+  }

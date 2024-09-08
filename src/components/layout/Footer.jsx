@@ -69,26 +69,32 @@ const Footer = ({ location }) => {
 
   return (
     <FooterContainer>
+
       <FooterItem to="/match">
         <FooterIcon src={matchIcon} alt="경기" active={isActive('/match')} />
         <FooterText active={isActive('/match')}>경기</FooterText>
       </FooterItem>
+
       <FooterItem to="/club">
         <FooterIcon src={clubIcon} alt="구단" active={isActive('/club')} />
         <FooterText active={isActive('/club')}>구단</FooterText>
       </FooterItem>
+
       <FooterItem to="/profile">
         <FooterIcon src={profileIcon} alt="프로필" active={isActive('/profile')} />
         <FooterText active={isActive('/profile')}>프로필</FooterText>
       </FooterItem>
-      <FooterItem to="/guest">
-        <FooterIcon src={guestIcon} alt="용병" active={isActive('/guest')} />
-        <FooterText active={isActive('/guest')}>용병</FooterText>
+
+      <FooterItem to="/Mercenary">
+        <FooterIcon src={guestIcon} alt="용병" active={isActive('/Mercenary')} />
+        <FooterText active={isActive('/Mercenary')}>용병</FooterText>
       </FooterItem>
+
       <FooterItem to="/settings">
         <FooterIcon src={settingsIcon} alt="설정" active={isActive('/settings')} />
         <FooterText active={isActive('/settings')}>설정</FooterText>
       </FooterItem>
+
     </FooterContainer>
   );
 };
