@@ -5,7 +5,7 @@
         "teamLevel": "중상위",
         "region": "서울 강남구",
         "stadiumName": "강남운동장",
-        "matchSchedule": {
+        "schedule": {
             "date": "2024-09-05",
             "day": "thursday",
             "startTime": "10:00",
@@ -22,7 +22,7 @@
         "teamLevel": "상",
         "region": "서울 마포구",
         "stadiumName": "마포구민운동장",
-        "matchSchedule": {
+        "schedule": {
             "date": "2024-09-06",
             "day": "friday",
             "startTime": "14:00",
@@ -39,7 +39,7 @@
         "teamLevel": "중상",
         "region": "서울 송파구",
         "stadiumName": "송파종합운동장",
-        "matchSchedule": {
+        "schedule": {
             "date": "2024-09-07",
             "day": "saturday",
             "startTime": "16:00",
@@ -56,7 +56,7 @@
         "teamLevel": "중",
         "region": "서울 서초구",
         "stadiumName": "서초구민운동장",
-        "matchSchedule": {
+        "schedule": {
             "date": "2024-09-08",
             "day": "sunday",
             "startTime": "18:00",
@@ -73,7 +73,7 @@
         "teamLevel": "상",
         "region": "서울 성동구",
         "stadiumName": "성동종합운동장",
-        "matchSchedule": {
+        "schedule": {
             "date": "2024-09-09",
             "day": "monday",
             "startTime": "08:00",
@@ -90,7 +90,7 @@
         "teamLevel": "중상",
         "region": "서울 종로구",
         "stadiumName": "종로구민운동장",
-        "matchSchedule": {
+        "schedule": {
             "date": "2024-09-10",
             "day": "tuesday",
             "startTime": "09:00",
@@ -107,7 +107,7 @@
         "teamLevel": "상",
         "region": "서울 동작구",
         "stadiumName": "동작운동장",
-        "matchSchedule": {
+        "schedule": {
             "date": "2024-09-11",
             "day": "wednesday",
             "startTime": "12:00",
@@ -124,7 +124,7 @@
         "teamLevel": "중",
         "region": "서울 은평구",
         "stadiumName": "은평구민운동장",
-        "matchSchedule": {
+        "schedule": {
             "date": "2024-09-12",
             "day": "thursday",
             "startTime": "15:00",
@@ -141,7 +141,7 @@
         "teamLevel": "상",
         "region": "서울 강북구",
         "stadiumName": "강북운동장",
-        "matchSchedule": {
+        "schedule": {
             "date": "2024-09-13",
             "day": "friday",
             "startTime": "17:00",
@@ -158,7 +158,7 @@
         "teamLevel": "중상",
         "region": "서울 관악구",
         "stadiumName": "관악운동장",
-        "matchSchedule": {
+        "schedule": {
             "date": "2024-09-14",
             "day": "saturday",
             "startTime": "13:00",

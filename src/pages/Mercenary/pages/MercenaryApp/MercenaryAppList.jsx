@@ -9,8 +9,12 @@ function MercenaryAppList() {
 
   useEffect(
     () => {
-      // mercenaryAppList 불러오기
-      setMercenaryAppList(getMercenaryAppList());
+
+      const appList = getMercenaryAppList();
+
+      console.log(appList); // 데이터 확인
+
+      setMercenaryAppList(appList);
     },
     []
   );
@@ -18,8 +22,6 @@ function MercenaryAppList() {
   return (
     <>
       <div>
-        <h1>용병 합니다 목록</h1>
-
         <div className={Mercenary.container}>
           {mercenaryAppList.map(mercenaryApp =>
             <MercenaryAppInfo

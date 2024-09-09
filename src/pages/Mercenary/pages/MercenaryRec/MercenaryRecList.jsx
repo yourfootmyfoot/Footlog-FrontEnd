@@ -1,26 +1,24 @@
 import { useState, useEffect } from 'react';
 import { getMercenaryRecList } from '../../apis/MercenaryAPI';
 import MercenaryRecInfo from './MercenaryRecInfo';
-import Mercenary from './MercenaryRecList.module.css';
+import MercenaryRec from './MercenaryRecList.module.css';
 
 function MercenaryRecList() {
 
   const [mercenaryRecList, setMercenaryRecList] = useState([]);
 
-  useEffect(
-    () => {
-      // mercenaryRecList 불러오기
-      setMercenaryRecList(getMercenaryRecList());
-    },
-    []
-  );
+  useEffect(() => {
+    const recList = getMercenaryRecList();
+
+    console.log(recList); // 데이터 확인
+
+    setMercenaryRecList(recList);
+  }, []);
 
   return (
     <>
       <div>
-        <h1>용병 구해요 목록</h1>
-
-        <div className={Mercenary.container}>
+        <div className={MercenaryRec.container}>
           {mercenaryRecList.map(mercenaryRec =>
             <MercenaryRecInfo
               key={mercenaryRec.mercenaryRecCode}
