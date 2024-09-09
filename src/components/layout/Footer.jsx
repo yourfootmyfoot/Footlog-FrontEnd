@@ -65,14 +65,17 @@ const FooterText = styled.span`
 `;
 
 const Footer = ({ location }) => {
-  const isActive = (path) => location.pathname === path;
+  // const isActive = (path) => location.pathname === path;
+  // (..paths) : 여러 경로를 받는 키워드, paths.includes() : 배열(paths)에 특정 값(location.pathname)이 있는 지 T/F로 반환
+  const isActive = (...paths) => paths.includes(location.pathname);
+
 
   return (
     <FooterContainer>
 
       <FooterItem to="/match">
-        <FooterIcon src={matchIcon} alt="경기" active={isActive('/match')} />
-        <FooterText active={isActive('/match')}>경기</FooterText>
+        <FooterIcon src={matchIcon} alt="경기" active={isActive('/match', '/matchDetail')} />
+        <FooterText active={isActive('/match', '/matchDetail')}>경기</FooterText>
       </FooterItem>
 
       <FooterItem to="/club">
@@ -86,8 +89,8 @@ const Footer = ({ location }) => {
       </FooterItem>
 
       <FooterItem to="/Mercenary">
-        <FooterIcon src={guestIcon} alt="용병" active={isActive('/Mercenary')} />
-        <FooterText active={isActive('/Mercenary')}>용병</FooterText>
+        <FooterIcon src={guestIcon} alt="용병" active={isActive('/Mercenary','/MercenaryRecList', '/MercenaryAppList')} />
+        <FooterText active={isActive('/Mercenary','/MercenaryRecList', '/MercenaryAppList')}>용병</FooterText>
       </FooterItem>
 
       <FooterItem to="/settings">
