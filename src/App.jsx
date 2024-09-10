@@ -12,6 +12,7 @@ import AppContainer from './components/layout/AppContainer/AppContainer';
 import Mercenary from './pages/Mercenary/pages/MercenaryChoice';
 import MercenaryAppList from './pages/Mercenary/pages/MercenaryApp/MercenaryAppList';
 import MercenaryRecList from './pages/Mercenary/pages/MercenaryRec/MercenaryRecList';
+import ClubList from './pages/ClubList/pages/ClubList';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/Mercenary" component={Mercenary} />
             <Route path="/MercenaryAppList" component={MercenaryAppList} />
             <Route path="/MercenaryRecList" component={MercenaryRecList} />
+            <Route path="/ClubList" component={ClubList} />
             {/*<Route path="/club" component={Club} />
             <Route path="/profile" component={Profile} />
             <Route path="/settings" component={Settings} />*/}
