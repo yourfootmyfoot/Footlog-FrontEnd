@@ -5,6 +5,7 @@ import serverConfig from '@/config/serverConfig'; // 서버 설정을 가져옵�
 import { useHistory } from 'react-router-dom'; // React Router v5에서 useHistory 사용
 import axios from 'axios'; // Axios 라이브러리 추가
 import { useEffect } from 'react';
+import mascot from '@/assets/mascot.svg'
 
 const Login = () => {
   const history = useHistory();
@@ -53,7 +54,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="responsive-container">
-        {/* <img src={mascot} alt="Character" className="login-image" /> */}
+        <img src={mascot} alt="Character" className="login-image" />
         <h2>
           로그인하고 <span role="img" aria-label="soccer ball">⚽</span>을 차러 가볼까요?
         </h2>
