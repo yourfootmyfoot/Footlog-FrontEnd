@@ -78,9 +78,9 @@ const Footer = ({ location }) => {
         <FooterText active={isActive('/match', '/matchDetail')}>경기</FooterText>
       </FooterItem>
 
-      <FooterItem to="/club">
-        <FooterIcon src={clubIcon} alt="구단" active={isActive('/club')} />
-        <FooterText active={isActive('/club')}>구단</FooterText>
+      <FooterItem to="/ClubList">
+        <FooterIcon src={clubIcon} alt="구단" active={isActive('/ClubList')} />
+        <FooterText active={isActive('/ClubList')}>구단</FooterText>
       </FooterItem>
 
       <FooterItem to="/profile">
