@@ -1,0 +1,81 @@
+/* 부모 컨테이너 설정 */
+.MatchBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 자식 요소들을 수직 방향으로 가운데 정렬 */
+    padding: 20px; /* 전체 컨테이너의 패딩을 추가하여 내부 요소와의 간격 확보 */
+    background-color: #f8f9fa; /* 컨테이너의 배경색 설정 */
+    border-radius: 10px; /* 모서리를 둥글게 설정 */
+    max-width: 600px; /* 컨테이너 최대 너비 설정 */
+    margin: auto; /* 화면 중앙에 배치 */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+}
+
+/* 이미지 설정 */
+.MatchBox img {
+    max-width: 100%; /* 이미지가 부모 요소 너비를 넘지 않도록 설정 */
+    width: 100%; /* 이미지가 부모 요소 너비에 맞춰지도록 설정 */
+    max-height: 300px; /* 이미지의 최대 높이 설정 */
+    border-radius: 10px; /* 이미지의 모서리를 둥글게 설정 */
+    margin-bottom: 20px; /* 이미지와 아래 요소 간의 간격 설정 */
+}
+
+/* 매치 설명 박스 설정 */
+.MatchBox .matchDescription {
+    width: 100%; /* 설명 박스의 너비를 부모 요소에 맞춤 */
+    background-color: #e9ecef; /* 설명 박스의 배경색 설정 */
+    padding: 15px; /* 설명 박스 내부 패딩 설정 */
+    border-radius: 10px; /* 설명 박스 모서리를 둥글게 설정 */
+    margin-bottom: 20px; /* 설명 박스와 아래 요소 간의 간격 설정 */
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1); /* 설명 박스에 그림자 효과 추가 */
+    color: #495057; /* 텍스트 색상 설정 */
+    text-align: left; /* 텍스트를 왼쪽 정렬 */
+    font-size: 16px; /* 텍스트 크기 설정 */
+}
+
+/* 매치 정보 컨테이너 설정 */
+.MatchInfo {
+    width: 100%; /* 매치 정보 섹션을 부모 요소의 너비에 맞춤 */
+    background-color: #fff; /* 정보 섹션의 배경색을 흰색으로 설정 */
+    padding: 20px; /* 정보 섹션의 내부 패딩 설정 */
+    border-radius: 10px; /* 정보 섹션의 모서리를 둥글게 설정 */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+}
+
+/* 리스트 항목 기본 설정 */
+.MatchInfo ul {
+    padding: 0; /* 리스트의 기본 패딩 제거 */
+}
+
+.MatchInfo li {
+    list-style-type: none; /* 리스트 아이템의 기본 마커 제거 */
+    margin-bottom: 10px; /* 리스트 항목 간의 간격 설정 */
+}
+
+/* 텍스트 스타일 설정 */
+.MatchInfo h3 {
+    font-size: 16px; /* 텍스트 크기 설정 */
+    font-weight: 400; /* 텍스트 굵기 설정 */
+    color: #333; /* 텍스트 색상 설정 */
+    margin: 5px 0; /* 텍스트 위아래 간격 설정 */
+}
+
+/* 매치 정보 제목 설정 */
+.MatchInfo h2 {
+    font-size: 18px; /* 제목 텍스트 크기 설정 */
+    font-weight: 700; /* 제목 텍스트 굵기 설정 */
+    color: #222; /* 제목 텍스트 색상 설정 */
+    margin-bottom: 20px; /* 제목과 다음 요소 간의 간격 설정 */
+    text-align: left; /* 제목 텍스트를 왼쪽 정렬 */
+}
+
+.joinButton {
+    background-color: red; /* 버튼 배경색을 빨간색으로 설정 */
+    color: white; /* 버튼 내 텍스트 색상을 흰색으로 설정 */
+    border: none; /* 테두리 없앰 */
+    padding: 10px 20px; /* 상하 10px, 좌우 20px 패딩 설정 */
+    margin-top: 45px; /* 버튼 상단의 여백을 20px로 설정 */
+    cursor: pointer; /* 마우스 오버시 커서를 포인터로 설정 */
+    font-size: 16px; /* 글꼴 크기 설정 */
+    border-radius: 5px; /* 버튼 모서리 둥글게 설정 */
+}

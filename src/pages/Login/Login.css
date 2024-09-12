@@ -90,8 +90,8 @@ p {
 
 @media (max-width: 480px) {
   .login-content {
-    width: 90vw;
-    max-width: 95vw;
+    width: 100vw;
+    max-width: 100vw;
     height: auto; /* 작은 화면에서는 높이를 자동으로 조정 */
     min-height: 70vh; /* 작은 화면에서 최소 높이 보장 */
   }

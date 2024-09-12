@@ -1,0 +1,172 @@
+[
+    {
+        "mercenaryRecCode": 1,
+        "teamName": "강남 FC",
+        "teamLevel": "중상위",
+        "region": "서울 강남구",
+        "stadiumName": "강남운동장",
+        "schedule": {
+            "date": "2024-09-05",
+            "day": "thursday",
+            "startTime": "10:00",
+            "endTime": "12:00"
+        },
+        "recruitmentCount": 2,
+        "stadiumFee": "50,000원",
+        "mercenaryFee": "30,000원",
+        "introduce": "팀워크를 중시하는 중상위권 팀입니다."
+    },
+    {
+        "mercenaryRecCode": 2,
+        "teamName": "마포 유나이티드",
+        "teamLevel": "상",
+        "region": "서울 마포구",
+        "stadiumName": "마포구민운동장",
+        "schedule": {
+            "date": "2024-09-06",
+            "day": "friday",
+            "startTime": "14:00",
+            "endTime": "16:00"
+        },
+        "recruitmentCount": 3,
+        "stadiumFee": "40,000원",
+        "mercenaryFee": "25,000원",
+        "introduce": "공격과 수비가 모두 강한 팀입니다."
+    },
+    {
+        "mercenaryRecCode": 3,
+        "teamName": "송파 스파이더스",
+        "teamLevel": "중상",
+        "region": "서울 송파구",
+        "stadiumName": "송파종합운동장",
+        "schedule": {
+            "date": "2024-09-07",
+            "day": "saturday",
+            "startTime": "16:00",
+            "endTime": "18:00"
+        },
+        "recruitmentCount": 1,
+        "stadiumFee": "60,000원",
+        "mercenaryFee": "30,000원",
+        "introduce": "빠른 스피드로 경기를 리드하는 팀입니다."
+    },
+    {
+        "mercenaryRecCode": 4,
+        "teamName": "서초 워리어스",
+        "teamLevel": "중",
+        "region": "서울 서초구",
+        "stadiumName": "서초구민운동장",
+        "schedule": {
+            "date": "2024-09-08",
+            "day": "sunday",
+            "startTime": "18:00",
+            "endTime": "20:00"
+        },
+        "recruitmentCount": 2,
+        "stadiumFee": "55,000원",
+        "mercenaryFee": "28,000원",
+        "introduce": "모든 포지션을 소화하는 전천후 팀입니다."
+    },
+    {
+        "mercenaryRecCode": 5,
+        "teamName": "성동 이글스",
+        "teamLevel": "상",
+        "region": "서울 성동구",
+        "stadiumName": "성동종합운동장",
+        "schedule": {
+            "date": "2024-09-09",
+            "day": "monday",
+            "startTime": "08:00",
+            "endTime": "10:00"
+        },
+        "recruitmentCount": 3,
+        "stadiumFee": "45,000원",
+        "mercenaryFee": "30,000원",
+        "introduce": "강한 체력과 수비력을 자랑하는 팀입니다."
+    },
+    {
+        "mercenaryRecCode": 6,
+        "teamName": "종로 라이온즈",
+        "teamLevel": "중상",
+        "region": "서울 종로구",
+        "stadiumName": "종로구민운동장",
+        "schedule": {
+            "date": "2024-09-10",
+            "day": "tuesday",
+            "startTime": "09:00",
+            "endTime": "11:00"
+        },
+        "recruitmentCount": 1,
+        "stadiumFee": "50,000원",
+        "mercenaryFee": "27,000원",
+        "introduce": "경기를 리드하는 공격형 팀입니다."
+    },
+    {
+        "mercenaryRecCode": 7,
+        "teamName": "동작 타이거스",
+        "teamLevel": "상",
+        "region": "서울 동작구",
+        "stadiumName": "동작운동장",
+        "schedule": {
+            "date": "2024-09-11",
+            "day": "wednesday",
+            "startTime": "12:00",
+            "endTime": "14:00"
+        },
+        "recruitmentCount": 2,
+        "stadiumFee": "55,000원",
+        "mercenaryFee": "29,000원",
+        "introduce": "스피드와 체력에서 앞서는 팀입니다."
+    },
+    {
+        "mercenaryRecCode": 8,
+        "teamName": "은평 불독스",
+        "teamLevel": "중",
+        "region": "서울 은평구",
+        "stadiumName": "은평구민운동장",
+        "schedule": {
+            "date": "2024-09-12",
+            "day": "thursday",
+            "startTime": "15:00",
+            "endTime": "17:00"
+        },
+        "recruitmentCount": 2,
+        "stadiumFee": "50,000원",
+        "mercenaryFee": "26,000원",
+        "introduce": "수비력을 중시하는 강한 팀입니다."
+    },
+    {
+        "mercenaryRecCode": 9,
+        "teamName": "강북 스트라이커스",
+        "teamLevel": "상",
+        "region": "서울 강북구",
+        "stadiumName": "강북운동장",
+        "schedule": {
+            "date": "2024-09-13",
+            "day": "friday",
+            "startTime": "17:00",
+            "endTime": "19:00"
+        },
+        "recruitmentCount": 1,
+        "stadiumFee": "60,000원",
+        "mercenaryFee": "32,000원",
+        "introduce": "전략적 공격을 펼치는 팀입니다."
+    },
+    {
+        "mercenaryRecCode": 10,
+        "teamName": "관악 블레이즈",
+        "teamLevel": "중상",
+        "region": "서울 관악구",
+        "stadiumName": "관악운동장",
+        "schedule": {
+            "date": "2024-09-14",
+            "day": "saturday",
+            "startTime": "13:00",
+            "endTime": "15:00"
+        },
+        "recruitmentCount": 2,
+        "stadiumFee": "50,000원",
+        "mercenaryFee": "30,000원",
+        "introduce": "팀워크와 패스를 중시하는 팀입니다."
+    }
+]
