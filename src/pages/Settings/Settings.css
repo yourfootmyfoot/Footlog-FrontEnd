@@ -1,3 +1,4 @@
+/* Settings.css */
 .settings-page {
   width: 100%;
   max-width: 1200px;
@@ -59,24 +60,57 @@ h2 {
   background-color: #eee;
 }
 
-.save-button-container {
-  margin-top: auto;
-  text-align: center;
-  padding: 20px;
-}
-
-.save-button {
-  padding: 15px 30px;
-  font-size: 18px;
-  background-color: #4CAF50;
+/* 1대1 문의 버튼 스타일 */
+.inquiry-button {
+  padding: 10px 20px;
+  background-color: #007BFF;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   width: 100%;
   max-width: 300px; /* 버튼 크기 조정 */
+  margin-top: 10px;
+}
+
+.inquiry-button:hover {
+  background-color: #0056b3;
+}
+
+.save-button-container {
+  margin-top: auto;
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* 버튼 간격 */
+}
+
+.save-button, .logout-button {
+  flex: 1;
+  padding: 12px 24px; /* 패딩을 줄여 글씨가 분리되지 않도록 조정 */
+  font-size: 16px; /* 폰트 크기를 살짝 줄임 */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 280px; /* 버튼 최대 크기 조정 */
+}
+
+.save-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.logout-button {
+  background-color: #FF4136;
+  color: white;
 }
 
 .save-button:hover {
   background-color: #45a049;
+}
+
+.logout-button:hover {
+  background-color: #e62d26;
 }
