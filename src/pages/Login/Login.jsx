@@ -5,9 +5,6 @@ import axios from 'axios';
 import './Login.css';
 import KakaoLoginButton from '@/components/ui/KakaoLoginButton';
 import serverConfig from '@/config/serverConfig'; // 서버 설정을 가져옵니다
-import { useHistory } from 'react-router-dom'; // React Router v5에서 useHistory 사용
-import axios from 'axios'; // Axios 라이브러리 추가
-import { useEffect } from 'react';
 
 const Login = () => {
   const history = useHistory();
