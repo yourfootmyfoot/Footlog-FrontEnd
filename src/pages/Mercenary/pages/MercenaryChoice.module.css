@@ -1,0 +1,30 @@
+/*
+    버튼 속성
+*/
+.buttonStyle {
+    background-color: #16c79a;
+    color: white;
+    border: none;
+    padding: 1vh 2vw;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 3vh;
+    transition: background-color 0.3s ease;
+}
+
+.buttonStyle:hover {
+    background-color: #13a682;
+}
+
+/*
+    버튼 위치
+*/
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 화면 전체 높이를 설정하여 수직으로 가운데 정렬 */
+    text-align: center;
+}
