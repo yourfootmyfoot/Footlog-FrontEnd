@@ -5,6 +5,7 @@ import theme from './theme/theme';
 import Landing from './pages/Landing';
 import Login from './pages/Login/Login';
 import Footer from './components/Layout/Footer';
+import MatchEnrollForm from './pages/matchEnroll/MatchEnrollForm';
 
 const App = () => {
   return (
@@ -19,8 +20,9 @@ const App = () => {
           <Route path="/profile" component={Profile} />
           <Route path="/guest" component={Guest} />
           <Route path="/settings" component={Settings} />*/}
+          <Route path="/match-enroll" component={MatchEnrollForm}></Route>
         </Switch>
-      <Footer />
+        <Footer />
       </Router>
     </ThemeProvider>
   );

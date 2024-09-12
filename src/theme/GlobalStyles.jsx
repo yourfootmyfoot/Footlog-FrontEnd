@@ -22,7 +22,6 @@ const GlobalStyles = () => (
         background-color: #f8f9fa;
         color: #333;
         display: flex;
-        justify-content: center;
         align-items: center;
         flex-direction: column;
         overflow-x: hidden; /* 수평 스크롤 제거 */
