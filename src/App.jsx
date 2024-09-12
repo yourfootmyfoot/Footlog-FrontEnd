@@ -5,7 +5,7 @@ import theme from './theme/theme';
 import Landing from './pages/Landing';
 import Login from './pages/Login/Login';
 import Footer from './components/Layout/Footer';
-import MatchEnrollForm from './pages/matchEnroll/MatchEnrollForm';
+import MatchEnrollForm from './pages/MatchEnroll/MatchEnrollForm';
 
 const App = () => {
   return (
