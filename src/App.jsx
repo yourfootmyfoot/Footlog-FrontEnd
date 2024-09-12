@@ -36,6 +36,8 @@ const App = () => {
             <Route path="/guest" component={Guest} />*/}
             <Route path="/settings" component={Settings} />
 
+            <Route path="/guest" component={Guest} />*/}
+            <Route path="/settings" component={Settings} />
           </Switch>
         </AppContainer>
       <Footer />
