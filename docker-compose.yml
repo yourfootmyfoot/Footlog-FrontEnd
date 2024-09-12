@@ -1,0 +1,8 @@
+
+services:
+  frontend:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - VITE_KAKAOMAP_KEY=${VITE_KAKAOMAP_KEY}

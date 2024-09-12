@@ -1,4 +1,3 @@
-// src/components/layout/Header.jsx
 
 import styled from '@emotion/styled';
 import alarmIcon from '@/assets/alarm.svg';
