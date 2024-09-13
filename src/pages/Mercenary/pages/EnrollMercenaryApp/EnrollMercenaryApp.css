@@ -1,0 +1,245 @@
+/* 전체 페이지 설정 */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 전체 컨테이너 */
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+/* 이미지 섹션 */
+.image-container {
+  width: 100%;
+  height: 30%;
+  overflow: hidden;
+}
+
+.event-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 이벤트 정보 */
+.event-info {
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.clickable-text {
+  margin: 10px 0;
+  cursor: pointer;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.5;
+  transition: color 0.3s;
+  text-align: center;
+}
+
+.clickable-text:hover {
+  color: #007bff;
+}
+
+/* 지도보기 버튼 스타일 */
+.map-button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.map-button:hover {
+  background-color: #0056b3;
+}
+
+/* 모집 섹션 */
+.recruitment {
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.title-input {
+  font-size: 18px;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 80%;
+  margin: 0 auto 15px;
+  display: block;
+}
+
+/* 호스트 및 모집 세부사항 */
+.recruitment-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  gap: 15px;
+}
+
+.host {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f5f5f5;
+  padding: 8px 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  justify-content: center;
+}
+
+.host-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  object-fit: cover;
+}
+
+.host-name {
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* 모집 세부사항 옵션 */
+.recruitment-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.recruitment-options p {
+  margin: 5px 0;
+  cursor: pointer;
+  color: #666;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.recruitment-options p:hover {
+  color: #007bff;
+}
+
+/* 모달 스타일 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.map-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.option-item {
+  cursor: pointer;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  font-size: 14px;
+  color: #333;
+}
+
+.option-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* 모달 닫기 버튼 */
+.close-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 14px;
+}
+
+.close-button:hover {
+  background-color: #0056b3;
+}
+
+/* 신청 버튼 */
+.application-section {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.apply-button {
+  padding: 15px 30px;
+  background-color: #39c779;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
+}
+
+.apply-button:hover {
+  background-color: #33b26b;
+}

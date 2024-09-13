@@ -14,6 +14,8 @@ import Mercenary from './pages/Mercenary/pages/MercenaryChoice';
 import MercenaryAppList from './pages/Mercenary/pages/MercenaryApp/MercenaryAppList';
 import MercenaryRecList from './pages/Mercenary/pages/MercenaryRec/MercenaryRecList';
 import ClubList from './pages/ClubList/pages/ClubList';
+import Settings from './pages/Settings/Settings';
+import EnrollMercenaryApp from './pages/Mercenary/pages/EnrollMercenaryApp/EnrollMercenaryApp';
 
 const App = () => {
   return (
@@ -30,11 +32,12 @@ const App = () => {
             <Route path="/Mercenary" component={Mercenary} />
             <Route path="/MercenaryAppList" component={MercenaryAppList} />
             <Route path="/MercenaryRecList" component={MercenaryRecList} />
+            <Route path="/EnrollMercenaryApp" component={EnrollMercenaryApp} />
             <Route path="/ClubList" component={ClubList} />
             <Route path="/match-enroll" component={MatchEnrollForm} />
             {/*<Route path="/club" component={Club} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/settings" component={Settings} />*/}
+            <Route path="/profile" component={Profile} />*/}
+            <Route path="/settings" component={Settings} />
           </Switch>
         </AppContainer>
       <Footer />
