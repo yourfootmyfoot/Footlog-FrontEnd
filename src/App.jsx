@@ -13,6 +13,7 @@ import AppContainer from './components/layout/AppContainer/AppContainer';
 import Mercenary from './pages/Mercenary/pages/MercenaryChoice';
 import MercenaryAppList from './pages/Mercenary/pages/MercenaryApp/MercenaryAppList';
 import MercenaryRecList from './pages/Mercenary/pages/MercenaryRec/MercenaryRecList';
+import EnrollMercenaryRec from './pages/Mercenary/pages/EnrollMercenaryRec/EnrollMercenaryRec';
 import ClubList from './pages/ClubList/pages/ClubList';
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
             <Route path="/MercenaryRecList" component={MercenaryRecList} />
             <Route path="/ClubList" component={ClubList} />
             <Route path="/match-enroll" component={MatchEnrollForm} />
+            <Route path="/EnrollMercenaryRec" component={EnrollMercenaryRec} />
             {/*<Route path="/club" component={Club} />
             <Route path="/profile" component={Profile} />
             <Route path="/settings" component={Settings} />*/}
