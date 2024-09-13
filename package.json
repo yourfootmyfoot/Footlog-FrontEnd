@@ -14,7 +14,7 @@
     "prettier": "prettier --config .config/.prettierrc.json"
   },
   "commitlint": {
-    "extends": [".config/commitlint.config.cjs"]
+    "extends": [".config/commitlintrc.cjs"]
   },
   "prettier": ".config/.prettierrc.json",
 
