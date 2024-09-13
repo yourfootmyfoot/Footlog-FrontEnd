@@ -4,6 +4,7 @@ import GlobalStyles from './theme/GlobalStyles';
 import theme from './theme/theme';
 import Landing from './pages/Landing';
 import Login from './pages/Login/Login';
+import MatchEnrollForm from './pages/MatchEnroll/MatchEnrollForm';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Match from './pages/Match/Match';
@@ -30,6 +31,7 @@ const App = () => {
             <Route path="/MercenaryAppList" component={MercenaryAppList} />
             <Route path="/MercenaryRecList" component={MercenaryRecList} />
             <Route path="/ClubList" component={ClubList} />
+            <Route path="/match-enroll" component={MatchEnrollForm} />
             {/*<Route path="/club" component={Club} />
             <Route path="/profile" component={Profile} />
             <Route path="/settings" component={Settings} />*/}
