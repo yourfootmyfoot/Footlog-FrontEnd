@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import ChatBubble from './ChatBubble';
 
@@ -61,7 +61,7 @@ const SendButton = styled.button`
   font-size: 1.2rem;
 `;
 
-const ChatRoom = () => {
+const ChatPage = () => {
   const [messages, setMessages] = useState([
     { id: 1, text: '안녕하세요', time: '12:27pm', isSent: false },
     { id: 2, text: '평균나이대가 궁금합니다.', time: '12:27pm', isSent: true },
@@ -77,7 +77,7 @@ const ChatRoom = () => {
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         isSent: true,
       };
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      setMessages([...messages, newMessage]);
       setInputText('');
     }
   };
@@ -85,7 +85,7 @@ const ChatRoom = () => {
   return (
     <ChatContainer>
       <ChatHeader>
-        <BackButton>&lt;</BackButton>
+        <BackButton>{'<'}</BackButton>
         <Title>채팅</Title>
       </ChatHeader>
       <MessagesContainer>
@@ -104,10 +104,10 @@ const ChatRoom = () => {
           onChange={(e) => setInputText(e.target.value)}
           placeholder="메시지를 입력하세요..."
         />
-        <SendButton onClick={handleSend}>&gt;</SendButton>
+        <SendButton onClick={handleSend}>{'>'}</SendButton>
       </InputContainer>
     </ChatContainer>
-  );
-};
+  </ChatContainer>
+);
 
-export default ChatRoom;
+export default ChatPage;
