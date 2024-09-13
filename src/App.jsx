@@ -14,6 +14,7 @@ import MercenaryAppList from './pages/Mercenary/pages/MercenaryApp/MercenaryAppL
 import MercenaryRecList from './pages/Mercenary/pages/MercenaryRec/MercenaryRecList';
 import ClubList from './pages/ClubList/pages/ClubList';
 import Settings from './pages/Settings/Settings';
+import EnrollMercenaryApp from './pages/Mercenary/pages/EnrollMercenaryApp/EnrollMercenaryApp';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
             <Route path="/Mercenary" component={Mercenary} />
             <Route path="/MercenaryAppList" component={MercenaryAppList} />
             <Route path="/MercenaryRecList" component={MercenaryRecList} />
+            <Route path="/EnrollMercenaryApp" component={EnrollMercenaryApp} />
             <Route path="/ClubList" component={ClubList} />
             {/*<Route path="/club" component={Club} />
             <Route path="/profile" component={Profile} />*/}
