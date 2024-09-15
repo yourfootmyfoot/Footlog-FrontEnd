@@ -1,5 +1,6 @@
 module.exports = {
   extends: ['@commitlint/config-conventional'],
+  defaultIgnores: false,
   rules: {
     'type-enum': [
       2,
@@ -21,8 +22,10 @@ module.exports = {
     'subject-empty': [2, 'never'], // 제목은 비어있을 수 없음
     'subject-case': [2, 'never', []], // 제목의 대소문자 규칙 무시
     'header-max-length': [2, 'always', 72], // 제목 최대 길이 제한
+    'body-leading-blank': [1, 'always'], // 본문 앞 빈 줄 (경고로 변경)
   },
   ignores: [
-    (commit) => commit.includes('Merge'), // Merge 커밋 무시 
+    (commit) => commit.includes('Merge'), // Merge 커밋 무시
+    (commit) => /^(feat|fix|docs|style|refactor|test|chore|comment|remove|rename):/i.test(commit), // 이전 형식의 커밋 무시
   ],
 };
