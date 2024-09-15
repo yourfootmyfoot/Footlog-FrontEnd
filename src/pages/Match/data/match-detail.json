@@ -17,7 +17,7 @@
         "Photo": "src/pages/match/images/1.jpg", 
         "Introduce": "경기 1", 
         "schedule": {
-            "date": "24.09.05", 
+            "date": "2024-09-05", 
             "day": "목", 
             "startTime": "10:00", 
             "endTime": "12:00", 
@@ -49,7 +49,7 @@
         "Photo": "src/pages/match/images/2.jpg", 
         "Introduce": "경기 2", 
         "schedule": {
-            "date": "24.09.12", 
+            "date": "2024-09-12", 
             "day": "금", 
             "startTime": "14:00", 
             "endTime": "16:00", 
@@ -81,7 +81,7 @@
         "Photo": "src/pages/match/images/3.jpg", 
         "Introduce": "경기 3", 
         "schedule": {
-            "date": "24.09.19", 
+            "date": "2024-09-19", 
             "day": "토", 
             "startTime": "18:00", 
             "endTime": "20:00", 
@@ -113,7 +113,7 @@
         "Photo": "src/pages/match/images/4.jpg", 
         "Introduce": "경기 4", 
         "schedule": {
-            "date": "24.09.26", 
+            "date": "2024-09-26", 
             "day": "화", 
             "startTime": "16:00", 
             "endTime": "18:00", 
@@ -145,7 +145,7 @@
         "Photo": "src/pages/match/images/5.jpg", 
         "Introduce": "경기 5", 
         "schedule": {
-            "date": "24.10.03", 
+            "date": "2024-10-03", 
             "day": "목", 
             "startTime": "15:00", 
             "endTime": "17:00", 
@@ -177,7 +177,7 @@
         "Photo": "src/pages/match/images/6.jpg", 
         "Introduce": "경기 6", 
         "schedule": {
-            "date": "24.10.10", 
+            "date": "2024-10-10", 
             "day": "금", 
             "startTime": "19:00", 
             "endTime": "21:00", 
@@ -209,7 +209,7 @@
         "Photo": "src/pages/match/images/7.jpg", 
         "Introduce": "경기 7", 
         "schedule": {
-            "date": "24.10.17", 
+            "date": "2024-10-17", 
             "day": "토", 
             "startTime": "11:00", 
             "endTime": "13:00", 
@@ -241,7 +241,7 @@
         "Photo": "src/pages/match/images/8.jpg", 
         "Introduce": "경기 8", 
         "schedule": {
-            "date": "24.10.24", 
+            "date": "2024-10-24", 
             "day": "일", 
             "startTime": "17:00", 
             "endTime": "19:00", 
@@ -273,7 +273,7 @@
         "Photo": "src/pages/match/images/9.jpg", 
         "Introduce": "경기 9", 
         "schedule": {
-            "date": "24.10.31", 
+            "date": "2024-10-31", 
             "day": "수", 
             "startTime": "20:00", 
             "endTime": "22:00", 
@@ -305,7 +305,7 @@
         "Photo": "src/pages/match/images/10.jpg", 
         "Introduce": "경기 10", 
         "schedule": {
-            "date": "24.11.07", 
+            "date": "2024-11-07", 
             "day": "목", 
             "startTime": "09:00", 
             "endTime": "11:00", 

@@ -16,13 +16,14 @@ import MercenaryRecList from './pages/Mercenary/pages/MercenaryRec/MercenaryRecL
 import EnrollMercenaryRec from './pages/Mercenary/pages/EnrollMercenaryRec/EnrollMercenaryRec';
 import ClubList from './pages/ClubList/pages/ClubList';
 
+
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Router>
         <AppContainer>
-        <Header />
+          <Header />
           <Switch>
             <Route path="/" exact component={Landing} />
             <Route path="/login" component={Login} />
@@ -39,7 +40,7 @@ const App = () => {
             <Route path="/settings" component={Settings} />*/}
           </Switch>
         </AppContainer>
-      <Footer />
+        <Footer />
       </Router>
     </ThemeProvider>
   );

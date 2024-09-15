@@ -90,7 +90,7 @@ const Footer = ({ location }) => {
 
       <FooterItem to="/Mercenary">
         <FooterIcon src={guestIcon} alt="용병" active={isActive('/Mercenary','/MercenaryRecList', '/MercenaryAppList')} />
-        <FooterText active={isActive('/Mercenary','/MercenaryRecList', '/MercenaryAppList')}>용병</FooterText>
+        <FooterText active={isActive('/Mercenary','/MercenaryRecList', '/MercenaryAppList','/EnrollMercenaryRec')}>용병</FooterText>
       </FooterItem>
 
       <FooterItem to="/settings">
