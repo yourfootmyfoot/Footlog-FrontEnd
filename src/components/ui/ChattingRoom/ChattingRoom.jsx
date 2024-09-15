@@ -63,6 +63,7 @@ const SendButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
 `;
 
 const ChatRoom = () => {
@@ -72,9 +73,9 @@ const ChatRoom = () => {
     { id: 3, text: '그런게 왜 궁금하세요', time: '2:00pm', isSent: false },
   ]);
   const [inputText, setInputText] = useState('');
-  const [showSendText, setShowSendText] = useState(window.innerWidth > 768);
-
-  useEffect(() => {
+< const [showSendText, setShowSendText] = useState(window.innerWidth > 768);
+ 
+  (() => {
     const handleResize = () => {
       setShowSendText(window.innerWidth > 768);
     };

@@ -2,8 +2,8 @@
     {
         "mercenaryAppCode": 1,
         "schedule": {
-            "date": "2024-09-05",
-            "day": "thursday",
+            "date": "24.09.05",
+            "day": "목",
             "startTime": "10:00",
             "endTime": "12:00"
         },
@@ -14,8 +14,8 @@
     {
         "mercenaryAppCode": 2,
         "schedule": {
-            "date": "2024-09-06",
-            "day": "friday",
+            "date": "24.09.06",
+            "day": "금",
             "startTime": "14:00",
             "endTime": "16:00"
         },
@@ -26,8 +26,8 @@
     {
         "mercenaryAppCode": 3,
         "schedule": {
-            "date": "2024-09-07",
-            "day": "saturday",
+            "date": "24.09.07",
+            "day": "토",
             "startTime": "16:00",
             "endTime": "18:00"
         },
@@ -38,8 +38,8 @@
     {
         "mercenaryAppCode": 4,
         "schedule": {
-            "date": "2024-09-08",
-            "day": "sunday",
+            "date": "24.09.08",
+            "day": "일",
             "startTime": "18:00",
             "endTime": "20:00"
         },
@@ -50,8 +50,8 @@
     {
         "mercenaryAppCode": 5,
         "schedule": {
-            "date": "2024-09-09",
-            "day": "monday",
+            "date": "24.09.09",
+            "day": "월",
             "startTime": "08:00",
             "endTime": "10:00"
         },
@@ -62,8 +62,8 @@
     {
         "mercenaryAppCode": 6,
         "schedule": {
-            "date": "2024-09-10",
-            "day": "tuesday",
+            "date": "24.09.10",
+            "day": "화",
             "startTime": "09:00",
             "endTime": "11:00"
         },
@@ -74,8 +74,8 @@
     {
         "mercenaryAppCode": 7,
         "schedule": {
-            "date": "2024-09-11",
-            "day": "wednesday",
+            "date": "24.09.11",
+            "day": "수",
             "startTime": "12:00",
             "endTime": "14:00"
         },
@@ -86,8 +86,8 @@
     {
         "mercenaryAppCode": 8,
         "schedule": {
-            "date": "2024-09-12",
-            "day": "thursday",
+            "date": "24.09.12",
+            "day": "목",
             "startTime": "15:00",
             "endTime": "17:00"
         },
@@ -98,8 +98,8 @@
     {
         "mercenaryAppCode": 9,
         "schedule": {
-            "date": "2024-09-13",
-            "day": "friday",
+            "date": "24.09.13",
+            "day": "금",
             "startTime": "17:00",
             "endTime": "19:00"
         },
@@ -110,8 +110,8 @@
     {
         "mercenaryAppCode": 10,
         "schedule": {
-            "date": "2024-09-14",
-            "day": "saturday",
+            "date": "24.09.14",
+            "day": "토",
             "startTime": "13:00",
             "endTime": "15:00"
         },

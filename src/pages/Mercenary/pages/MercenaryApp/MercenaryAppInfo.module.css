@@ -1,32 +1,57 @@
 .container {
-  background-color: #f9f9f9; /* 카드의 배경색을 더 밝게 */
+  background-color: #f9f9f9; /* 카드의 배경색 */
   cursor: pointer;
-  width: 95%; /* 화면에 맞게 유동적인 너비 */
-  margin: 10px auto; /* 카드를 가운데 정렬 */
-  padding: 15px; /* 카드 안쪽 여백 추가 */
-  border-radius: 10px; /* 카드 모서리 둥글게 */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 약간의 그림자 추가로 입체감 부여 */
-  transition: background-color 0.3s ease, transform 0.3s ease; /* 배경색과 변형 효과에 애니메이션 추가 */
+  width: 95%; /* 카드의 유동적인 너비 */
+  margin: 10px auto; /* 가운데 정렬 */
+  padding: 15px; /* 카드 내부 여백 */
+  border-radius: 10px; /* 모서리 둥글게 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자로 입체감 추가 */
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* 애니메이션 */
 }
 
 .container:hover {
-  background-color: rgb(241, 254, 239); /* 마우스를 올렸을 때 배경색 */
-  color: rgb(0, 0, 0); /* 글자색을 검정으로 */
-  transform: translateY(-5px); /* 마우스를 올렸을 때 카드가 살짝 위로 올라가는 효과 */
+  background-color: rgb(241, 254, 239); /* 호버 시 배경색 */
+  color: rgb(0, 0, 0); /* 글자색 */
+  transform: translateY(-5px); /* 호버 시 카드가 살짝 올라가는 효과 */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* 더 명확한 호버 시 그림자 */
 }
 
-.container h4 {
-  margin: 10px 0; /* 제목들 사이에 간격을 부여 */
-  font-size: 16px; /* 글씨 크기 설정 */
-  font-weight: 500; /* 약간 두꺼운 글씨 */
+
+.section:last-child {
+  border-bottom: none; /* 마지막 섹션은 경계선 제거 */
+}
+
+.infoRow {
+  display: flex;
+  justify-content: flex-start; /* 좌측 정렬 */
+}
+
+.label {
+  font-weight: bold;
+  width: 120px; /* 라벨의 고정 너비 설정 */
+}
+
+h4 {
+  font-size: 16px; /* 글씨 크기 */
+  font-weight: 500; /* 글씨 두께 */
   color: #333; /* 기본 글씨 색상 */
 }
 
-.container h4:first-child {
-  font-size: 18px; /* 첫 번째 제목은 좀 더 강조 */
-  font-weight: 600;
+h4:first-child {
+  font-size: 18px; /* 첫 번째 제목의 크기 더 강조 */
+  font-weight: 600; /* 더 두꺼운 글씨 */
 }
 
 .container:hover h4 {
-  color: #1e7e34; /* 호버 시 글자 색상 변경 */
+  color: #1e7e34; /* 호버 시 제목 글씨 색상 변경 */
+}
+
+.emptyRow {
+  display: block;
+  height: 1.6rem; /* 원하는 만큼의 높이를 설정 */
+}
+
+.divider {
+  margin: 1.5rem 0;
+  border: 1px solid #e2e8f0;
 }
