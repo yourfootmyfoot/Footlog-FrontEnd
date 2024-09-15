@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import ChatBubble from './ChatBubble';
 
@@ -55,10 +55,15 @@ const SendButton = styled.button`
   background-color: #0084ff;
   color: white;
   border: none;
-  border-radius: 50%;
-  width: 40px;
+  border-radius: ${props => props.showText ? '20px' : '50%'};
+  width: ${props => props.showText ? 'auto' : '40px'};
   height: 40px;
   font-size: 1.2rem;
+  padding: ${props => props.showText ? '0 15px' : '0'};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 `;
 
 const ChatRoom = () => {
@@ -68,6 +73,16 @@ const ChatRoom = () => {
     { id: 3, text: '그런게 왜 궁금하세요', time: '2:00pm', isSent: false },
   ]);
   const [inputText, setInputText] = useState('');
+< const [showSendText, setShowSendText] = useState(window.innerWidth > 768);
+ 
+  (() => {
+    const handleResize = () => {
+      setShowSendText(window.innerWidth > 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleSend = () => {
     if (inputText.trim()) {
@@ -104,7 +119,9 @@ const ChatRoom = () => {
           onChange={(e) => setInputText(e.target.value)}
           placeholder="메시지를 입력하세요..."
         />
-        <SendButton onClick={handleSend}>&gt;</SendButton>
+        <SendButton onClick={handleSend} showText={showSendText}>
+          {showSendText ? '전송' : '>'}
+        </SendButton>
       </InputContainer>
     </ChatContainer>
   );
