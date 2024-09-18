@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Calendar } from './calendar';
 
 const Overlay = styled.div`
   position: fixed;
@@ -69,17 +70,21 @@ const Title = styled.h3`
   text-align: center;
 `;
 
-const BottomSheet = ({ options, title, isOpen, onClose }) => {
+const BottomSheet = ({ options, title, isOpen, onClose, onSelect, type, children }) => {
   return (
     <>
       <Overlay isOpen={isOpen} onClick={onClose} />
       <SheetContainer isOpen={isOpen}>
         <Title>{title}</Title>
-        <GridContainer>
-          {options.map((option, index) => (
-            <Option key={index}>{option}</Option>
-          ))}
-        </GridContainer>
+        {type === 'grid' ? (
+          <GridContainer>
+            {options.map((option, index) => (
+              <Option key={index} onClick={() => onSelect(option)}>{option}</Option>
+            ))}
+          </GridContainer>
+        ) : (
+          children
+        )}
       </SheetContainer>
     </>
   );
