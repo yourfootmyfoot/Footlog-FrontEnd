@@ -44,12 +44,12 @@ const MatchCard = ({ matchData }) => {
   return (
     <Card>
       <MatchTitle>
-        {matchData.clubA} 와(과) {matchData.clubB}의 매치
+        {matchData.myClub.clubName} 와(과) {matchData.enemyClub.clubName}의 매치
       </MatchTitle>
-      <MatchDetail>경기 날짜/시간: {matchData.matchDate}</MatchDetail>
+      <MatchDetail>경기 날짜/시간: {matchData.schedule.date} {matchData.schedule.startTime}</MatchDetail>
       <MatchDetail>구장 이름: {matchData.fieldLocation}</MatchDetail>
       <MatchDetail>
-        <HighlightText>{matchData.matchType}</HighlightText> | {matchData.playerCount}명 (선출 {matchData.proCount}명)
+        <HighlightText>{matchData.playerQuantity}vs{matchData.playerQuantity}</HighlightText> | 선출 {matchData.pro}명
       </MatchDetail>
     </Card>
   );
