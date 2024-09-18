@@ -13,9 +13,9 @@
         "enemyClub": {
             "clubName": "Tigers"
         },
-        "Name": "Lions과(와) Tigers의 경기", 
-        "Photo": "src/pages/match/images/1.jpg", 
-        "Introduce": "경기 1", 
+        "name": "Lions과(와) Tigers의 경기", 
+        "photo": "src/pages/match/images/1.jpg", 
+        "introduce": "경기 1", 
         "schedule": {
             "date": "2024-09-05", 
             "day": "목", 
