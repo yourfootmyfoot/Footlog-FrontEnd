@@ -16,6 +16,7 @@ import MatchDetail from './pages/Match/MatchDetail';
 import MatchEnrollForm from './pages/MatchEnroll/MatchEnrollForm';
 import ChatRoomListPage from './pages/Chat/ChatRoomListPage';
 import ClubList from './pages/ClubList/pages/ClubList';
+import ChatRoomPage from './pages/Chat/ChatRoomPage'; 
 import Settings from './pages/Settings/Settings';
 
 // Mercenary related components
@@ -49,15 +50,16 @@ const App = () => {
             <Route path="/mercenary/enroll-rec" component={EnrollMercenaryRec} />
             
             <Route path="/club-list" component={ClubList} />
-            <Route path="/chat" component={ChatRoomListPage} />
+            <Route exact path="/chat" component={ChatRoomListPage} />
+            <Route path="/chat/:id" component={ChatRoomPage} />
             <Route path="/settings" component={Settings} />
             
             {/* Uncomment these routes when components are ready */}
             {/*<Route path="/club" component={Club} />*/}
             {/*<Route path="/profile" component={Profile} />*/}
           </Switch>
-          <Footer />
         </AppContainer>
+        <Footer />
       </Router>
     </ThemeProvider>
   );
