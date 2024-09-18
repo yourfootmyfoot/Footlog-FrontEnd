@@ -1,12 +1,12 @@
 // src/pages/Match/Match.jsx
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import BottomSheet from '@/components/ui/BottomSheet';
-import { regionOptions } from '@/config/options';
-import { useHistory } from 'react-router-dom';
-import FilterButton from '@/components/ui/FilterButton.jsx';
-import MatchList from './MatchList.jsx'; // MatchList 컴포넌트 임포트
+import FilterButton from '@/components/ui/FilterButton';
+import MatchCard from '@/components/ui/MatchCard';
+import { Calendar } from '@/components/ui/calendar';
+import matchData from '@/pages/Match/data/match-detail.json';
+import { getFilterOptions } from '@/config/options';
 
 const MatchContainer = styled.div`
   width: 100%;
@@ -14,7 +14,7 @@ const MatchContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 const ButtonContainer = styled.div`
@@ -22,6 +22,8 @@ const ButtonContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-bottom: 2vh;
+  overflow-x: auto;
+  white-space: nowrap;
 
   & > button {
     flex: 1;
@@ -29,35 +31,154 @@ const ButtonContainer = styled.div`
   }
 `;
 
+const ActiveFiltersContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  width: 100%;
+`;
+
+const ActiveFilterTag = styled.div`
+  background-color: #e0e0e0;
+  border-radius: 16px;
+  padding: 4px 12px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+`;
+
+const RemoveFilterButton = styled.button`
+  background: none;
+  border: none;
+  color: #666;
+  margin-left: 8px;
+  cursor: pointer;
+`;
+
+const MatchListContainer = styled.div`
+  width: 100%;
+`;
+
 const Match = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const history = useHistory();
+  const [activeFilter, setActiveFilter] = useState(null);
+  const [filteredMatches, setFilteredMatches] = useState(matchData);
+  const [filters, setFilters] = useState({
+    region: '',
+    date: null,
+    quarterCount: '',
+    playerCount: ''
+  });
 
-  const openSheet = () => setIsSheetOpen(true);
-  const closeSheet = () => setIsSheetOpen(false);
-  const handleButtonClickToMatchDetail = () => {
-    history.push('/matchDetail', {});
+  const openSheet = (filter) => {
+    setActiveFilter(filter);
+    setIsSheetOpen(true);
+  };
+
+  const closeSheet = () => {
+    setIsSheetOpen(false);
+    setActiveFilter(null);
+  };
+
+  const handleFilterSelect = (value) => {
+    setFilters(prev => ({ ...prev, [activeFilter]: value }));
+    closeSheet();
+  };
+
+  const handleRemoveFilter = (filterKey) => {
+    setFilters(prev => ({ ...prev, [filterKey]: '' }));
+  };
+
+  useEffect(() => {
+    const newFilteredMatches = matchData.filter(match => {
+      if (filters.region && match.region !== filters.region) return false;
+      if (filters.date && match.schedule.date !== filters.date) return false;
+      if (filters.quarterCount && match.quarterQuantity !== parseInt(filters.quarterCount)) return false;
+      if (filters.playerCount && match.playerQuantity !== parseInt(filters.playerCount.split(':')[0])) return false;
+      return true;
+    });
+    setFilteredMatches(newFilteredMatches);
+  }, [filters]);
+
+  const getBottomSheetContent = () => {
+    switch (activeFilter) {
+      case 'region':
+        return {
+          title: '지역',
+          options: getFilterOptions('region'),
+          type: 'grid'
+        };
+      case 'date':
+        return {
+          title: '경기 날짜',
+          type: 'calendar'
+        };
+      case 'quarterCount':
+        return {
+          title: '쿼터 수',
+          options: getFilterOptions('quarterCount'),
+          type: 'grid'
+        };
+      case 'playerCount':
+        return {
+          title: '매치 인원',
+          options: getFilterOptions('playerCount'),
+          type: 'grid'
+        };
+      default:
+        return { title: '', options: [], type: 'grid' };
+    }
+  };
+
+  const formatFilterValue = (key, value) => {
+    if (key === 'date') {
+      return value ? new Date(value).toLocaleDateString() : '';
+    }
+    return value;
   };
 
   return (
     <MatchContainer>
       <ButtonContainer>
-        <FilterButton label="지역" onClick={openSheet} />
-        <FilterButton label="경기 시간/날짜" />
-        <FilterButton label="쿼터 수" />
-        <FilterButton label="매치 인원" />
+        <FilterButton onClick={() => openSheet('region')}>지역</FilterButton>
+        <FilterButton onClick={() => openSheet('date')}>경기 날짜</FilterButton>
+        <FilterButton onClick={() => openSheet('quarterCount')}>쿼터 수</FilterButton>
+        <FilterButton onClick={() => openSheet('playerCount')}>매치 인원</FilterButton>
       </ButtonContainer>
 
-      <MatchList /> {/* MatchList를 여기에 추가 */}
+      <ActiveFiltersContainer>
+        {Object.entries(filters).map(([key, value]) => {
+          if (!value) return null;
+          return (
+            <ActiveFilterTag key={key}>
+              {`${key}: ${formatFilterValue(key, value)}`}
+              <RemoveFilterButton onClick={() => handleRemoveFilter(key)}>×</RemoveFilterButton>
+            </ActiveFilterTag>
+          );
+        })}
+      </ActiveFiltersContainer>
+
+      <MatchListContainer>
+        {filteredMatches.map((match, index) => (
+          <MatchCard key={index} matchData={match} />
+        ))}
+      </MatchListContainer>
 
       <BottomSheet
-        options={regionOptions}
-        title="지역"
+        {...getBottomSheetContent()}
         isOpen={isSheetOpen}
         onClose={closeSheet}
-      />
-      <button onClick={openSheet}>지역</button>
-      <button onClick={handleButtonClickToMatchDetail}>상세 페이지로 이동하기</button>
+        onSelect={handleFilterSelect}
+      >
+        {activeFilter === 'date' && (
+          <Calendar 
+            mode="single"
+            selected={filters.date ? new Date(filters.date) : undefined}
+            onSelect={(date) => handleFilterSelect(date ? date.toISOString().split('T')[0] : null)}
+          />
+        )}
+      </BottomSheet>
     </MatchContainer>
   );
 };
