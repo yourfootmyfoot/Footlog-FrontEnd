@@ -14,6 +14,7 @@ import Mercenary from './pages/Mercenary/pages/MercenaryChoice';
 import MercenaryAppList from './pages/Mercenary/pages/MercenaryApp/MercenaryAppList';
 import MercenaryRecList from './pages/Mercenary/pages/MercenaryRec/MercenaryRecList';
 import ClubList from './pages/ClubList/pages/ClubList';
+import Profile from './pages/Profile/Profile';
 
 const App = () => {
   return (
@@ -21,7 +22,7 @@ const App = () => {
       <GlobalStyles />
       <Router>
         <AppContainer>
-        <Header />
+          <Header />
           <Switch>
             <Route path="/" exact component={Landing} />
             <Route path="/login" component={Login} />
@@ -32,12 +33,12 @@ const App = () => {
             <Route path="/MercenaryRecList" component={MercenaryRecList} />
             <Route path="/ClubList" component={ClubList} />
             <Route path="/match-enroll" component={MatchEnrollForm} />
-            {/*<Route path="/club" component={Club} />
             <Route path="/profile" component={Profile} />
+            {/*<Route path="/club" component={Club} />
             <Route path="/settings" component={Settings} />*/}
           </Switch>
         </AppContainer>
-      <Footer />
+        <Footer />
       </Router>
     </ThemeProvider>
   );
