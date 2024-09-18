@@ -23,8 +23,11 @@ import Settings from './pages/Settings/Settings';
 import Mercenary from './pages/Mercenary/pages/MercenaryChoice';
 import MercenaryAppList from './pages/Mercenary/pages/MercenaryApp/MercenaryAppList';
 import MercenaryRecList from './pages/Mercenary/pages/MercenaryRec/MercenaryRecList';
+
+import Profile from './pages/Profile/Profile';
 import EnrollMercenaryApp from './pages/Mercenary/pages/EnrollMercenaryApp/EnrollMercenaryApp';
 import EnrollMercenaryRec from './pages/Mercenary/pages/EnrollMercenaryRec/EnrollMercenaryRec';
+
 
 const App = () => {
   return (
@@ -36,6 +39,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route path="/login" component={Login} />
+
             
             {/* Match related routes */}
             <Route exact path="/match" component={Match} />
