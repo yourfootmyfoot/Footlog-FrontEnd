@@ -2,20 +2,14 @@
     {
         "matchCode": 1,
         "myClub": {
-            "clubName": "Lions",
-            "preSet": [
-                "src/pages/match/images/squad1.png",
-                "src/pages/match/images/squad2.png",
-                "src/pages/match/images/squad3.png",
-                "src/pages/match/images/squad4.png"
-            ]
+            "clubName": "서울 FC 유나이티드"
         },
         "enemyClub": {
-            "clubName": "Tigers"
+            "clubName": "부산 다이나모"
         },
-        "name": "Lions과(와) Tigers의 경기",
+        "name": "서울 FC 유나이티드와(과) 부산 다이나모의 경기",
         "photo": "src/pages/match/images/1.jpg",
-        "introduce": "경기 1",
+        "introduce": "수도권 대표 vs 영남권 대표의 대결",
         "schedule": {
             "date": "2024-09-05",
             "day": "목",
@@ -23,31 +17,30 @@
             "endTime": "12:00",
             "time": 120
         },
-        "playerQuantity": 7,
+        "playerQuantity": 11,
         "quarterQuantity": 4,
-        "fieldLocation": "Downtown Stadium",
+        "fieldLocation": "상암 월드컵경기장",
+        "region": "서울",
+        "coordinates": {
+            "latitude": 37.5682,
+            "longitude": 126.8973
+        },
         "matchCost": 15000,
-        "clubLevel": "beginner",
+        "clubLevel": "고급",
         "pro": "3",
-        "gender": "Mixed"
+        "gender": "혼성"
     },
     {
         "matchCode": 2,
         "myClub": {
-            "clubName": "Eagles",
-            "preSet": [
-                "src/pages/match/images/squad1.png",
-                "src/pages/match/images/squad2.png",
-                "src/pages/match/images/squad3.png",
-                "src/pages/match/images/squad4.png"
-            ]
+            "clubName": "인천 블루윙즈"
         },
         "enemyClub": {
-            "clubName": "Wolves"
+            "clubName": "대구 FC 시티"
         },
-        "name": "Eagles과(와) Wolves의 경기",
+        "name": "인천 블루윙즈와(과) 대구 FC 시티의 경기",
         "photo": "src/pages/match/images/2.jpg",
-        "introduce": "경기 2",
+        "introduce": "항구도시 vs 섬유도시의 맞대결",
         "schedule": {
             "date": "2024-09-12",
             "day": "금",
@@ -55,31 +48,30 @@
             "endTime": "16:00",
             "time": 120
         },
-        "playerQuantity": 6,
+        "playerQuantity": 11,
         "quarterQuantity": 4,
-        "fieldLocation": "City Arena",
+        "fieldLocation": "인천축구전용경기장",
+        "region": "인천",
+        "coordinates": {
+            "latitude": 37.4665,
+            "longitude": 126.6432
+        },
         "matchCost": 20000,
-        "clubLevel": "intermediate",
-        "pro": "없음",
-        "gender": "Male"
+        "clubLevel": "중급",
+        "pro": "0",
+        "gender": "남성"
     },
     {
         "matchCode": 3,
         "myClub": {
-            "clubName": "Sharks",
-            "preSet": [
-                "src/pages/match/images/squad1.png",
-                "src/pages/match/images/squad2.png",
-                "src/pages/match/images/squad3.png",
-                "src/pages/match/images/squad4.png"
-            ]
+            "clubName": "광주 FC 펄스"
         },
         "enemyClub": {
-            "clubName": "Dolphins"
+            "clubName": "울산 현대 포스"
         },
-        "name": "Sharks과(와) Dolphins의 경기",
+        "name": "광주 FC 펄스와(과) 울산 현대 포스의 경기",
         "photo": "src/pages/match/images/3.jpg",
-        "introduce": "경기 3",
+        "introduce": "예술의 도시 vs 산업의 도시",
         "schedule": {
             "date": "2024-09-19",
             "day": "토",
@@ -87,31 +79,30 @@
             "endTime": "20:00",
             "time": 120
         },
-        "playerQuantity": 10,
+        "playerQuantity": 11,
         "quarterQuantity": 4,
-        "fieldLocation": "Seaside Field",
+        "fieldLocation": "광주월드컵경기장",
+        "region": "광주",
+        "coordinates": {
+            "latitude": 35.1311,
+            "longitude": 126.8208
+        },
         "matchCost": 12000,
-        "clubLevel": "intermediate",
+        "clubLevel": "중급",
         "pro": "5",
-        "gender": "Female"
+        "gender": "여성"
     },
     {
         "matchCode": 4,
         "myClub": {
-            "clubName": "Panthers",
-            "preSet": [
-                "src/pages/match/images/squad1.png",
-                "src/pages/match/images/squad2.png",
-                "src/pages/match/images/squad3.png",
-                "src/pages/match/images/squad4.png"
-            ]
+            "clubName": "대전 시티즌"
         },
         "enemyClub": {
-            "clubName": "Cheetahs"
+            "clubName": "세종 FC 로얄"
         },
-        "name": "Panthers과(와) Cheetahs의 경기",
+        "name": "대전 시티즌와(과) 세종 FC 로얄의 경기",
         "photo": "src/pages/match/images/4.jpg",
-        "introduce": "경기 4",
+        "introduce": "과학도시 vs 행정도시의 한판 승부",
         "schedule": {
             "date": "2024-09-26",
             "day": "화",
@@ -119,31 +110,30 @@
             "endTime": "18:00",
             "time": 120
         },
-        "playerQuantity": 8,
+        "playerQuantity": 11,
         "quarterQuantity": 4,
-        "fieldLocation": "Highland Park",
+        "fieldLocation": "대전월드컵경기장",
+        "region": "대전",
+        "coordinates": {
+            "latitude": 36.3172,
+            "longitude": 127.4292
+        },
         "matchCost": 18000,
-        "clubLevel": "advanced",
+        "clubLevel": "고급",
         "pro": "2",
-        "gender": "Mixed"
+        "gender": "혼성"
     },
     {
         "matchCode": 5,
         "myClub": {
-            "clubName": "Bulls",
-            "preSet": [
-                "src/pages/match/images/squad1.png",
-                "src/pages/match/images/squad2.png",
-                "src/pages/match/images/squad3.png",
-                "src/pages/match/images/squad4.png"
-            ]
+            "clubName": "수원 삼성 블루윙즈"
         },
         "enemyClub": {
-            "clubName": "Rams"
+            "clubName": "성남 FC"
         },
-        "name": "Bulls과(와) Rams의 경기",
+        "name": "수원 삼성 블루윙즈와(과) 성남 FC의 경기",
         "photo": "src/pages/match/images/5.jpg",
-        "introduce": "경기 5",
+        "introduce": "경기도 라이벌 매치",
         "schedule": {
             "date": "2024-10-03",
             "day": "목",
@@ -151,172 +141,17 @@
             "endTime": "17:00",
             "time": 120
         },
-        "playerQuantity": 9,
-        "quarterQuantity": 4,
-        "fieldLocation": "Riverbank Stadium",
-        "matchCost": 13000,
-        "clubLevel": "beginner",
-        "pro": "4",
-        "gender": "Male"
-    },
-    {
-        "matchCode": 6,
-        "myClub": {
-            "clubName": "Dragons",
-            "preSet": [
-                "src/pages/match/images/squad1.png",
-                "src/pages/match/images/squad2.png",
-                "src/pages/match/images/squad3.png",
-                "src/pages/match/images/squad4.png"
-            ]
-        },
-        "enemyClub": {
-            "clubName": "Phoenixes"
-        },
-        "name": "Dragons과(와) Phoenixes의 경기",
-        "photo": "src/pages/match/images/6.jpg",
-        "introduce": "경기 6",
-        "schedule": {
-            "date": "2024-10-10",
-            "day": "금",
-            "startTime": "19:00",
-            "endTime": "21:00",
-            "time": 120
-        },
         "playerQuantity": 11,
         "quarterQuantity": 4,
-        "fieldLocation": "Mythic Arena",
-        "matchCost": 25000,
-        "clubLevel": "advanced",
-        "pro": "6",
-        "gender": "Mixed"
-    },
-    {
-        "matchCode": 7,
-        "myClub": {
-            "clubName": "Hawks",
-            "preSet": [
-                "src/pages/match/images/squad1.png",
-                "src/pages/match/images/squad2.png",
-                "src/pages/match/images/squad3.png",
-                "src/pages/match/images/squad4.png"
-            ]
+        "fieldLocation": "수원월드컵경기장",
+        "region": "경기",
+        "coordinates": {
+            "latitude": 37.2862,
+            "longitude": 127.0362
         },
-        "enemyClub": {
-            "clubName": "Falcons"
-        },
-        "name": "Hawks과(와) Falcons의 경기",
-        "photo": "src/pages/match/images/7.jpg",
-        "introduce": "경기 7",
-        "schedule": {
-            "date": "2024-10-17",
-            "day": "토",
-            "startTime": "11:00",
-            "endTime": "13:00",
-            "time": 120
-        },
-        "playerQuantity": 5,
-        "quarterQuantity": 4,
-        "fieldLocation": "Mountain View Field",
-        "matchCost": 16000,
-        "clubLevel": "intermediate",
-        "pro": "없음",
-        "gender": "Female"
-    },
-    {
-        "matchCode": 8,
-        "myClub": {
-            "clubName": "Warriors",
-            "preSet": [
-                "src/pages/match/images/squad1.png",
-                "src/pages/match/images/squad2.png",
-                "src/pages/match/images/squad3.png",
-                "src/pages/match/images/squad4.png"
-            ]
-        },
-        "enemyClub": {
-            "clubName": "Gladiators"
-        },
-        "name": "Warriors과(와) Gladiators의 경기",
-        "photo": "src/pages/match/images/8.jpg",
-        "introduce": "경기 8",
-        "schedule": {
-            "date": "2024-10-24",
-            "day": "일",
-            "startTime": "17:00",
-            "endTime": "19:00",
-            "time": 120
-        },
-        "playerQuantity": 10,
-        "quarterQuantity": 4,
-        "fieldLocation": "Coliseum",
-        "matchCost": 30000,
-        "clubLevel": "advanced",
-        "pro": "7",
-        "gender": "Male"
-    },
-    {
-        "matchCode": 9,
-        "myClub": {
-            "clubName": "Knights",
-            "preSet": [
-                "src/pages/match/images/squad1.png",
-                "src/pages/match/images/squad2.png",
-                "src/pages/match/images/squad3.png",
-                "src/pages/match/images/squad4.png"
-            ]
-        },
-        "enemyClub": {
-            "clubName": "Squires"
-        },
-        "name": "Knights과(와) Squires의 경기",
-        "photo": "src/pages/match/images/9.jpg",
-        "introduce": "경기 9",
-        "schedule": {
-            "date": "2024-10-31",
-            "day": "수",
-            "startTime": "20:00",
-            "endTime": "22:00",
-            "time": 120
-        },
-        "playerQuantity": 7,
-        "quarterQuantity": 4,
-        "fieldLocation": "Castle Grounds",
-        "matchCost": 22000,
-        "clubLevel": "intermediate",
-        "pro": "2",
-        "gender": "Mixed"
-    },
-    {
-        "matchCode": 10,
-        "myClub": {
-            "clubName": "Vikings",
-            "preSet": [
-                "src/pages/match/images/squad1.png",
-                "src/pages/match/images/squad2.png",
-                "src/pages/match/images/squad3.png",
-                "src/pages/match/images/squad4.png"
-            ]
-        },
-        "enemyClub": {
-            "clubName": "Saxons"
-        },
-        "name": "Vikings과(와) Saxons의 경기",
-        "photo": "src/pages/match/images/10.jpg",
-        "introduce": "경기 10",
-        "schedule": {
-            "date": "2024-11-07",
-            "day": "목",
-            "startTime": "09:00",
-            "endTime": "11:00",
-            "time": 120
-        },
-        "playerQuantity": 9,
-        "quarterQuantity": 4,
-        "fieldLocation": "Valley Field",
-        "matchCost": 16000,
-        "clubLevel": "beginner",
-        "pro": "1",
-        "gender": "Male"
+        "matchCost": 13000,
+        "clubLevel": "고급",
+        "pro": "4",
+        "gender": "남성"
     }
 ]
