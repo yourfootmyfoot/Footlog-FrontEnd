@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { getMercenaryAppList } from '../../apis/MercenaryAPI';
 import MercenaryAppInfo from './MercenaryAppInfo';
 import Mercenary from './MercenaryAppList.module.css';
+import EnrollButton from '../../EnrollButton';
+
 
 function MercenaryAppList() {
 
@@ -30,6 +32,7 @@ function MercenaryAppList() {
             />
           )}
         </div>
+        <EnrollButton/>
       </div>
     </>
   )

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { getMercenaryRecList } from '../../apis/MercenaryAPI';
 import MercenaryRecInfo from './MercenaryRecInfo';
 import MercenaryRec from './MercenaryRecList.module.css';
+import EnrollButton from '../../EnrollButton';
 
 function MercenaryRecList() {
 
@@ -26,6 +27,7 @@ function MercenaryRecList() {
             />
           )}
         </div>
+        <EnrollButton/>
       </div>
     </>
   )

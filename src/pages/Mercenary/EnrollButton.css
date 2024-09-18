@@ -1,0 +1,49 @@
+.floating-menu {
+  position: fixed; /* 또는 fixed, 규격에 맞게 수정 */
+  bottom: 100px;
+  right: 10px; /* 필요에 따라 위치 수정 */
+  /* 추가적인 스타일 */
+  
+}
+
+.menu-btn,
+.sub-btn {
+  /* border: none; */
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  /*background-color: #16C79A;*/
+
+  /* 버튼 안 텍스트 중앙정렬 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  white-space: nowrap;
+  cursor: pointer;
+  font-family: "Gothic A1", sans-serif;
+  font-size: 20px;
+
+  box-shadow: 5px 5px 5px #aaaaaa;
+}
+
+.sub-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sub-menu ul {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.sub-menu.open ul {
+  max-height: 200px; /* 서브메뉴의 높이 설정 */
+}
+
+.sub-btn {
+  font-size: 13px;
+  background: #b18c79;
+}

@@ -13,16 +13,17 @@
         "enemyClub": {
             "clubName": "Tigers"
         },
-        "matchName": "Lions과(와) Tigers의 경기",
-        "matchPhoto": "src/pages/match/images/1.jpg",
-        "matchIntroduce": "경기 1",
-        "matchSchedule": {
-            "matchDate": "2024-09-05",
-            "matchStartTime": "10:00",
-            "matchEndTime": "12:00",
-            "matchTime": 120
+        "name": "Lions과(와) Tigers의 경기",
+        "photo": "src/pages/match/images/1.jpg",
+        "introduce": "경기 1",
+        "schedule": {
+            "date": "2024-09-05",
+            "day": "목",
+            "startTime": "10:00",
+            "endTime": "12:00",
+            "time": 120
         },
-        "matchPlayerQuantity": 7,
+        "playerQuantity": 7,
         "quarterQuantity": 4,
         "fieldLocation": "Downtown Stadium",
         "matchCost": 15000,
@@ -33,21 +34,28 @@
     {
         "matchCode": 2,
         "myClub": {
-            "clubName": "Eagles"
+            "clubName": "Eagles",
+            "preSet": [
+                "src/pages/match/images/squad1.png",
+                "src/pages/match/images/squad2.png",
+                "src/pages/match/images/squad3.png",
+                "src/pages/match/images/squad4.png"
+            ]
         },
         "enemyClub": {
             "clubName": "Wolves"
         },
-        "matchName": "Eagles과(와) Wolves의 경기",
-        "matchPhoto": "src/pages/match/images/2.jpg",
-        "matchIntroduce": "경기 2",
-        "matchSchedule": {
-            "matchDate": "2024-09-12",
-            "matchStartTime": "14:00",
-            "matchEndTime": "16:00",
-            "matchTime": 120
+        "name": "Eagles과(와) Wolves의 경기",
+        "photo": "src/pages/match/images/2.jpg",
+        "introduce": "경기 2",
+        "schedule": {
+            "date": "2024-09-12",
+            "day": "금",
+            "startTime": "14:00",
+            "endTime": "16:00",
+            "time": 120
         },
-        "matchPlayerQuantity": 6,
+        "playerQuantity": 6,
         "quarterQuantity": 4,
         "fieldLocation": "City Arena",
         "matchCost": 20000,
@@ -58,21 +66,28 @@
     {
         "matchCode": 3,
         "myClub": {
-            "clubName": "Sharks"
+            "clubName": "Sharks",
+            "preSet": [
+                "src/pages/match/images/squad1.png",
+                "src/pages/match/images/squad2.png",
+                "src/pages/match/images/squad3.png",
+                "src/pages/match/images/squad4.png"
+            ]
         },
         "enemyClub": {
             "clubName": "Dolphins"
         },
-        "matchName": "Sharks과(와) Dolphins의 경기",
-        "matchPhoto": "src/pages/match/images/3.jpg",
-        "matchIntroduce": "경기 3",
-        "matchSchedule": {
-            "matchDate": "2024-09-19",
-            "matchStartTime": "18:00",
-            "matchEndTime": "20:00",
-            "matchTime": 120
+        "name": "Sharks과(와) Dolphins의 경기",
+        "photo": "src/pages/match/images/3.jpg",
+        "introduce": "경기 3",
+        "schedule": {
+            "date": "2024-09-19",
+            "day": "토",
+            "startTime": "18:00",
+            "endTime": "20:00",
+            "time": 120
         },
-        "matchPlayerQuantity": 10,
+        "playerQuantity": 10,
         "quarterQuantity": 4,
         "fieldLocation": "Seaside Field",
         "matchCost": 12000,
@@ -83,21 +98,28 @@
     {
         "matchCode": 4,
         "myClub": {
-            "clubName": "Panthers"
+            "clubName": "Panthers",
+            "preSet": [
+                "src/pages/match/images/squad1.png",
+                "src/pages/match/images/squad2.png",
+                "src/pages/match/images/squad3.png",
+                "src/pages/match/images/squad4.png"
+            ]
         },
         "enemyClub": {
             "clubName": "Cheetahs"
         },
-        "matchName": "Panthers과(와) Cheetahs의 경기",
-        "matchPhoto": "src/pages/match/images/4.jpg",
-        "matchIntroduce": "경기 4",
-        "matchSchedule": {
-            "matchDate": "2024-09-26",
-            "matchStartTime": "16:00",
-            "matchEndTime": "18:00",
-            "matchTime": 120
+        "name": "Panthers과(와) Cheetahs의 경기",
+        "photo": "src/pages/match/images/4.jpg",
+        "introduce": "경기 4",
+        "schedule": {
+            "date": "2024-09-26",
+            "day": "화",
+            "startTime": "16:00",
+            "endTime": "18:00",
+            "time": 120
         },
-        "matchPlayerQuantity": 8,
+        "playerQuantity": 8,
         "quarterQuantity": 4,
         "fieldLocation": "Highland Park",
         "matchCost": 18000,
@@ -108,21 +130,28 @@
     {
         "matchCode": 5,
         "myClub": {
-            "clubName": "Bulls"
+            "clubName": "Bulls",
+            "preSet": [
+                "src/pages/match/images/squad1.png",
+                "src/pages/match/images/squad2.png",
+                "src/pages/match/images/squad3.png",
+                "src/pages/match/images/squad4.png"
+            ]
         },
         "enemyClub": {
             "clubName": "Rams"
         },
-        "matchName": "Bulls과(와) Rams의 경기",
-        "matchPhoto": "src/pages/match/images/5.jpg",
-        "matchIntroduce": "경기 5",
-        "matchSchedule": {
-            "matchDate": "2024-10-03",
-            "matchStartTime": "15:00",
-            "matchEndTime": "17:00",
-            "matchTime": 120
+        "name": "Bulls과(와) Rams의 경기",
+        "photo": "src/pages/match/images/5.jpg",
+        "introduce": "경기 5",
+        "schedule": {
+            "date": "2024-10-03",
+            "day": "목",
+            "startTime": "15:00",
+            "endTime": "17:00",
+            "time": 120
         },
-        "matchPlayerQuantity": 9,
+        "playerQuantity": 9,
         "quarterQuantity": 4,
         "fieldLocation": "Riverbank Stadium",
         "matchCost": 13000,
@@ -133,21 +162,28 @@
     {
         "matchCode": 6,
         "myClub": {
-            "clubName": "Dragons"
+            "clubName": "Dragons",
+            "preSet": [
+                "src/pages/match/images/squad1.png",
+                "src/pages/match/images/squad2.png",
+                "src/pages/match/images/squad3.png",
+                "src/pages/match/images/squad4.png"
+            ]
         },
         "enemyClub": {
             "clubName": "Phoenixes"
         },
-        "matchName": "Dragons과(와) Phoenixes의 경기",
-        "matchPhoto": "src/pages/match/images/6.jpg",
-        "matchIntroduce": "경기 6",
-        "matchSchedule": {
-            "matchDate": "2024-10-10",
-            "matchStartTime": "19:00",
-            "matchEndTime": "21:00",
-            "matchTime": 120
+        "name": "Dragons과(와) Phoenixes의 경기",
+        "photo": "src/pages/match/images/6.jpg",
+        "introduce": "경기 6",
+        "schedule": {
+            "date": "2024-10-10",
+            "day": "금",
+            "startTime": "19:00",
+            "endTime": "21:00",
+            "time": 120
         },
-        "matchPlayerQuantity": 11,
+        "playerQuantity": 11,
         "quarterQuantity": 4,
         "fieldLocation": "Mythic Arena",
         "matchCost": 25000,
@@ -158,21 +194,28 @@
     {
         "matchCode": 7,
         "myClub": {
-            "clubName": "Hawks"
+            "clubName": "Hawks",
+            "preSet": [
+                "src/pages/match/images/squad1.png",
+                "src/pages/match/images/squad2.png",
+                "src/pages/match/images/squad3.png",
+                "src/pages/match/images/squad4.png"
+            ]
         },
         "enemyClub": {
             "clubName": "Falcons"
         },
-        "matchName": "Hawks과(와) Falcons의 경기",
-        "matchPhoto": "src/pages/match/images/7.jpg",
-        "matchIntroduce": "경기 7",
-        "matchSchedule": {
-            "matchDate": "2024-10-17",
-            "matchStartTime": "11:00",
-            "matchEndTime": "13:00",
-            "matchTime": 120
+        "name": "Hawks과(와) Falcons의 경기",
+        "photo": "src/pages/match/images/7.jpg",
+        "introduce": "경기 7",
+        "schedule": {
+            "date": "2024-10-17",
+            "day": "토",
+            "startTime": "11:00",
+            "endTime": "13:00",
+            "time": 120
         },
-        "matchPlayerQuantity": 5,
+        "playerQuantity": 5,
         "quarterQuantity": 4,
         "fieldLocation": "Mountain View Field",
         "matchCost": 16000,
@@ -183,21 +226,28 @@
     {
         "matchCode": 8,
         "myClub": {
-            "clubName": "Warriors"
+            "clubName": "Warriors",
+            "preSet": [
+                "src/pages/match/images/squad1.png",
+                "src/pages/match/images/squad2.png",
+                "src/pages/match/images/squad3.png",
+                "src/pages/match/images/squad4.png"
+            ]
         },
         "enemyClub": {
             "clubName": "Gladiators"
         },
-        "matchName": "Warriors과(와) Gladiators의 경기",
-        "matchPhoto": "src/pages/match/images/8.jpg",
-        "matchIntroduce": "경기 8",
-        "matchSchedule": {
-            "matchDate": "2024-10-24",
-            "matchStartTime": "17:00",
-            "matchEndTime": "19:00",
-            "matchTime": 120
+        "name": "Warriors과(와) Gladiators의 경기",
+        "photo": "src/pages/match/images/8.jpg",
+        "introduce": "경기 8",
+        "schedule": {
+            "date": "2024-10-24",
+            "day": "일",
+            "startTime": "17:00",
+            "endTime": "19:00",
+            "time": 120
         },
-        "matchPlayerQuantity": 10,
+        "playerQuantity": 10,
         "quarterQuantity": 4,
         "fieldLocation": "Coliseum",
         "matchCost": 30000,
@@ -208,21 +258,28 @@
     {
         "matchCode": 9,
         "myClub": {
-            "clubName": "Knights"
+            "clubName": "Knights",
+            "preSet": [
+                "src/pages/match/images/squad1.png",
+                "src/pages/match/images/squad2.png",
+                "src/pages/match/images/squad3.png",
+                "src/pages/match/images/squad4.png"
+            ]
         },
         "enemyClub": {
             "clubName": "Squires"
         },
-        "matchName": "Knights과(와) Squires의 경기",
-        "matchPhoto": "src/pages/match/images/9.jpg",
-        "matchIntroduce": "경기 9",
-        "matchSchedule": {
-            "matchDate": "2024-10-31",
-            "matchStartTime": "20:00",
-            "matchEndTime": "22:00",
-            "matchTime": 120
+        "name": "Knights과(와) Squires의 경기",
+        "photo": "src/pages/match/images/9.jpg",
+        "introduce": "경기 9",
+        "schedule": {
+            "date": "2024-10-31",
+            "day": "수",
+            "startTime": "20:00",
+            "endTime": "22:00",
+            "time": 120
         },
-        "matchPlayerQuantity": 7,
+        "playerQuantity": 7,
         "quarterQuantity": 4,
         "fieldLocation": "Castle Grounds",
         "matchCost": 22000,
@@ -233,21 +290,28 @@
     {
         "matchCode": 10,
         "myClub": {
-            "clubName": "Vikings"
+            "clubName": "Vikings",
+            "preSet": [
+                "src/pages/match/images/squad1.png",
+                "src/pages/match/images/squad2.png",
+                "src/pages/match/images/squad3.png",
+                "src/pages/match/images/squad4.png"
+            ]
         },
         "enemyClub": {
             "clubName": "Saxons"
         },
-        "matchName": "Vikings과(와) Saxons의 경기",
-        "matchPhoto": "src/pages/match/images/10.jpg",
-        "matchIntroduce": "경기 10",
-        "matchSchedule": {
-            "matchDate": "2024-11-07",
-            "matchStartTime": "09:00",
-            "matchEndTime": "11:00",
-            "matchTime": 120
+        "name": "Vikings과(와) Saxons의 경기",
+        "photo": "src/pages/match/images/10.jpg",
+        "introduce": "경기 10",
+        "schedule": {
+            "date": "2024-11-07",
+            "day": "목",
+            "startTime": "09:00",
+            "endTime": "11:00",
+            "time": 120
         },
-        "matchPlayerQuantity": 9,
+        "playerQuantity": 9,
         "quarterQuantity": 4,
         "fieldLocation": "Valley Field",
         "matchCost": 16000,
