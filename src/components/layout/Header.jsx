@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import alarmIcon from '@/assets/alarm.svg';
 import messageIcon from '@/assets/message_square.svg';
@@ -40,7 +40,7 @@ const IconContainer = styled.div`
   align-items: center;
 `;
 
-const IconButton = styled.button`
+const IconButton = styled(Link)`
   background: none;
   border: none;
   margin-left: 10px;
@@ -55,7 +55,6 @@ const IconButton = styled.button`
     height: 24px;
   }
 `;
-
 const Header = () => {
   return (
     <HeaderContainer>
@@ -64,10 +63,10 @@ const Header = () => {
         <Title>FootLog</Title>
       </LogoContainer>
       <IconContainer>
-        <IconButton>
-          <img src={alarmIcon} alt="알림" />
+        <IconButton to="notifications">
+          <img src={alarmIcon} alt="알림 (준비 중)" />
         </IconButton>
-        <IconButton to="chat">
+        <IconButton to="/chat">
           <img src={messageIcon} alt="채팅" />
         </IconButton>
       </IconContainer>
