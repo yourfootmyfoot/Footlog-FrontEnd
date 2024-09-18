@@ -67,7 +67,7 @@ const Header = () => {
         <IconButton>
           <img src={alarmIcon} alt="알림" />
         </IconButton>
-        <IconButton>
+        <IconButton to="chat">
           <img src={messageIcon} alt="채팅" />
         </IconButton>
       </IconContainer>
