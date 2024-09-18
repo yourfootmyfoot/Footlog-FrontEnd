@@ -9,7 +9,6 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
-    "prepare": "husky install",
     "commitlint": "commitlint --config .config/.commitlintrc.cjs",
     "prettier": "prettier --config .config/.prettierrc.json"
   },
