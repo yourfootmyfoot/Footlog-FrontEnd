@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './EnrollMercenaryApp.css'; // CSS 파일 분리
 
 // 모달 컴포넌트
