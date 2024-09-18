@@ -69,10 +69,10 @@ const MatchDetail = () => {
     matchCode: matchCode,
     myClub: {},
     enemyClub: {},
-    matchName: '',
-    matchPhoto: '',
-    matchIntroduce: '',
-    matchSchedule: {},
+    name: '',
+    Photo: '',
+    introduce: '',
+    schedule: {},
     matchPlayerQuantity: 0,
     quarterQuantity: 1,
     fieldLocation: '',
@@ -106,20 +106,20 @@ const MatchDetail = () => {
   return (
     <MatchBox>
       <h3>{match.myClub.clubName}와(과) {match.enemyClub.clubName}의 경기</h3>
-      <img src={match.matchPhoto} alt={`Image${matchCode}`} style={{ width: '100%', borderRadius: '10px' }} />
+      <img src={match.photo} alt={`Image${matchCode}`} style={{ width: '100%', borderRadius: '10px' }} />
 
       <h3>{match.myClub.clubName}의 매치 설명</h3>
       <MatchDescription>
-        <p>{match.matchIntroduce}</p>
+        <p>{match.Introduce}</p>
       </MatchDescription>
 
       <h3>매치 정보</h3>
       <MatchInfo>
         <ul>
           <li><h3>구단 이름 : {match.myClub.clubName}</h3></li>
-          <li><h3>경기 날짜/시간 : {match.matchSchedule.matchDate} {match.matchSchedule.matchStartTime} ~ {match.matchSchedule.matchEndTime}</h3></li>
-          <li><h3>경기 인원 : {match.matchPlayerQuantity}명</h3></li>
-          <li><h3>쿼터 수 : {match.matchSchedule.matchTime / 30}</h3></li>
+          <li><h3>경기 날짜/시간 : {match.schedule.date} {match.schedule.startTime} ~ {match.schedule.endTime}</h3></li>
+          <li><h3>경기 인원 : {match.playerQuantity}명</h3></li>
+          <li><h3>쿼터 수 : {match.schedule.time / 30}</h3></li>
           <li><h3>구장 정보 : {match.fieldLocation}</h3></li>
           <li>
             <MapContainer>
