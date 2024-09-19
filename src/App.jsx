@@ -43,7 +43,7 @@ const App = () => {
             
             {/* Match related routes */}
             <Route exact path="/match" component={Match} />
-            <Route path="/match/detail" component={MatchDetail} />
+            <Route path="/match/:matchCode" component={MatchDetail} />
             <Route path="/match/enroll" component={MatchEnrollForm} />
             
             {/* Mercenary related routes */}
