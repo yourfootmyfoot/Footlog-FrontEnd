@@ -1,10 +1,12 @@
 // src/pages/Match/MatchDetail.jsx
 
 import { useState, useEffect } from 'react';
-import { Map } from 'react-kakao-maps-sdk';
+import { useParams } from 'react-router-dom';
+import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { getMatchDetail } from './apis/MatchAPI';
 import styled from '@emotion/styled';
 import ImageSlider from './ImageSlider';
+
 
 // 매치 정보의 스타일 정의
 const MatchBox = styled.div`
@@ -63,30 +65,14 @@ const MapContainer = styled.div`
 `;
 
 const MatchDetail = () => {
-  const matchCode = 1;
-
-  const [match, setMatch] = useState({
-    matchCode: matchCode,
-    myClub: {},
-    enemyClub: {},
-    name: '',
-    Photo: '',
-    introduce: '',
-    schedule: {},
-    matchPlayerQuantity: 0,
-    quarterQuantity: 1,
-    fieldLocation: '',
-    matchCost: 0,
-    clubLevel: '',
-    pro: 0,
-    gender: ''
-  });
+  const { matchCode } = useParams();
+  const [matchInfo, setMatchInfo] = useState(null);
 
   useEffect(() => {
     const fetchMatchDetail = async () => {
       try {
         const matchData = await getMatchDetail(matchCode);
-        setMatch(matchData);
+        setMatchInfo(matchData);
       } catch (error) {
         console.error('Failed to fetch match details:', error);
       }
@@ -95,52 +81,49 @@ const MatchDetail = () => {
     fetchMatchDetail();
   }, [matchCode]);
 
-  const slides = match.myClub.preSet || [];
+  if (!matchInfo) return <div>Loading...</div>;
 
-  const containerStyles = {
-    width: "100%",
-    height: "280px",
-    margin: "0 auto"
-  };
+  //const slides = match.myClub.preSet || [];
+  const slides = matchInfo.photo ? [matchInfo.photo] : [];
+  console.log(matchInfo)
 
   return (
     <MatchBox>
-      <h3>{match.myClub.clubName}와(과) {match.enemyClub.clubName}의 경기</h3>
-      <img src={match.photo} alt={`Image${matchCode}`} style={{ width: '100%', borderRadius: '10px' }} />
+      <h3>{matchInfo.myClub.clubName}와(과) {matchInfo.enemyClub.clubName}의 경기</h3>
+      <div style={{ width: '100%', height: '280px', margin: '0 auto' }}>
+        <ImageSlider slides={slides} />
+      </div>
 
-      <h3>{match.myClub.clubName}의 매치 설명</h3>
+      <h3>{matchInfo.myClub.clubName}의 매치 설명</h3>
       <MatchDescription>
-        <p>{match.Introduce}</p>
+        <p>{matchInfo.introduce}</p>
       </MatchDescription>
 
       <h3>매치 정보</h3>
       <MatchInfo>
         <ul>
-          <li><h3>구단 이름 : {match.myClub.clubName}</h3></li>
-          <li><h3>경기 날짜/시간 : {match.schedule.date} {match.schedule.startTime} ~ {match.schedule.endTime}</h3></li>
-          <li><h3>경기 인원 : {match.playerQuantity}명</h3></li>
-          <li><h3>쿼터 수 : {match.schedule.time / 30}</h3></li>
-          <li><h3>구장 정보 : {match.fieldLocation}</h3></li>
+          <li><h3>구단 이름 : {matchInfo.myClub.clubName}</h3></li>
+          <li><h3>경기 날짜/시간 : {matchInfo.schedule.date} {matchInfo.schedule.startTime} ~ {matchInfo.schedule.endTime}</h3></li>
+          <li><h3>경기 인원 : {matchInfo.playerQuantity}명</h3></li>
+          <li><h3>쿼터 수 : {matchInfo.quarterQuantity}</h3></li>
+          <li><h3>구장 정보 : {matchInfo.fieldLocation}</h3></li>
           <li>
             <MapContainer>
               <Map
-                center={{ lat: 33.5563, lng: 126.79581 }}
+                center={{ lat: matchInfo.coordinates.latitude, lng: matchInfo.coordinates.longitude }}
                 style={{ width: '100%', height: '100%' }}
                 level={3}
-              />
+              >
+                <MapMarker position={{ lat: matchInfo.coordinates.latitude, lng: matchInfo.coordinates.longitude }} />
+              </Map>
             </MapContainer>
           </li>
-          <li><h3>매치 비용 : {match.matchCost}원</h3></li>
-          <li><h3>구단 실력 : {match.clubLevel}</h3></li>
-          <li><h3>선출 수 : {match.pro}</h3></li>
-          <li><h3>성별: {match.gender}</h3></li>
+          <li><h3>매치 비용 : {matchInfo.matchCost}원</h3></li>
+          <li><h3>구단 실력 : {matchInfo.clubLevel}</h3></li>
+          <li><h3>선출 수 : {matchInfo.pro}</h3></li>
+          <li><h3>성별: {matchInfo.gender}</h3></li>
         </ul>
       </MatchInfo>
-
-      <h3>{match.myClub.clubName}의 라인업</h3>
-      <div style={containerStyles}>
-        <ImageSlider slides={slides} />
-      </div>
 
       <JoinButton>참가하기</JoinButton>
     </MatchBox>
