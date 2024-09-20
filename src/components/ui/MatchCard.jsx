@@ -1,7 +1,8 @@
 
+import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-const Card = styled.div`
+const Card = styled(Link)`
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -15,6 +16,8 @@ const Card = styled.div`
   justify-content: center;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
+  text-decoration: none;
+  color: inherit;
 
   &:hover {
     transform: translateY(-5px);
@@ -42,7 +45,7 @@ const HighlightText = styled.span`
 
 const MatchCard = ({ matchData }) => {
   return (
-    <Card>
+    <Card to={`/match/${matchData.matchCode}`}>
       <MatchTitle>
         {matchData.myClub.clubName} 와(과) {matchData.enemyClub.clubName}의 매치
       </MatchTitle>
