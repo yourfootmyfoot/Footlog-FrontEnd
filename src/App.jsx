@@ -43,8 +43,11 @@ const App = () => {
             
             {/* Match related routes */}
             <Route exact path="/match" component={Match} />
-            <Route path="/match/:matchCode" component={MatchDetail} />
+            <Route path="/match/detail" component={MatchDetail} />
             <Route path="/match/enroll" component={MatchEnrollForm} />
+            
+            {/* Profile related routes */}
+            <Route path="/profile" component={Profile} />
             
             {/* Mercenary related routes */}
             <Route exact path="/mercenary" component={Mercenary} />
@@ -60,7 +63,6 @@ const App = () => {
             
             {/* Uncomment these routes when components are ready */}
             {/*<Route path="/club" component={Club} />*/}
-            {/*<Route path="/profile" component={Profile} />*/}
           </Switch>
         </AppContainer>
         <Footer />
