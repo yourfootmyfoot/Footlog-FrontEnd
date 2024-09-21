@@ -58,9 +58,9 @@ const App = () => {
             <Route path="/chat/:id" component={ChatRoomPage} />
             <Route path="/settings" component={Settings} />
             
+            <Route path="/profile" component={Profile} /> 
             {/* Uncomment these routes when components are ready */}
             {/*<Route path="/club" component={Club} />*/}
-            {/*<Route path="/profile" component={Profile} />*/}
           </Switch>
         </AppContainer>
         <Footer />
