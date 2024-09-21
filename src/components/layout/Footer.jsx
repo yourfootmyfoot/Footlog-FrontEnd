@@ -1,5 +1,4 @@
-
-import { Link, withRouter } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from '@emotion/styled';
 import matchIcon from '@/assets/match.svg';
 import clubIcon from '@/assets/club.svg';
@@ -63,16 +62,13 @@ const FooterText = styled.span`
     font-size: 0.65rem;
   }
 `;
+const Footer = () => {
+  const location = useLocation();
 
-const Footer = ({ location }) => {
-  // const isActive = (path) => location.pathname === path;
-  // (..paths) : 여러 경로를 받는 키워드, paths.includes() : 배열(paths)에 특정 값(location.pathname)이 있는 지 T/F로 반환
   const isActive = (...paths) => paths.includes(location.pathname);
-
 
   return (
     <FooterContainer>
-
       <FooterItem to="/match">
         <FooterIcon src={matchIcon} alt="경기" active={isActive('/match', '/matchDetail')} />
         <FooterText active={isActive('/match', '/matchDetail')}>경기</FooterText>
@@ -97,10 +93,8 @@ const Footer = ({ location }) => {
         <FooterIcon src={settingsIcon} alt="설정" active={isActive('/settings')} />
         <FooterText active={isActive('/settings')}>설정</FooterText>
       </FooterItem>
-
     </FooterContainer>
   );
 };
 
-const FooterWithRouter = withRouter(Footer);
-export default FooterWithRouter;
+export default Footer;
