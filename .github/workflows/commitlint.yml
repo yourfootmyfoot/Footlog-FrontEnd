@@ -1,10 +1,10 @@
 name: Commit Lint
 
 on:
-  push:
+  pull_request:
     branches:
       - '**'
-  pull_request:
+  push:
     branches:
       - '**'
 
@@ -15,7 +15,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # 모든 히스토리를 가져옵니다. 이는 commitlint가 이전 커밋을 볼 수 있게 합니다.
+          fetch-depth: 0  # 공통 조상을 찾기 위해 전체 히스토리 필요
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -26,6 +26,13 @@ jobs:
         run: yarn install
 
       - name: Run commitlint
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
         run: |
-          yarn add -D @commitlint/config-conventional @commitlint/cli
-          npx commitlint --from=$(git merge-base origin/$(echo ${GITHUB_REF#refs/heads/}) HEAD) --to=HEAD --config ./.config/.commitlintrc.cjs
+          # 공통 조상 찾기
+          BASE_SHA=$(git rev-parse origin/${BASE_REF})
+          HEAD_SHA=$(git rev-parse HEAD)
+          
+          # commitlint 실행
+          npx commitlint --from=${BASE_SHA} --to=${HEAD_SHA} --config ./.config/.commitlintrc.cjs

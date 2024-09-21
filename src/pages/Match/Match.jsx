@@ -133,8 +133,15 @@ const Match = () => {
   };
 
   const formatFilterValue = (key, value) => {
-    if (key === 'date') {
-      return value ? new Date(value).toLocaleDateString() : '';
+    if (key === 'date' && value) {
+      const date = new Date(value);
+
+      //return value ? new Date(value).toLocaleDateString() : '';
+      return date.toLocaleDateString('ko-KR', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      });
     }
     return value;
   };
@@ -176,7 +183,15 @@ const Match = () => {
           <Calendar 
             mode="single"
             selected={filters.date ? new Date(filters.date) : undefined}
-            onSelect={(date) => handleFilterSelect(date ? date.toISOString().split('T')[0] : null)}
+            onSelect={(date) => {
+              if (date) {
+                const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+                const dateString = utcDate.toISOString().split('T')[0]
+                handleFilterSelect(dateString);
+              } else {
+                handleFilterSelect(null);
+              }
+            }}
           />
         )}
       </BottomSheet>
