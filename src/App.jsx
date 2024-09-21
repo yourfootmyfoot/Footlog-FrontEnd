@@ -56,7 +56,7 @@ const App = () => {
             <Route path="/mercenary/enroll-app" component={EnrollMercenaryApp} />
             <Route path="/mercenary/enroll-rec" component={EnrollMercenaryRec} />
             
-            <Route path="/club-list" component={ClubList} />
+            <Route path="/clublist" component={ClubList} />
             <Route exact path="/chat" component={ChatRoomListPage} />
             <Route path="/chat/:id" component={ChatRoomPage} />
             <Route path="/settings" component={Settings} />
