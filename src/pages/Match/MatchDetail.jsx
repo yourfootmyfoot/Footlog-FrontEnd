@@ -1,7 +1,5 @@
-// src/pages/Match/MatchDetail.jsx
-
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { getMatchDetail } from './apis/MatchAPI';
 import styled from '@emotion/styled';
@@ -66,6 +64,7 @@ const MapContainer = styled.div`
 
 const MatchDetail = () => {
   const { matchCode } = useParams();
+  const navigate = useNavigate();
   const [matchInfo, setMatchInfo] = useState(null);
 
   useEffect(() => {
@@ -75,6 +74,8 @@ const MatchDetail = () => {
         setMatchInfo(matchData);
       } catch (error) {
         console.error('Failed to fetch match details:', error);
+        // 에러 발생 시 처리 (예: 에러 페이지로 리다이렉트)
+        // navigate('/error');
       }
     };
 
@@ -83,9 +84,13 @@ const MatchDetail = () => {
 
   if (!matchInfo) return <div>Loading...</div>;
 
-  //const slides = match.myClub.preSet || [];
   const slides = matchInfo.photo ? [matchInfo.photo] : [];
-  console.log(matchInfo)
+
+  const handleJoinClick = () => {
+    // 참가 로직 구현
+    console.log('Join button clicked');
+    // 예: navigate(`/match/${matchCode}/join`);
+  };
 
   return (
     <MatchBox>
@@ -125,7 +130,7 @@ const MatchDetail = () => {
         </ul>
       </MatchInfo>
 
-      <JoinButton>참가하기</JoinButton>
+      <JoinButton onClick={handleJoinClick}>참가하기</JoinButton>
     </MatchBox>
   );
 };
