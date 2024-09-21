@@ -20,7 +20,7 @@ const ChatRoomListPage = () => {
       id: 1,
       name: '윤준수(논현동 무슨 팀 매니저)',
       avatar: '/api/placeholder/50/50',
-      lastMessage: '다음 경기 티켓 예매하셨나요?',
+      lastMessage: '반갑습니다',
       lastMessageTime: '오후 2:30'
     },
     {

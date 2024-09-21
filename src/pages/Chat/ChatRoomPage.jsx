@@ -11,6 +11,7 @@ const ChatContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   background-color: #fff;
+  align-items: stretch;
 `;
 
 const ChatHeader = styled.div`
@@ -32,7 +33,6 @@ const BackButton = styled.button`
 const Title = styled.h1`
   font-size: 1.2rem;
   margin: 0;
-  background-color: #FFD700;
   padding: 5px 10px;
   border-radius: 15px;
 `;
@@ -96,7 +96,7 @@ const ChatRoomPage = ({ history, match }) => {
   // 채팅방 데이터 (실제로는 API에서 가져와야 함)
   const chatRoomsData = {
     1: { name: '윤준수', messages: [
-      { id: 1, text: '안녕하세요', time: '2:00pm', isSent: false },
+      { id: 1, text: '안녕하세요', time: '2:00pm', isSent: false },
       { id: 2, text: '반갑습니다', time: '2:05pm', isSent: true },
     ]},
     2: { name: '오택원', messages: [
