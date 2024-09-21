@@ -42,3 +42,17 @@ export const USERSTATSMOCK = [
   { label: '도움', value: '5' },
   { label: 'mom', value: '3' },
 ];
+
+export const USERABILITYMOCK = {
+  labels: ['체력', '수비', '스피드', '패스', '슈팅', '드리블'],
+  datasets: [
+    {
+      label: 'My Football Stats',
+      data: [90, 70, 75, 75, 60, 35],
+      backgroundColor: 'rgba(54, 162, 235, 0.2)',
+      borderColor: 'rgba(54, 162, 235, 1)',
+      borderWidth: 2,
+      pointBackgroundColor: 'rgba(54, 162, 235, 1)', // Points color
+    },
+  ],
+};

@@ -7,6 +7,7 @@ import MatchCard from '@/components/ui/MatchCard';
 import { Calendar } from '@/components/ui/calendar';
 import matchData from '@/pages/Match/data/match-detail.json';
 import { getFilterOptions } from '@/config/options';
+import EnrollMatchButton from '../MatchEnroll/components/EnrollButton';
 
 const MatchContainer = styled.div`
   width: 100%;
@@ -194,6 +195,7 @@ const Match = () => {
           />
         )}
       </BottomSheet>
+      <EnrollMatchButton />
     </MatchContainer>
   );
 };

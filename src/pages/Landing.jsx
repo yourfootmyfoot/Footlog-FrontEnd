@@ -8,9 +8,9 @@ const Landing = () => {
   };
 
   const routeToMatchEnrollPage = () => {
-    history.push("/match-enroll")
-  }
-  
+    history.push('/match/enroll');
+  };
+
   const goMatchDetail = () => {
     history.push('/matchDetail', {});
   };
