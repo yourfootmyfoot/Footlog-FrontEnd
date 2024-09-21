@@ -1,18 +1,17 @@
-import { useHistory } from 'react-router-dom';
-import styles from './MercenaryChoice.module.css';  // 수정된 경로
+import { useNavigate } from 'react-router-dom';
+import styles from './MercenaryChoice.module.css';
 
-// 이벤트 핸들러
 const MercenaryChoice = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   // 용병 합니다.
   const goMercenaryAppList = () => {
-    history.push('/MercenaryAppList');
+    navigate('/MercenaryAppList');
   };
 
   // 용병 구해요
   const goMercenaryRecList = () => {
-    history.push('/MercenaryRecList');
+    navigate('/MercenaryRecList');
   };
 
   return (
