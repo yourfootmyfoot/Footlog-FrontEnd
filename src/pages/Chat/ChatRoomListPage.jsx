@@ -27,7 +27,7 @@ const ChatRoomListPage = () => {
       id: 2,
       name: '오택원(어디 팀 매니저)',
       avatar: '/api/placeholder/50/50',
-      lastMessage: '이번 주 토요일 경기 참석 여부 알려주세요.',
+      lastMessage: '한강공원 축구장입니다.',
       lastMessageTime: '오전 11:45'
     },
   ];
