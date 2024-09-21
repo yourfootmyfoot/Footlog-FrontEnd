@@ -18,6 +18,8 @@ import ChatRoomListPage from './pages/Chat/ChatRoomListPage';
 import ClubList from './pages/ClubList/pages/ClubList';
 import ChatRoomPage from './pages/Chat/ChatRoomPage'; 
 import Settings from './pages/Settings/Settings';
+import ClubRegist from './pages/Club/pages/ClubRegist';
+import RegistSchedule from './pages/Club/pages/RegistSchedule';
 
 // Mercenary related components
 import Mercenary from './pages/Mercenary/pages/MercenaryChoice';
@@ -63,7 +65,8 @@ const App = () => {
             
             <Route path="/profile" component={Profile} /> 
             {/* Uncomment these routes when components are ready */}
-            {/*<Route path="/club" component={Club} />*/}
+            <Route exact path="/club/regist" component={ClubRegist} />
+            <Route exact path="/club/regist/schedule" component={RegistSchedule} />
           </Switch>
         </AppContainer>
         <Footer />
