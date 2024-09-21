@@ -1,28 +1,25 @@
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import NoClub from './NoClub';
 import Avatar from './Avatar';
 
+
 // Sample club data structure for reference:
 // {
-//   clubCode: 1,
-//   name: "FC Seoul",
-//   logo: "src/pages/ClubList/images/logo1.png",
-//   location: "서울특별시 강남구",
-//   playerQuantity: 12,
-// }
-
-const MOCKUSERROLE = ['구단주', '매니저', '구단원'];
-
+  //   clubCode: 1,
+  //   name: "FC Seoul",
+  //   logo: "src/pages/ClubList/images/logo1.png",
+  //   location: "서울특별시 강남구",
+  //   playerQuantity: 12,
+  // }
+  const MOCKUSERROLE = ['구단주', '매니저', '구단원'];
 function UserClubCard({ clubs }) {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   function routeToClubList() {
-    history.push('/clubList');
+    navigate('/clubList');
   }
 
-  // !club page test -> NoClub
-  // clubs = null;
   if (!clubs || clubs.length === 0) {
     return <NoClub handleClick={routeToClubList} />;
   }
@@ -38,7 +35,6 @@ function UserClubCard({ clubs }) {
           <div className="flex gap-2">
             <div className="text-xl font-bold text-gray-800">{club.name}</div>
             <div className="bg-main mx-auto px-2 font-bold text-white text-sm rounded-full flex items-center bg-opacity-80">
-              {/* 수정 필요(구단원, 매니저, 구단원) */}
               {MOCKUSERROLE[2]}
             </div>
           </div>

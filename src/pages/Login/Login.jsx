@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
 import KakaoLoginButton from '@/components/ui/KakaoLoginButton';
 
 const Login = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -36,18 +36,12 @@ const Login = () => {
       const { accessToken } = response.data;
       console.log(`access token: ${accessToken}`)
       localStorage.setItem('accessToken', accessToken);
-      history.push('/');
+      navigate('/');
     } catch (error) {
       console.error('Failed to exchange code for token:', error.response ? error.response.data : error.message);
       setIsLoading(false);
     }
   };
-
-  //const handleKakaoLogin = () => {
-  //  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=fee6d16751a5c26bf65b53de89f90b8f&redirect_uri=${encodeURIComponent('http://localhost:3000/login')}&response_type=code`;
-  //  window.location.href = KAKAO_AUTH_URL;
-    
-  //};
 
   const handleKakaoLogin = () => {
     window.location.href = 'http://localhost:8080/oauth2/authorization/kakao';
