@@ -14,7 +14,6 @@ const Bubble = styled.div`
   font-size: 14px;
   line-height: 1.4;
   word-wrap: break-word;
-  white-space: pre-wrap;  // 이 줄을 추가
   background-color: ${props => props.isSent ? '#16C79A' : '#F0F0F0'};
   color: ${props => props.isSent ? 'white' : 'black'};
   align-self: ${props => props.isSent ? 'flex-end' : 'flex-start'};
