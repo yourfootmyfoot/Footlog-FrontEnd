@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 import GlobalStyles from './theme/GlobalStyles';
 import theme from './theme/theme';
@@ -28,7 +28,6 @@ import Profile from './pages/Profile/Profile';
 import EnrollMercenaryApp from './pages/Mercenary/pages/EnrollMercenaryApp/EnrollMercenaryApp';
 import EnrollMercenaryRec from './pages/Mercenary/pages/EnrollMercenaryRec/EnrollMercenaryRec';
 
-
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
@@ -36,35 +35,33 @@ const App = () => {
       <Router>
         <AppContainer>
           <Header />
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <Route path="/login" component={Login} />
-
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
             
             {/* Match related routes */}
-            <Route exact path="/match" component={Match} />
-            <Route path="/match/:matchCode" component={MatchDetail} />
-            <Route path="/match/enroll" component={MatchEnrollForm} />
+            <Route path="/match" element={<Match />} />
+            <Route path="/match/:matchCode" element={<MatchDetail />} />
+            <Route path="/match/enroll" element={<MatchEnrollForm />} />
             
             {/* Profile related routes */}
-            <Route path="/profile" component={Profile} />
+            <Route path="/profile" element={<Profile />} />
             
             {/* Mercenary related routes */}
-            <Route exact path="/mercenary" component={Mercenary} />
-            <Route path="/mercenary/app-list" component={MercenaryAppList} />
-            <Route path="/mercenary/rec-list" component={MercenaryRecList} />
-            <Route path="/mercenary/enroll-app" component={EnrollMercenaryApp} />
-            <Route path="/mercenary/enroll-rec" component={EnrollMercenaryRec} />
+            <Route path="/mercenary" element={<Mercenary />} />
+            <Route path="/mercenary/app-list" element={<MercenaryAppList />} />
+            <Route path="/mercenary/rec-list" element={<MercenaryRecList />} />
+            <Route path="/mercenary/enroll-app" element={<EnrollMercenaryApp />} />
+            <Route path="/mercenary/enroll-rec" element={<EnrollMercenaryRec />} />
             
-            <Route path="/clublist" component={ClubList} />
-            <Route exact path="/chat" component={ChatRoomListPage} />
-            <Route path="/chat/:id" component={ChatRoomPage} />
-            <Route path="/settings" component={Settings} />
+            <Route path="/clublist" element={<ClubList />} />
+            <Route path="/chat" element={<ChatRoomListPage />} />
+            <Route path="/chat/:id" element={<ChatRoomPage />} />
+            <Route path="/settings" element={<Settings />} />
             
-            <Route path="/profile" component={Profile} /> 
             {/* Uncomment these routes when components are ready */}
-            {/*<Route path="/club" component={Club} />*/}
-          </Switch>
+            {/*<Route path="/club" element={<Club />} />*/}
+          </Routes>
         </AppContainer>
         <Footer />
       </Router>
