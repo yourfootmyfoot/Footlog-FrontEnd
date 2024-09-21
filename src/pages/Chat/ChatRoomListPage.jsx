@@ -18,24 +18,17 @@ const ChatRoomListPage = () => {
   const mockChatRooms = [
     {
       id: 1,
-      name: 'FC 서울 팬 모임',
+      name: '윤준수(논현동 무슨 팀 매니저)',
       avatar: '/api/placeholder/50/50',
       lastMessage: '다음 경기 티켓 예매하셨나요?',
       lastMessageTime: '오후 2:30'
     },
     {
       id: 2,
-      name: '주말 축구 동호회',
+      name: '오택원(어디 팀 매니저)',
       avatar: '/api/placeholder/50/50',
-      lastMessage: '이번 주 토요일 경기 참석 여부 알려주세요.',
+      lastMessage: '한강공원 축구장입니다.',
       lastMessageTime: '오전 11:45'
-    },
-    {
-      id: 3,
-      name: '축구 전술 연구회',
-      avatar: '/api/placeholder/50/50',
-      lastMessage: '새로운 포메이션에 대해 의견 나눠봐요.',
-      lastMessageTime: '어제'
     },
   ];
 
