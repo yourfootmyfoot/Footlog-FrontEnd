@@ -70,13 +70,13 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterItem to="/match">
-        <FooterIcon src={matchIcon} alt="경기" active={isActive('/match', '/matchDetail')} />
-        <FooterText active={isActive('/match', '/matchDetail')}>경기</FooterText>
+        <FooterIcon src={matchIcon} alt="경기" active={isActive('/match', '/match/enroll')} />
+        <FooterText active={isActive('/match', '/match/enroll')}>경기</FooterText>
       </FooterItem>
 
-      <FooterItem to="/ClubList">
-        <FooterIcon src={clubIcon} alt="구단" active={isActive('/ClubList')} />
-        <FooterText active={isActive('/ClubList')}>구단</FooterText>
+      <FooterItem to="/clublist">
+        <FooterIcon src={clubIcon} alt="구단" active={isActive('/clublist')} />
+        <FooterText active={isActive('/clublist')}>구단</FooterText>
       </FooterItem>
 
       <FooterItem to="/profile">
@@ -84,9 +84,29 @@ const Footer = () => {
         <FooterText active={isActive('/profile')}>프로필</FooterText>
       </FooterItem>
 
-      <FooterItem to="/Mercenary">
-        <FooterIcon src={guestIcon} alt="용병" active={isActive('/Mercenary','/MercenaryRecList', '/MercenaryAppList')} />
-        <FooterText active={isActive('/Mercenary','/MercenaryRecList', '/MercenaryAppList','/EnrollMercenaryRec')}>용병</FooterText>
+      <FooterItem to="/mercenary">
+        <FooterIcon 
+          src={guestIcon} 
+          alt="용병" 
+          active={isActive(
+            '/mercenary',
+            '/mercenary/app-list', 
+            '/mercenary/rec-list',
+            '/mercenary/enroll-app',
+            '/mercenary/enroll-rec'
+          )} 
+        />
+        <FooterText 
+          active={isActive(
+            '/mercenary',
+            '/mercenary/app-list', 
+            '/mercenary/rec-list',
+            '/mercenary/enroll-app',
+            '/mercenary/enroll-rec'
+          )}
+        >
+          용병
+        </FooterText>
       </FooterItem>
 
       <FooterItem to="/settings">
@@ -96,5 +116,6 @@ const Footer = () => {
     </FooterContainer>
   );
 };
+
 
 export default Footer;

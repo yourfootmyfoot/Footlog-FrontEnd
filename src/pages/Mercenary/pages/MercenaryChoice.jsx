@@ -6,12 +6,12 @@ const MercenaryChoice = () => {
 
   // 용병 합니다.
   const goMercenaryAppList = () => {
-    navigate('/MercenaryAppList');
+    navigate('/mercenary/app-list');
   };
 
   // 용병 구해요
   const goMercenaryRecList = () => {
-    navigate('/MercenaryRecList');
+    navigate('/mercenary/rec-list');
   };
 
   return (
