@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { postMatchEnroll } from './services/match';
 import { FormContainer, Button } from './components/Basic';
 import { InputField, SelectField, CheckboxField } from './components/FormField';
 import KakaoMap from './components/KakaoMap';
+
 
 const SearchFieldLocation = styled.div`
   display: flex;
@@ -62,6 +64,7 @@ function MatchEnrollForm() {
   const [fieldLocation, setFieldLocation] = useState('');
   const [mapData, setMapData] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -77,9 +80,16 @@ function MatchEnrollForm() {
     return selectedDate > today || '등록일은 오늘 이후여야 합니다.';
   };
 
-  const onSubmit = (data) => {
-    postMatchEnroll(data);
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      await postMatchEnroll(data);
+      console.log(data);
+      // 성공적으로 등록되면 경기 목록 페이지로 이동
+      navigate('/match');
+    } catch (error) {
+      console.error('Failed to enroll match:', error);
+      // 에러 처리 로직 (예: 사용자에게 에러 메시지 표시)
+    }
   };
 
   const searchPlace = () => {
@@ -98,7 +108,7 @@ function MatchEnrollForm() {
 
   const handleResultClick = (place) => {
     setMapData([place]);
-    setFieldLocation([place.place_name]);
+    setFieldLocation(place.place_name);
   };
 
   return (

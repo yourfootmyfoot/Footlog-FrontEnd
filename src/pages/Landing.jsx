@@ -1,28 +1,27 @@
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Landing = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    history.push('/login', {});
+    navigate('/login');
   };
 
   const routeToMatchEnrollPage = () => {
-    history.push('/match/enroll');
+    navigate('/match/enroll');
   };
 
   const goMatchDetail = () => {
-    history.push('/matchDetail', {});
+    navigate('/matchDetail');
   };
 
   const goMercenary = () => {
-    history.push('/Mercenary', {});
+    navigate('/Mercenary');
   };
 
   const goEnrollMercenaryRec = () => {
-    history.push('/EnrollMercenaryRec', {});
+    navigate('/EnrollMercenaryRec');
   };
-
 
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>

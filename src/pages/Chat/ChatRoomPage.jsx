@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import { withRouter } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import ChatBubble from '@/components/ui/ChatBubble';
 import BackIcon from '@/assets/back.svg';
 
@@ -11,6 +11,7 @@ const ChatContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   background-color: #fff;
+  align-items: stretch;
 `;
 
 const ChatHeader = styled.div`
@@ -32,7 +33,6 @@ const BackButton = styled.button`
 const Title = styled.h1`
   font-size: 1.2rem;
   margin: 0;
-  background-color: #FFD700;
   padding: 5px 10px;
   border-radius: 15px;
 `;
@@ -87,8 +87,10 @@ const SendButton = styled.button`
   }
 `;
 
-const ChatRoomPage = ({ history, match }) => {
-  const roomId = parseInt(match.params.id);
+const ChatRoomPage = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const roomId = parseInt(id);
   const [chatRoom, setChatRoom] = useState(null);
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
@@ -96,7 +98,7 @@ const ChatRoomPage = ({ history, match }) => {
   // 채팅방 데이터 (실제로는 API에서 가져와야 함)
   const chatRoomsData = {
     1: { name: '윤준수', messages: [
-      { id: 1, text: '안녕하세요', time: '2:00pm', isSent: false },
+      { id: 1, text: '안녕하세요', time: '2:00pm', isSent: false },
       { id: 2, text: '반갑습니다', time: '2:05pm', isSent: true },
     ]},
     2: { name: '오택원', messages: [
@@ -133,10 +135,8 @@ const ChatRoomPage = ({ history, match }) => {
   return (
     <ChatContainer>
       <ChatHeader>
-        <BackButton onClick={() => history.goBack()}>
-          <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fillRule="evenodd" clipRule="evenodd" d="M9.70711 0.292893C9.31658 -0.0976311 8.68342 -0.0976311 8.29289 0.292893L0.292894 8.29289C-0.0976312 8.68342 -0.0976312 9.31658 0.292894 9.70711L8.29289 17.7071C8.68342 18.0976 9.31658 18.0976 9.70711 17.7071C10.0976 17.3166 10.0976 16.6834 9.70711 16.2929L2.41421 9L9.70711 1.70711C10.0976 1.31658 10.0976 0.683417 9.70711 0.292893Z" fill="black" fillOpacity="0.7"/>
-          </svg>
+        <BackButton onClick={() => navigate(-1)}>
+          <img src={BackIcon} alt="Back" />
         </BackButton>
         <Title>{chatRoom.name}</Title>
       </ChatHeader>
@@ -162,4 +162,4 @@ const ChatRoomPage = ({ history, match }) => {
   );
 };
 
-export default withRouter(ChatRoomPage);
+export default ChatRoomPage;
