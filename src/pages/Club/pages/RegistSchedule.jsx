@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // useNavigate 훅 사용
 
 function RegistSchedule() {
     const [selectedDays, setSelectedDays] = useState([]);
     const [selectedTimes, setSelectedTimes] = useState([]);
+    const navigate = useNavigate(); // useNavigate 훅 호출
 
     const days = ['월', '화', '수', '목', '금', '토', '일'];
     const times = ['아침 6~10시', '낮 10~18시', '저녁 18~24시', '심야 24~6시'];
@@ -19,6 +21,15 @@ function RegistSchedule() {
         );
     };
 
+    const goBack = () => {
+        navigate('/club/regist'); // 이전 페이지로 이동 (ClubRegist로 이동)
+    };
+
+    const goNext = () => {
+        navigate('/club/regist/location'); // RegistLocation 페이지로 이동
+    };
+
+
     return (
         <div className="mt-6 ml-6 mr-6">
         <h2 className="text-lg font-bold">주로 언제 운동하나요?</h2>
@@ -31,10 +42,14 @@ function RegistSchedule() {
                 <button
                 key={day}
                 onClick={() => toggleDay(day)}
-                className={`m-2 p-4 rounded-lg border ${selectedDays.includes(day) ? 'bg-accent text-white' : 'border-primary'}`}
-                >
+                className={`m-2 p-4 rounded-lg border ${
+                    selectedDays.includes(day)
+                        ? 'border-[#16C79A] text-[#16C79A]'
+                        : 'border-primary text-black'
+                }`}
+            >
                 {day}
-                </button>
+            </button>
             ))}
             </div>
         </div>
@@ -46,17 +61,39 @@ function RegistSchedule() {
                 <button
                 key={time}
                 onClick={() => toggleTime(time)}
-                className={`m-2 p-4 rounded-lg border ${selectedTimes.includes(time) ? 'bg-accent text-white' : 'border-primary'}`}
-                >
+                className={`m-2 p-4 rounded-lg border ${
+                    selectedTimes.includes(time)
+                        ? 'border-[#16C79A] text-[#16C79A]'
+                        : 'border-primary text-black'
+                }`}
+            >
                 {time}
-                </button>
+            </button>
             ))}
             </div>
         </div>
 
         <div className="mt-6 flex justify-between">
-            <button className="bg-secondary text-secondary-foreground p-2 rounded-lg">뒤로</button>
-            <button className="bg-primary text-primary-foreground p-2 rounded-lg">다음</button>
+        <button
+                    className="p-2 rounded-lg w-1/2 mr-4"
+                    onClick={goBack}
+                    style={{
+                        backgroundColor: 'rgb(235, 248, 245)',
+                        color: 'rgb(92, 196, 157)',
+                    }}
+                >
+                    뒤로
+                </button>
+                <button
+                    className="p-2 rounded-lg w-1/2 mr-2"
+                    onClick={goNext}
+                    style={{
+                        backgroundColor: 'rgb(92, 196, 157)',
+                        color: 'rgb(235, 248, 245)',
+                    }}
+                >
+                    다음
+                </button>
         </div>
         </div>
     );

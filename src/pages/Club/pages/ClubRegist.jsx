@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import styles from './ClubRegist.module.css'; // 외부 CSS 파일로 스타일을 관리.
-import { useHistory } from 'react-router-dom'; // 페이지 이동을 위한 useNavigate 사용
+import { useNavigate } from 'react-router-dom'; // 페이지 이동을 위한 useNavigate 사용
 
 function ClubRegist() {
   const [clubName, setClubName] = useState('');
   const [clubCode, setClubCode] = useState('');
-  const history = useHistory(); // 페이지 이동을 위한 훅
+  const navigate = useNavigate(); // 페이지 이동을 위한 훅
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,7 +14,7 @@ function ClubRegist() {
     console.log('구단 코드:', clubCode);
 
     // 다음 페이지로 이동
-    history.push('/club/regist/schedule'); // 페이지 이동
+    navigate('/club/regist/schedule'); // 페이지 이동
   };
 
   return (

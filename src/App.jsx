@@ -20,6 +20,10 @@ import ChatRoomPage from './pages/Chat/ChatRoomPage';
 import Settings from './pages/Settings/Settings';
 import ClubRegist from './pages/Club/pages/ClubRegist';
 import RegistSchedule from './pages/Club/pages/RegistSchedule';
+import RegistLocation from './pages/Club/pages/RegistLocation';
+import RegistAgeGender from './pages/Club/pages/RegistAgeGender';
+import RegistSkillLevel from './pages/Club/pages/RegistSkillLevel';
+
 
 // Mercenary related components
 import Mercenary from './pages/Mercenary/pages/MercenaryChoice';
@@ -63,7 +67,12 @@ const App = () => {
             
             {/* Uncomment these routes when components are ready */}
             <Route exact path="/club/regist" element={<ClubRegist />} />
-            <Route exact path="/club/regist/schedule" component={RegistSchedule} />
+            <Route exact path="/club/regist/schedule" element={<RegistSchedule />} />
+            <Route exact path="/club/regist/location" element={<RegistLocation />} />
+            <Route exact path="/club/regist/age-gender" element={<RegistAgeGender />} />
+            <Route exact path="/club/regist/skill-level" element={<RegistSkillLevel />} />
+
+
           </Routes>
         </AppContainer>
         <Footer />
