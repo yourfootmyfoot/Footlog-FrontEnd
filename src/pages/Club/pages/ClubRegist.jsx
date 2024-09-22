@@ -1,3 +1,4 @@
+import useClubStore from '@/hooks/useClubStore'; // zustand store import
 import { useState } from 'react';
 import styles from './ClubRegist.module.css'; // 외부 CSS 파일로 스타일을 관리.
 import { useNavigate } from 'react-router-dom'; // 페이지 이동을 위한 useNavigate 사용
@@ -5,6 +6,7 @@ import { useNavigate } from 'react-router-dom'; // 페이지 이동을 위한 us
 function ClubRegist() {
   const [clubName, setClubName] = useState('');
   const [clubCode, setClubCode] = useState('');
+  const { setClubInfo } = useClubStore(); // 상태 업데이트 함수 불러오기
   const navigate = useNavigate(); // 페이지 이동을 위한 훅
 
   const handleSubmit = (e) => {
@@ -13,8 +15,11 @@ function ClubRegist() {
     console.log('구단 이름:', clubName);
     console.log('구단 코드:', clubCode);
 
+    // 상태 업데이트
+    setClubInfo(clubName, clubCode); 
+
     // 다음 페이지로 이동
-    navigate('/club/regist/schedule'); // 페이지 이동
+    navigate('/club/regist/schedule'); 
   };
 
   return (
@@ -24,7 +29,7 @@ function ClubRegist() {
           <label className="block text-muted-foreground">구단 이름</label>
           <input
             type="text"
-            className="border border-primary rounded-lg p-2 w-full focus:outline-none focus:ring focus:ring-ring bg-accent text-accent-foreground"
+            className="border border-primary rounded-lg p-2 w-full"
             placeholder="구단 이름을 입력하세요"
             value={clubName}
             onChange={(e) => setClubName(e.target.value)}
@@ -35,7 +40,7 @@ function ClubRegist() {
           <label className="block text-muted-foreground">구단 코드</label>
           <input 
             type="text" 
-            className="border border-primary rounded-lg p-2 w-full focus:outline-none focus:ring focus:ring-ring bg-accent text-accent-foreground" 
+            className="border border-primary rounded-lg p-2 w-full" 
             placeholder="구단 코드를 입력하세요" 
             value={clubCode}
             onChange={(e) => setClubCode(e.target.value)} // 구단 코드 입력 시 상태 업데이트

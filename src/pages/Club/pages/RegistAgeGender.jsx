@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅 사용
+import useClubStore from '@/hooks/useClubStore'; 
+
 
 function RegistAgeGender() {
     const [selectedAgeGroup, setSelectedAgeGroup] = useState('');
     const [selectedGender, setSelectedGender] = useState('');
+    const { setAgeGender } = useClubStore(); // zustand 상태 업데이트 함수
     const navigate = useNavigate();
 
     const ageGroups = ['10대', '20대', '30대', '40대', '50대', '60대 이상'];
@@ -23,13 +26,12 @@ function RegistAgeGender() {
 
     const handleSubmit = () => {
         if (selectedAgeGroup && selectedGender) {
-            console.log('선택된 나이대:', selectedAgeGroup, '성별:', selectedGender);
-            // 다음 페이지로 이동할 때, 선택한 나이대 및 성별 정보 전송
-            navigate('/club/regist/skill-level', { state: { selectedAgeGroup, selectedGender } });
+          setAgeGender(selectedAgeGroup, selectedGender); // zustand 상태 업데이트
+          navigate('/club/regist/skill-level'); // 다음 페이지로 이동
         } else {
             alert('나이대와 성별을 선택해주세요.');
         }
-    };
+        };
 
     return (
         <div className="mt-6 ml-6 mr-6">

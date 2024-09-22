@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅 사용
+import useClubStore from '@/hooks/useClubStore';
 
 function RegistSchedule() {
     const [selectedDays, setSelectedDays] = useState([]);
     const [selectedTimes, setSelectedTimes] = useState([]);
+    const { setSchedule } = useClubStore(); // 상태 업데이트 함수 불러오기
     const navigate = useNavigate(); // useNavigate 훅 호출
 
     const days = ['월', '화', '수', '목', '금', '토', '일'];
@@ -26,7 +28,8 @@ function RegistSchedule() {
     };
 
     const goNext = () => {
-        navigate('/club/regist/location'); // RegistLocation 페이지로 이동
+        setSchedule(selectedDays, selectedTimes); // 상태 저장
+        navigate('/club/regist/location'); // 다음 페이지로 이동
     };
 
 

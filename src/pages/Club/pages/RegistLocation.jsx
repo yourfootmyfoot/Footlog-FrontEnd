@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅 사용
 import { useState } from 'react';
 import { useJsApiLoader, Autocomplete } from '@react-google-maps/api'; 
+import useClubStore from '@/hooks/useClubStore';
+
 
 function RegistLocation() {
 
@@ -10,6 +12,7 @@ function RegistLocation() {
     const [stadiumName, setStadiumName] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
     const [selectedRegion, setSelectedRegion] = useState('');
+    const { setLocation } = useClubStore(); // zustand 상태 업데이트 함수
 
     const cities = ['서울', '경기', '인천']; // 도시 목록
     const regions = {
@@ -45,12 +48,12 @@ function RegistLocation() {
     // 다음 버튼 클릭 처리
     const handleSubmit = () => {
         if (stadiumName.trim() && selectedCity && selectedRegion) {
-            // 구장 이름, 도시, 지역이 입력되었으면 다음 페이지로 이동
-            navigate('/club/regist/age-gender', { state: { stadiumName, selectedCity, selectedRegion } });
+          setLocation(stadiumName, selectedCity, selectedRegion); // zustand 상태 업데이트
+            navigate('/club/regist/age-gender');
         } else {
-            alert("구장 이름, 도시 및 지역을 입력해주세요."); // 입력 요구
+            alert('구장 이름, 도시 및 지역을 입력해주세요.');
         }
-    };
+        };
 
     // 로딩이 완료되지 않았을 때는 로딩 메시지 출력 (useJsApiLoader는 컴포넌트 최상단에서 호출된 상태)
     if (!isLoaded) {

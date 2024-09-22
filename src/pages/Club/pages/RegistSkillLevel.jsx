@@ -1,7 +1,10 @@
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅 사용
 import { useState } from 'react';
+import useClubStore from '@/hooks/useClubStore';
 
 function RegistSkillLevel() {
+    const navigate = useNavigate();
+    const { clubName, clubCode, schedule, location, ageGender, setSkillLevel, reset } = useClubStore(); // zustand 상태 불러오기
     const [selectedLevel, setSelectedLevel] = useState(null);
     const [gauge, setGauge] = useState(0); // 게이지 상태를 관리
 
@@ -19,7 +22,6 @@ function RegistSkillLevel() {
         setGauge(gaugeValue); // 게이지 상태 업데이트
     };
 
-    const navigate = useNavigate();
 
     const goBack = () => {
         navigate('/club/regist/age-gender'); // 이전 페이지로 이동
@@ -27,12 +29,22 @@ function RegistSkillLevel() {
 
     const handleSubmit = () => {
         if (selectedLevel) {
-            console.log('선택된 실력:', selectedLevel, '게이지:', gauge);
-            // 다음 페이지 또는 처리 로직 추가 가능
+          setSkillLevel(selectedLevel, gauge); // zustand 상태 업데이트
+            console.log('구단 이름:', clubName);
+            console.log('구단 코드:', clubCode);
+            console.log('스케줄:', schedule);
+            console.log('위치 정보:', location);
+            console.log('나이대 및 성별:', ageGender);
+            console.log('실력:', selectedLevel);
+            console.log('게이지:', gauge);
+    
+          // 여기서 서버에 데이터를 전송하거나 추가적인 처리 로직 수행 가능
+          reset(); // 상태 초기화
+          navigate('/club/success'); // 완료 페이지로 이동
         } else {
             alert('실력을 선택해주세요.');
         }
-    };
+        };
 
     return (
         <div className="mt-6 ml-6 mr-6">
