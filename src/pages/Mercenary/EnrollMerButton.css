@@ -1,0 +1,32 @@
+/* 서브 메뉴의 기본 스타일 */
+.sub-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  transition: transform 0.3s ease-out;
+}
+
+/* 서브메뉴가 열렸을 때의 스타일 */
+.sub-menu.open {
+  transform: translateX(-50%) scale(1);
+}
+
+/* 서브메뉴 버튼 간격 조정 */
+.sub-menu button {
+  margin-bottom: 5px; /* 모집 버튼과 + 버튼의 간격을 5px로 설정 */
+}
+
+/* + 버튼 회전 애니메이션 */
+button.rotate-45 {
+  transform: rotate(45deg);
+}
+
+/* 버튼들에 대한 공통 애니메이션 */
+button {
+  transition: transform 0.3s ease;
+}
+
