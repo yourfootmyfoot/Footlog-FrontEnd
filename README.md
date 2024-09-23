@@ -22,8 +22,7 @@
 ![React Kakao Maps SDK](https://img.shields.io/badge/React%20Kakao%20Maps%20SDK-FFCD00?style=for-the-badge&logo=kakao&logoColor=black)
 ![React Google Maps API](https://img.shields.io/badge/React%20Google%20Maps%20API-4285F4?style=for-the-badge&logo=google-maps&logoColor=white)
 
-#### 유틸리티 라이브러리
-![date-fns](https://img.shields.io/badge/date--fns-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+#### 비동기 라이브러리
 ![Axios](https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
 
 #### 스타일링
@@ -31,6 +30,9 @@
 ![Emotion Styled](https://img.shields.io/badge/emotion--styled-DB7093?style=for-the-badge&logo=emotion&logoColor=white)
 
 #### 개발 도구
+![VS Code](https://img.shields.io/badge/VS%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+
+#### 코드 포맷팅
 ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
 ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=black)
 ![commitlint](https://img.shields.io/badge/commitlint-000000?style=for-the-badge&logo=commitlint&logoColor=white)
