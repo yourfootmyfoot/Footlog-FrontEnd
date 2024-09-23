@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { getClubList } from '../apis/ClubAPI';
 import ClubInfo from './ClubInfo';
 import club from './ClubList.module.css';
+import RegistClubButton from '@/pages/Club/components/RegistClubButton';
+import styled from '@emotion/styled';
 
 function ClubList() {
 
@@ -19,9 +21,18 @@ function ClubList() {
     []
   );
 
+  const MatchContainer = styled.div`
+  width: 100%;
+  padding: 2vh 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
   return (
     <>
-      <div>
+      <MatchContainer>
         <div className={club.container}>
           {clubList.map(club =>
             <ClubInfo
@@ -30,7 +41,8 @@ function ClubList() {
             />
           )}
         </div>
-      </div>
+        <RegistClubButton />
+      </MatchContainer>
     </>
   )
 

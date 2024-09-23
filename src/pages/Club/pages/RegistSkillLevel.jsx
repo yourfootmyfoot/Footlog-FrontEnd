@@ -49,7 +49,7 @@ function RegistSkillLevel() {
                 times: schedule.times, // times만 따로 보냄
                 location,
                 ageGender,
-                skillLevel: { level: selectedLevel, gauge },
+                skillLevel: selectedLevel,  // 사용자가 선택한 실력 등급
                 erollDate: new Date().toISOString() // ISO 8601 형식으로 날짜 전송
             };
 
