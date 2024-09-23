@@ -33,7 +33,7 @@ const SheetContainer = styled.div`
   align-items: center;
   
   @media (max-width: 768px) {
-    width: 95vw;
+    width: 100vw;
   }
 
   @media (max-width: 480px) {
