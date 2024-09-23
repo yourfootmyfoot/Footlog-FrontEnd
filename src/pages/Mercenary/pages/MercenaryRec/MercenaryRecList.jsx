@@ -3,6 +3,7 @@ import { getMercenaryRecList } from '../../apis/MercenaryAPI';
 import MercenaryRecInfo from './MercenaryRecInfo';
 import MercenaryRec from './MercenaryRecList.module.css';
 import EnrollMerButton from '../../EnrollMerButton';
+import styled from '@emotion/styled';
 
 function MercenaryRecList() {
 
@@ -16,9 +17,18 @@ function MercenaryRecList() {
     setMercenaryRecList(recList);
   }, []);
 
+  const ListContainer = styled.div`
+  width: 100%;
+  padding: 2vh 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  `;
+
   return (
     <>
-      <div>
+      <ListContainer>
         <div className={MercenaryRec.container}>
           {mercenaryRecList.map(mercenaryRec =>
             <MercenaryRecInfo
@@ -27,12 +37,10 @@ function MercenaryRecList() {
             />
           )}
         </div>
-        <EnrollMerButton/>
-      </div>
+        <EnrollMerButton />
+      </ListContainer>
     </>
   )
-
-
 }
 
 export default MercenaryRecList;
