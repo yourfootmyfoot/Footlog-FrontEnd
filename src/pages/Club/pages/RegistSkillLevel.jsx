@@ -4,7 +4,7 @@ import useClubStore from '@/hooks/useClubStore';
 
 function RegistSkillLevel() {
     const navigate = useNavigate();
-    const { skillLevel, setSkillLevel, reset } = useClubStore(); // zustand 상태 불러오기
+    const { clubName, clubCode, schedule, location, ageGender, skillLevel, setSkillLevel, reset } = useClubStore(); // zustand 상태 불러오기
     const [selectedLevel, setSelectedLevel] = useState(skillLevel.level || ''); // zustand 상태로 초기화
     const [gauge, setGauge] = useState(skillLevel.gauge || 0);
 
@@ -35,11 +35,43 @@ function RegistSkillLevel() {
         navigate('/club/regist/age-gender'); // 이전 페이지로 이동
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (selectedLevel) {
             setSkillLevel(selectedLevel, gauge); // zustand 상태 업데이트
-            reset(); // 상태 초기화 (원한다면 사용)
-            navigate('/club/success'); // 완료 페이지로 이동
+
+            // 서버로 데이터 전송
+            const data = {
+                clubName,
+                clubCode,
+                days: schedule.days, // days만 따로 보냄
+                times: schedule.times, // times만 따로 보냄
+                location,
+                ageGender,
+                skillLevel: { level: selectedLevel, gauge },
+                erollDate: new Date().toISOString() // ISO 8601 형식으로 날짜 전송
+            };
+
+            try {
+                const response = await fetch('http://localhost:8080/api/club', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    // 서버에 저장 성공 시 등록 성공 페이지로 이동
+                    reset(); // 상태 초기화 (필요시 사용)
+                    navigate('/club/success'); // 성공 페이지로 이동
+                } else {
+                    console.error('서버 오류:', response.statusText);
+                    alert('등록에 실패했습니다. 다시 시도해주세요.');
+                }
+            } catch (error) {
+                console.error('요청 실패:', error);
+                alert('서버와 통신 중 오류가 발생했습니다.');
+            }
         } else {
             alert('실력을 선택해주세요.');
         }
