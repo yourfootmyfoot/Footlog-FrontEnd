@@ -28,6 +28,7 @@
 
 #### 스타일링
 ![Tailwind CSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Emotion Styled](https://img.shields.io/badge/emotion--styled-DB7093?style=for-the-badge&logo=emotion&logoColor=white)
 
 #### 개발 도구
 ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
