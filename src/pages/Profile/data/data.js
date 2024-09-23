@@ -44,7 +44,7 @@ export const USERSTATSMOCK = [
 ];
 
 export const USERABILITYMOCK = {
-  labels: ['체력', '수비', '스피드', '패스', '슈팅', '드리블'],
+  labels: ['stamina', 'defend', 'speed', 'pass', 'shoot', 'dribble'],
   datasets: [
     {
       label: 'My Football Stats',
@@ -52,7 +52,7 @@ export const USERABILITYMOCK = {
       backgroundColor: 'rgba(54, 162, 235, 0.2)',
       borderColor: 'rgba(54, 162, 235, 1)',
       borderWidth: 2,
-      pointBackgroundColor: 'rgba(54, 162, 235, 1)', // Points color
+      pointBackgroundColor: 'rgba(54, 162, 235, 1)',
     },
   ],
 };
