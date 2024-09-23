@@ -42,6 +42,7 @@ function ClubEdit() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include',
             });
             
             if (!response.ok) {
@@ -91,6 +92,7 @@ function ClubEdit() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: 'include',
                 body: JSON.stringify(updatedClub),
             });
 

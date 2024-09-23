@@ -21,12 +21,15 @@ function ClubList() {
               setIsLoggedIn(data.isLoggedIn);
               setUserInfo({
                   email: data.email,
-                  authority: data.authority
+                  authority: data.authority,
+                  name : data.name
               });
+              console.log(data);
           })
           .catch(error => {
               console.error("로그인 상태 확인 중 오류 발생:", error);
           });
+          
 
 
       const clubList = getClubList();
