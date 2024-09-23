@@ -25,6 +25,7 @@ import RegistAgeGender from './pages/Club/pages/RegistAgeGender';
 import RegistSkillLevel from './pages/Club/pages/RegistSkillLevel';
 import RegistrationSuccess from './pages/Club/pages/RegistSuccess';
 import ClubDetail from './pages/Club/pages/ClubDetail';
+import ClubEdit from './pages/Club/pages/ClubEdit';
 
 
 // Mercenary related components
@@ -75,6 +76,8 @@ const App = () => {
             <Route exact path="/club/regist/skill-level" element={<RegistSkillLevel />} />
             <Route exact path="/club/regist/success" element={<RegistrationSuccess />} />
             <Route exact path="/club/detail/:clubId" element={<ClubDetail />} />
+            <Route exact path="/clubs/edit/:clubId" element={<ClubEdit />} />
+
 
 
           </Routes>
