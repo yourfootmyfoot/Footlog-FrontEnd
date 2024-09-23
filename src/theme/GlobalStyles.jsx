@@ -45,7 +45,7 @@ const GlobalStyles = () => (
       /* 반응형 디자인을 위한 미디어 쿼리 */
       @media (max-width: 768px) {
         .responsive-container {
-          width: 95vw; /* 작은 화면에서 너비 조정 */
+          width: 100vw; /* 작은 화면에서 너비 조정 */
           padding: 6vh 1vw; /* 작은 화면에서 더 넉넉한 패딩 */
         }
       }
