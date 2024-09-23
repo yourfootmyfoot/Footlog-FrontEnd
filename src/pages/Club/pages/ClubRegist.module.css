@@ -1,0 +1,112 @@
+.team-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    width: 80%;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #3a3939;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #00A86B;
+}
+
+.info-text {
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.submitBtn {
+    display: grid;
+    align-items: center;
+    margin-top: 20px;
+    background-color: rgb(92, 196, 157);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 80%;
+}
+
+.submitBtn:hover {
+    background-color: rgb(63, 168, 126);
+}
+
+
+
+.club-detail-container {
+
+    padding: 20px;
+    max-width: 400px;
+    /* margin: auto; */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.club-title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.club-introduction {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.club-info p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.club-info strong {
+    color: #444;
+}
+
+.club-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-btn, .delete-btn {
+    margin-top: 30px;
+    padding: 10px 50px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background-color:  rgb(92, 196, 157);
+    color: white;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+}

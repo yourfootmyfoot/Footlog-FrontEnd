@@ -31,6 +31,11 @@ const FooterContainer = styled.footer`
   }
 `;
 
+const isClubPathActive = () => {
+  const currentPath = window.location.pathname; // 현재 경로를 가져옴.
+  return currentPath.startsWith('/club');
+};
+
 const FooterItem = styled(Link)`
   display: flex;
   flex-direction: column;
@@ -76,7 +81,8 @@ const Footer = () => {
 
       <FooterItem to="/clublist">
         <FooterIcon src={clubIcon} alt="구단" active={isActive('/clublist')} />
-        <FooterText active={isActive('/clublist')}>구단</FooterText>
+        <FooterText active={isClubPathActive()}
+          >구단</FooterText>
       </FooterItem>
 
       <FooterItem to="/profile">

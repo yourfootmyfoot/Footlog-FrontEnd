@@ -12,20 +12,19 @@ const AppContainer = styled.div`
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
   min-height: 70vh;
   position: relative;
   overflow-y: auto;
 
   @media (max-width: 768px) {
-    width: 95vw;
+    width: 100vw;
     padding: 2vh 1vw;
   }
 
   @media (max-width: 480px) {
     width: 100vw;
-    padding: 7vh 1vw;
+    padding: 2vh 0 7vh 0;
   }
 `;
 
