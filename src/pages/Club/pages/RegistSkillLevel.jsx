@@ -41,23 +41,32 @@ function RegistSkillLevel() {
         if (selectedLevel) {
             setSkillLevel(selectedLevel, gauge); // zustand 상태 업데이트
 
+              // 서버로 데이터 전송하기 전에 각 필드 확인
+        console.log("Club Name:", clubName);
+        console.log("Club Code:", clubCode);
+        console.log("Schedule Days:", schedule.days);
+        console.log("Schedule Times:", schedule.times);
+        console.log("Location Stadium:", location.stadiumName);
+        console.log("Location City:", location.city);
+        console.log("Location Region:", location.region);
+        console.log("Age Group:", ageGender.ageGroup);
+        console.log("Gender:", ageGender.gender);
+        console.log("Selected Level:", selectedLevel);
+
+
             // 서버로 데이터 전송
             const data = {
                 clubName,
                 clubCode,
+                erollDate: new Date().toISOString(), // ISO 8601 형식으로 날짜 전송
                 days: schedule.days, // days만 따로 보냄
                 times: schedule.times, // times만 따로 보냄
-                location: {
-                    stadiumName: location.stadiumName,  // 구장 이름
-                    city: location.city,  // 도시
-                    region: location.region  // 지역
-                },
-                ageGender: {
-                    ageGroup: ageGender.ageGroup,  // 나이 그룹
-                    gender: ageGender.gender  // 성별
-                },
                 skillLevel: selectedLevel,  // 사용자가 선택한 실력 등급
-                erollDate: new Date().toISOString() // ISO 8601 형식으로 날짜 전송
+                stadiumName: location.stadiumName,  // 구장 이름
+                city: location.city,  // 도시
+                region: location.region,  // 지역
+                ageGroup: ageGender.ageGroup,  // 나이 그룹
+                gender: ageGender.gender  // 성별
             };
 
             try {
@@ -70,6 +79,7 @@ function RegistSkillLevel() {
                     credentials: 'include',
                     body: JSON.stringify(data)
                 });
+                console.log(response)
 
                 if (response.ok) {
                     // 서버에 저장 성공 시 등록 성공 페이지로 이동
