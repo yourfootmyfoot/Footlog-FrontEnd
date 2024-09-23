@@ -47,8 +47,15 @@ function RegistSkillLevel() {
                 clubCode,
                 days: schedule.days, // days만 따로 보냄
                 times: schedule.times, // times만 따로 보냄
-                location,
-                ageGender,
+                location: {
+                    stadiumName: location.stadiumName,  // 구장 이름
+                    city: location.city,  // 도시
+                    region: location.region  // 지역
+                },
+                ageGender: {
+                    ageGroup: ageGender.ageGroup,  // 나이 그룹
+                    gender: ageGender.gender  // 성별
+                },
                 skillLevel: selectedLevel,  // 사용자가 선택한 실력 등급
                 erollDate: new Date().toISOString() // ISO 8601 형식으로 날짜 전송
             };
