@@ -18,6 +18,14 @@ import ChatRoomListPage from './pages/Chat/ChatRoomListPage';
 import ClubList from './pages/ClubList/pages/ClubList';
 import ChatRoomPage from './pages/Chat/ChatRoomPage'; 
 import Settings from './pages/Settings/Settings';
+import ClubRegist from './pages/Club/pages/ClubRegist';
+import RegistSchedule from './pages/Club/pages/RegistSchedule';
+import RegistLocation from './pages/Club/pages/RegistLocation';
+import RegistAgeGender from './pages/Club/pages/RegistAgeGender';
+import RegistSkillLevel from './pages/Club/pages/RegistSkillLevel';
+import RegistrationSuccess from './pages/Club/pages/RegistSuccess';
+import ClubDetail from './pages/Club/pages/ClubDetail';
+
 
 // Mercenary related components
 import Mercenary from './pages/Mercenary/pages/MercenaryChoice';
@@ -60,7 +68,15 @@ const App = () => {
             <Route path="/settings" element={<Settings />} />
             
             {/* Uncomment these routes when components are ready */}
-            {/*<Route path="/club" element={<Club />} />*/}
+            <Route exact path="/club/regist" element={<ClubRegist />} />
+            <Route exact path="/club/regist/schedule" element={<RegistSchedule />} />
+            <Route exact path="/club/regist/location" element={<RegistLocation />} />
+            <Route exact path="/club/regist/age-gender" element={<RegistAgeGender />} />
+            <Route exact path="/club/regist/skill-level" element={<RegistSkillLevel />} />
+            <Route exact path="/club/regist/success" element={<RegistrationSuccess />} />
+            <Route exact path="/club/detail/:clubId" element={<ClubDetail />} />
+
+
           </Routes>
         </AppContainer>
         <Footer />
