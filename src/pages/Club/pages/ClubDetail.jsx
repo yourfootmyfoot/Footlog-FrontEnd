@@ -74,13 +74,17 @@ function ClubDetail() {
     return (
         <div className={styles['club-detail-container']}>
             <h1 className={styles['club-title']}>{club?.clubName}</h1>
-            <p className={styles['club-introduction']}>{club?.clubIntroduction}</p>
+            <p className={styles['club-introduction']}><strong>구단 소개:</strong> {club?.clubIntroduction}</p>
 
             <div className={styles['club-info']}>
-                <p><strong>구단 코드:</strong> {club?.clubCode}</p>
-                <p><strong>등록일:</strong> {new Date(club?.erollDate).toLocaleDateString()}</p>
-                <p><strong>활동 요일:</strong> {club?.days.join(', ')}</p>
-                <p><strong>활동 시간대:</strong> {club?.times.join(', ')}</p>
+                <p><strong>구단 코드:</strong> {club?.clubCode || '정보 없음'}</p>
+                <p><strong>등록일:</strong> {club?.erollDate ? new Date(club.erollDate).toLocaleDateString() : '정보 없음'}</p>
+                <p><strong>주 활동구장:</strong> {club?.stadiumName || '정보 없음'}</p>
+                <p><strong>도시:</strong> {club?.city || '정보 없음'}</p>
+                <p><strong>지역:</strong> {club?.region || '정보 없음'}</p>
+                <p><strong>활동 요일:</strong> {club?.days?.length ? club.days.join(', ') : '정보 없음'}</p>
+                <p><strong>활동 시간대:</strong> {club?.times?.length ? club.times.join(', ') : '정보 없음'}</p>
+                <p><strong>실력:</strong> {club?.skillLevel || '정보 없음'}</p>
             </div>
 
             <div className={styles['club-actions']}>
