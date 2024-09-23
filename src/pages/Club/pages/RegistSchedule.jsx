@@ -1,12 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅 사용
 import useClubStore from '@/hooks/useClubStore';
 
 function RegistSchedule() {
-    const [selectedDays, setSelectedDays] = useState([]);
-    const [selectedTimes, setSelectedTimes] = useState([]);
-    const { setSchedule } = useClubStore(); // 상태 업데이트 함수 불러오기
     const navigate = useNavigate(); // useNavigate 훅 호출
+    
+    const { schedule, setSchedule } = useClubStore(); // 상태 업데이트 함수 불러오기
+
+    // zustand에서 저장된 값을 가져와 로컬 상태로 설정
+    const [selectedDays, setSelectedDays] = useState(schedule.days || []);
+    const [selectedTimes, setSelectedTimes] = useState(schedule.times || []);
+
+    useEffect(() => {
+        // zustand에 값이 있으면 로컬 상태에 반영
+        if (schedule.days) setSelectedDays(schedule.days);
+        if (schedule.times) setSelectedTimes(schedule.times);
+    }, [schedule]);
 
     const days = ['월', '화', '수', '목', '금', '토', '일'];
     const times = ['아침 6~10시', '낮 10~18시', '저녁 18~24시', '심야 24~6시'];
@@ -22,14 +31,14 @@ function RegistSchedule() {
         prev.includes(time) ? prev.filter((t) => t !== time) : [...prev, time]
         );
     };
+    
+    const handleSubmit = () => {
+        setSchedule(selectedDays, selectedTimes); // zustand 상태 업데이트
+        navigate('/club/regist/location'); // 다음 페이지로 이동
+    };
 
     const goBack = () => {
         navigate('/club/regist'); // 이전 페이지로 이동 (ClubRegist로 이동)
-    };
-
-    const goNext = () => {
-        setSchedule(selectedDays, selectedTimes); // 상태 저장
-        navigate('/club/regist/location'); // 다음 페이지로 이동
     };
 
 
@@ -89,7 +98,7 @@ function RegistSchedule() {
                 </button>
                 <button
                     className="p-2 rounded-lg w-1/2 mr-2"
-                    onClick={goNext}
+                    onClick={handleSubmit}
                     style={{
                         backgroundColor: 'rgb(92, 196, 157)',
                         color: 'rgb(235, 248, 245)',

@@ -1,37 +1,47 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅 사용
 import useClubStore from '@/hooks/useClubStore'; 
 
 
 function RegistAgeGender() {
+    const navigate = useNavigate();
+
+    
+    // zustand에서 상태 가져오기
+    const { ageGender, setAgeGender } = useClubStore();
+    
+    // 가져온 zustand 상태를 컴포넌트가 마운트될 때만 초기 상태로 설정
     const [selectedAgeGroup, setSelectedAgeGroup] = useState('');
     const [selectedGender, setSelectedGender] = useState('');
-    const { setAgeGender } = useClubStore(); // zustand 상태 업데이트 함수
-    const navigate = useNavigate();
 
     const ageGroups = ['10대', '20대', '30대', '40대', '50대', '60대 이상'];
     const genders = ['남자', '여자', '남녀 모두'];
+    
+   // zustand 상태를 한 번만 초기화 (이 부분은 처음 로드될 때 한 번만 실행)
+    useEffect(() => {
+        if (ageGender.ageGroup) setSelectedAgeGroup(ageGender.ageGroup);
+        if (ageGender.gender) setSelectedGender(ageGender.gender);
+    }, [ageGender]);
+
 
     const handleAgeGroupClick = (ageGroup) => {
         setSelectedAgeGroup(ageGroup);
     };
 
+
     const handleGenderClick = (gender) => {
         setSelectedGender(gender);
+    };
+
+    const handleSubmit = () => {
+        setAgeGender(selectedAgeGroup, selectedGender); // zustand 상태 업데이트
+        navigate('/club/regist/skill-level'); // 다음 페이지로 이동
     };
 
     const goBack = () => {
         navigate('/club/regist/location'); // 이전 페이지로 이동
     };
 
-    const handleSubmit = () => {
-        if (selectedAgeGroup && selectedGender) {
-          setAgeGender(selectedAgeGroup, selectedGender); // zustand 상태 업데이트
-          navigate('/club/regist/skill-level'); // 다음 페이지로 이동
-        } else {
-            alert('나이대와 성별을 선택해주세요.');
-        }
-        };
 
     return (
         <div className="mt-6 ml-6 mr-6">

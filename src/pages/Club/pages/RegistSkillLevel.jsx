@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅 사용
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useClubStore from '@/hooks/useClubStore';
 
 function RegistSkillLevel() {
     const navigate = useNavigate();
-    const { clubName, clubCode, schedule, location, ageGender, setSkillLevel, reset } = useClubStore(); // zustand 상태 불러오기
-    const [selectedLevel, setSelectedLevel] = useState(null);
+    const { clubName, clubCode, schedule, location, ageGender, skillLevel, setSkillLevel, reset } = useClubStore(); // zustand 상태 불러오기
+    const [selectedLevel, setSelectedLevel] = useState(skillLevel.level || ''); // 이전 선택한 값 사용
     const [gauge, setGauge] = useState(0); // 게이지 상태를 관리
 
     const levels = ['입문자', '아마추어', '세미프로', '프로', '월드클래스'];
@@ -16,6 +16,14 @@ function RegistSkillLevel() {
         '프로': '고등학교 이상 또는 대학 선수 실력',
         '월드클래스': '프로 선수 실력'
     };
+
+    useEffect(() => {
+        // 페이지 로드 시 상태가 있으면 해당 값으로 설정
+        if (skillLevel.level) {
+            setSelectedLevel(skillLevel.level);
+            setGauge(skillLevel.gauge);
+        }
+    }, [skillLevel]);
 
     const handleLevelClick = (level, gaugeValue) => {
         setSelectedLevel(level);
