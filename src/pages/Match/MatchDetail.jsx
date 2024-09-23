@@ -1,18 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { getMatchDetail } from './apis/MatchAPI';
 import styled from '@emotion/styled';
 import ImageSlider from './ImageSlider';
 
-
-// 매치 정보의 스타일 정의
 const MatchBox = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2vh 2vw; /* 상하 좌우 패딩 */
+  padding: 2vh 2vw;
   margin: auto;
 `;
 
@@ -64,8 +61,28 @@ const MapContainer = styled.div`
 
 const MatchDetail = () => {
   const { matchCode } = useParams();
-  const navigate = useNavigate();
+//
   const [matchInfo, setMatchInfo] = useState(null);
+  const mapRef = useRef(null);
+  const [mapLoaded, setMapLoaded] = useState(false);
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${import.meta.env.VITE_KAKAO_MAP_API_KEY}&autoload=false`;
+    script.async = true;
+
+    script.onload = () => {
+      window.kakao.maps.load(() => {
+        setMapLoaded(true);
+      });
+    };
+
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchMatchDetail = async () => {
@@ -74,22 +91,36 @@ const MatchDetail = () => {
         setMatchInfo(matchData);
       } catch (error) {
         console.error('Failed to fetch match details:', error);
-        // 에러 발생 시 처리 (예: 에러 페이지로 리다이렉트)
-        // navigate('/error');
       }
     };
 
     fetchMatchDetail();
   }, [matchCode]);
 
+  useEffect(() => {
+    if (matchInfo && mapLoaded && mapRef.current) {
+      const { kakao } = window;
+      const mapContainer = mapRef.current;
+      const mapOption = {
+        center: new kakao.maps.LatLng(matchInfo.coordinates.latitude, matchInfo.coordinates.longitude),
+        level: 3
+      };
+      const map = new kakao.maps.Map(mapContainer, mapOption);
+      
+      const markerPosition = new kakao.maps.LatLng(matchInfo.coordinates.latitude, matchInfo.coordinates.longitude);
+      const marker = new kakao.maps.Marker({
+        position: markerPosition
+      });
+      marker.setMap(map);
+    }
+  }, [matchInfo, mapLoaded]);
+
   if (!matchInfo) return <div>Loading...</div>;
 
   const slides = matchInfo.photo ? [matchInfo.photo] : [];
 
   const handleJoinClick = () => {
-    // 참가 로직 구현
     console.log('Join button clicked');
-    // 예: navigate(`/match/${matchCode}/join`);
   };
 
   return (
@@ -113,15 +144,7 @@ const MatchDetail = () => {
           <li><h3>쿼터 수 : {matchInfo.quarterQuantity}</h3></li>
           <li><h3>구장 정보 : {matchInfo.fieldLocation}</h3></li>
           <li>
-            <MapContainer>
-              <Map
-                center={{ lat: matchInfo.coordinates.latitude, lng: matchInfo.coordinates.longitude }}
-                style={{ width: '100%', height: '100%' }}
-                level={3}
-              >
-                <MapMarker position={{ lat: matchInfo.coordinates.latitude, lng: matchInfo.coordinates.longitude }} />
-              </Map>
-            </MapContainer>
+            <MapContainer ref={mapRef} />
           </li>
           <li><h3>매치 비용 : {matchInfo.matchCost}원</h3></li>
           <li><h3>구단 실력 : {matchInfo.clubLevel}</h3></li>
