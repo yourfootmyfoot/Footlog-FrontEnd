@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅 사용
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useJsApiLoader, Autocomplete } from '@react-google-maps/api'; 
 import useClubStore from '@/hooks/useClubStore';
 
@@ -7,12 +7,14 @@ import useClubStore from '@/hooks/useClubStore';
 function RegistLocation() {
 
     const navigate = useNavigate(); // useNavigate 훅 호출
+
+    const { location, setLocation } = useClubStore(); // zustand에서 저장된 location 상태 불러오기
+    
     // 구장 이름 상태 관리
     const [autocomplete, setAutocomplete] = useState(null);
-    const [stadiumName, setStadiumName] = useState('');
-    const [selectedCity, setSelectedCity] = useState('');
-    const [selectedRegion, setSelectedRegion] = useState('');
-    const { setLocation } = useClubStore(); // zustand 상태 업데이트 함수
+    const [stadiumName, setStadiumName] = useState(location.stadiumName || ''); // zustand 상태로 초기화
+    const [selectedCity, setSelectedCity] = useState(location.city || '');
+    const [selectedRegion, setSelectedRegion] = useState(location.region || '');
 
     const cities = ['서울', '경기', '인천']; // 도시 목록
     const regions = {

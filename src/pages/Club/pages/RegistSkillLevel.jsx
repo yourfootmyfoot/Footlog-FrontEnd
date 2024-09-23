@@ -4,9 +4,9 @@ import useClubStore from '@/hooks/useClubStore';
 
 function RegistSkillLevel() {
     const navigate = useNavigate();
-    const { clubName, clubCode, schedule, location, ageGender, skillLevel, setSkillLevel, reset } = useClubStore(); // zustand 상태 불러오기
-    const [selectedLevel, setSelectedLevel] = useState(skillLevel.level || ''); // 이전 선택한 값 사용
-    const [gauge, setGauge] = useState(0); // 게이지 상태를 관리
+    const { skillLevel, setSkillLevel, reset } = useClubStore(); // zustand 상태 불러오기
+    const [selectedLevel, setSelectedLevel] = useState(skillLevel.level || ''); // zustand 상태로 초기화
+    const [gauge, setGauge] = useState(skillLevel.gauge || 0);
 
     const levels = ['입문자', '아마추어', '세미프로', '프로', '월드클래스'];
     const descriptions = {
@@ -18,7 +18,7 @@ function RegistSkillLevel() {
     };
 
     useEffect(() => {
-        // 페이지 로드 시 상태가 있으면 해당 값으로 설정
+        // zustand 상태가 있으면 해당 값으로 초기화
         if (skillLevel.level) {
             setSelectedLevel(skillLevel.level);
             setGauge(skillLevel.gauge);
@@ -37,22 +37,13 @@ function RegistSkillLevel() {
 
     const handleSubmit = () => {
         if (selectedLevel) {
-          setSkillLevel(selectedLevel, gauge); // zustand 상태 업데이트
-            console.log('구단 이름:', clubName);
-            console.log('구단 코드:', clubCode);
-            console.log('스케줄:', schedule);
-            console.log('위치 정보:', location);
-            console.log('나이대 및 성별:', ageGender);
-            console.log('실력:', selectedLevel);
-            console.log('게이지:', gauge);
-    
-          // 여기서 서버에 데이터를 전송하거나 추가적인 처리 로직 수행 가능
-          reset(); // 상태 초기화
-          navigate('/club/success'); // 완료 페이지로 이동
+            setSkillLevel(selectedLevel, gauge); // zustand 상태 업데이트
+            reset(); // 상태 초기화 (원한다면 사용)
+            navigate('/club/success'); // 완료 페이지로 이동
         } else {
             alert('실력을 선택해주세요.');
         }
-        };
+    };
 
     return (
         <div className="mt-6 ml-6 mr-6">
