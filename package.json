@@ -10,7 +10,10 @@
     "preview": "vite preview",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
     "commitlint": "commitlint --config .config/.commitlintrc.cjs",
-    "prettier": "prettier --config .config/.prettierrc.json"
+    "prettier": "prettier --config .config/.prettierrc.json",
+    "start": "HOST=192.168.0.32 react-scripts start",
+    "proxy": "http://192.168.0.32:3000"
+
   },
   "commitlint": {
     "extends": [
@@ -40,6 +43,7 @@
     "react-hook-form": "^7.53.0",
     "react-kakao-maps-sdk": "^1.1.27",
     "react-router-dom": "^6.26.2",
+    "react-scripts": "^5.0.1",
     "shadcn": "^2.0.1",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
