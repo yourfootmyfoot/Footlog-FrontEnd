@@ -53,7 +53,9 @@ function ClubRegist() {
           구단 URL 구단페이지 주소로 사용돼요<br />
           http://www.footlog.com/club/{code} {/* 구단 코드가 입력될 때마다 URL에 표시 */}
         </p>
+        <div className='mt-4 ml-10 mr-6 text-sm text-muted-foreground w-full'>
         <button type="submit" className={styles.submitBtn}>다음</button>
+        </div>
       </form>
   </>
   );
