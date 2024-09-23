@@ -18,7 +18,12 @@ function RegistSchedule() {
     }, [schedule]);
 
     const days = ['월', '화', '수', '목', '금', '토', '일'];
-    const times = ['아침 6~10시', '낮 10~18시', '저녁 18~24시', '심야 24~6시'];
+    const times = [
+        { label: '아침 6~10시', value: '아침' },
+        { label: '낮 10~18시', value: '낮' },
+        { label: '저녁 18~24시', value: '저녁' },
+        { label: '심야 24~6시', value: '심야' }
+    ];
 
     const toggleDay = (day) => {
         setSelectedDays((prev) =>
@@ -28,7 +33,7 @@ function RegistSchedule() {
 
     const toggleTime = (time) => {
         setSelectedTimes((prev) =>
-        prev.includes(time) ? prev.filter((t) => t !== time) : [...prev, time]
+        prev.includes(time.value) ? prev.filter((t) => t !== time.value) : [...prev, time.value]
         );
     };
     
@@ -71,15 +76,15 @@ function RegistSchedule() {
             <div className="flex flex-wrap">
             {times.map((time) => (
                 <button
-                key={time}
+                key={time.value}
                 onClick={() => toggleTime(time)}
                 className={`m-2 p-4 rounded-lg border ${
-                    selectedTimes.includes(time)
+                    selectedTimes.includes(time.value)
                         ? 'border-[#16C79A] text-[#16C79A]'
                         : 'border-primary text-black'
                 }`}
             >
-                {time}
+                {time.label}
             </button>
             ))}
             </div>

@@ -30,6 +30,8 @@ function RegistSkillLevel() {
         setGauge(gaugeValue); // 게이지 상태 업데이트
     };
 
+    const API_URL = 'http://localhost:8080/api/clubs';
+
 
     const goBack = () => {
         navigate('/club/regist/age-gender'); // 이전 페이지로 이동
@@ -52,18 +54,20 @@ function RegistSkillLevel() {
             };
 
             try {
-                const response = await fetch('http://localhost:8080/api/club', {
+                const response = await fetch(API_URL, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        // 'Authorization': `Bearer ${localStorage.getItem('token')}` // 인증 토큰 추가
                     },
+                    credentials: 'include',
                     body: JSON.stringify(data)
                 });
 
                 if (response.ok) {
                     // 서버에 저장 성공 시 등록 성공 페이지로 이동
                     reset(); // 상태 초기화 (필요시 사용)
-                    navigate('/club/success'); // 성공 페이지로 이동
+                    navigate('/club/regist/success'); // 성공 페이지로 이동
                 } else {
                     console.error('서버 오류:', response.statusText);
                     alert('등록에 실패했습니다. 다시 시도해주세요.');
