@@ -81,6 +81,7 @@ function ClubDetail() {
                 <p><strong>등록일:</strong> {new Date(club?.erollDate).toLocaleDateString()}</p>
                 <p><strong>활동 요일:</strong> {club?.days.join(', ')}</p>
                 <p><strong>활동 시간대:</strong> {club?.times.join(', ')}</p>
+                <p><strong>실력:</strong> {club?.skillLevel}</p>
             </div>
 
             <div className={styles['club-actions']}>
