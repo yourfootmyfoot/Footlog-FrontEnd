@@ -22,7 +22,7 @@ const EnrollMerButton = () => {
   };
 
   return (
-    <div className="fixed bottom-20 right-60 z-9">
+    <div className="fixed bottom-20 translate-x-40 z-9">
       <div className={`sub-menu ${openSubMenu ? 'open' : ''}`}>
         <button
           onClick={goEnrollMercenaryApp}
