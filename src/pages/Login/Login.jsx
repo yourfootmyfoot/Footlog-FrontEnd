@@ -11,7 +11,6 @@ const Login = () => {
 
   useEffect(() => {
     const code = new URLSearchParams(location.search).get('code');
-    console.log(`auth code : ${code}`)
     if (code) {
       exchangeCodeForToken(code);
     } else {
@@ -22,21 +21,9 @@ const Login = () => {
   const exchangeCodeForToken = async (code) => {
     try {
       console.log("exchangeCodeForToken Called!")
-      console.log(`auth code: ${code}`)
-      const response = await axios.post('http://localhost:8080/api/auth/kakao', 
-        { code },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          withCredentials: true
-        }
-      );
-      console.log('Full response:', response);
-      const { accessToken } = response.data;
-      console.log(`access token: ${accessToken}`)
-      localStorage.setItem('accessToken', accessToken);
-      navigate('/');
+
+
+      navigate('/match');
     } catch (error) {
       console.error('Failed to exchange code for token:', error.response ? error.response.data : error.message);
       setIsLoading(false);
@@ -44,7 +31,7 @@ const Login = () => {
   };
 
   const handleKakaoLogin = () => {
-    window.location.href = 'http://localhost:8080/oauth2/authorization/kakao';
+    window.location.href = 'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=262c56061ee06d4004d2f9b94db133a4&redirect_uri=http://localhost:8080/api/auth/kakao/login';
   };
   
   if (isLoading) {
