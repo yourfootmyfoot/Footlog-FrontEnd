@@ -53,3 +53,58 @@ input:focus {
 .submitBtn:hover {
     background-color: rgb(63, 168, 126);
 }
+
+
+
+.club-detail-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.club-title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.club-introduction {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.club-info p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.club-info strong {
+    color: #444;
+}
+
+.club-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-btn, .delete-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+}
