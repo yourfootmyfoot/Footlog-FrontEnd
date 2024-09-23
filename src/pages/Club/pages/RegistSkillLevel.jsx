@@ -32,12 +32,20 @@ function RegistSkillLevel() {
 
     const API_URL = 'http://localhost:8080/api/clubs';
 
+    // 쿠키에서 액세스 토큰 가져오기
+    const getAccessTokenFromCookies = () => {
+        const cookies = document.cookie.split('; ');
+        const tokenCookie = cookies.find(row => row.startsWith('accessToken='));
+        return tokenCookie ? tokenCookie.split('=')[1] : null;
+    };
+
 
     const goBack = () => {
         navigate('/club/regist/age-gender'); // 이전 페이지로 이동
     };
 
     const handleSubmit = async () => {
+        const accessToken = getAccessTokenFromCookies(); // 쿠키에서 액세스 토큰 가져오기
         if (selectedLevel) {
             setSkillLevel(selectedLevel, gauge); // zustand 상태 업데이트
 
@@ -74,7 +82,6 @@ function RegistSkillLevel() {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        // 'Authorization': `Bearer ${localStorage.getItem('token')}` // 인증 토큰 추가
                     },
                     credentials: 'include',
                     body: JSON.stringify(data)
