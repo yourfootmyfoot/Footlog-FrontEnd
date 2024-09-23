@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅 사용
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useJsApiLoader, Autocomplete } from '@react-google-maps/api'; 
 import useClubStore from '@/hooks/useClubStore';
 
