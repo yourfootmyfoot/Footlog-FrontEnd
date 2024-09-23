@@ -18,13 +18,13 @@ const AppContainer = styled.div`
   overflow-y: auto;
 
   @media (max-width: 768px) {
-    width: 95vw;
+    width: 100vw;
     padding: 2vh 1vw;
   }
 
   @media (max-width: 480px) {
     width: 100vw;
-    padding: 7vh 1vw;
+    padding: 2vh 0 7vh 0;
   }
 `;
 
