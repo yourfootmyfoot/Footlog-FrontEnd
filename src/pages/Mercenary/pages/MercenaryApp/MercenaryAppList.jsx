@@ -3,7 +3,7 @@ import { getMercenaryAppList } from '../../apis/MercenaryAPI';
 import MercenaryAppInfo from './MercenaryAppInfo';
 import Mercenary from './MercenaryAppList.module.css';
 import EnrollMerButton from '../../EnrollMerButton';
-
+import styled from '@emotion/styled';
 
 function MercenaryAppList() {
 
@@ -21,9 +21,18 @@ function MercenaryAppList() {
     []
   );
 
+  const ListContainer = styled.div`
+  width: 100%;
+  padding: 2vh 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  `;
+
   return (
     <>
-      <div>
+      <ListContainer>
         <div className={Mercenary.container}>
           {mercenaryAppList.map(mercenaryApp =>
             <MercenaryAppInfo
@@ -31,9 +40,9 @@ function MercenaryAppList() {
               mercenary={mercenaryApp}
             />
           )}
-        </div>
-        <EnrollMerButton/>
-      </div>
+        </div >
+        <EnrollMerButton />
+      </ListContainer>
     </>
   )
 
