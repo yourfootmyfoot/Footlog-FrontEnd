@@ -37,9 +37,9 @@ function ClubInfo({ club, onClick }) {
           </span>
         </div>
         <div className={clubStyle.subInfo}>
-          <span>지역 : {club.city} * 홈구장 : {club.stadiumName}</span>  {/* 활동 지역 및 경기장 */}
-          <span>성별 : {club.gender} * 연령대 : {club.ageGroup}</span>  {/* 성별, 종목, 연령대 */}
-          <span>활동 시간대 : {club.times} * 실력 : {club.skillLevel}</span>  {/* 활동 시간대 및 실력 */}
+          <span>🏃 지역 : {club.city} * 🏠 홈구장 : {club.stadiumName}</span>  {/* 활동 지역 및 경기장 */}
+          <span>👫 성별 : {club.gender} * 🙂 연령대 : {club.ageGroup}</span>  {/* 성별, 종목, 연령대 */}
+          <span>⏰ 활동 시간대 : {club.times} * 💪 실력 : {club.skillLevel}</span>  {/* 활동 시간대 및 실력 */}
         </div>
       </div>
     </div>

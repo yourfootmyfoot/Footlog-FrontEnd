@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
 import './Login.css';
 import KakaoLoginButton from '@/components/ui/KakaoLoginButton';
+import froggy from '@/assets/froggy.png'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -41,6 +41,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="responsive-container">
+        <img className='h-1/3' src={froggy}/>
         <h2>
           로그인하고 <span role="img" aria-label="soccer ball">⚽</span>을 차러 가볼까요?
         </h2>

@@ -3,9 +3,9 @@
 .login-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   height: 100vh;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   padding: 1vh 0; /* 상하단에 여백 추가 */
 }
 
@@ -73,7 +73,7 @@ p {
   background-color: #f0c400;
 }
 
-/* 반응형 디자인을 위한 미디어 쿼리 */
+반응형 디자인을 위한 미디어 쿼리
 @media (min-width: 768px) {
   .login-content {
     width: 25vw;
