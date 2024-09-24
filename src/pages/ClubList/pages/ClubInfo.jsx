@@ -1,5 +1,6 @@
 import clubStyle from './ClubInfo.module.css';
 
+
 function ClubInfo({ club }) {
   const statusClass =
     club.clubStatus === '모집 완료' ? clubStyle.statusClosed : clubStyle.statusOpen;
