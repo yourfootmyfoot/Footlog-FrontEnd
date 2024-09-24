@@ -46,7 +46,7 @@ function ClubList() {
 
     // 구단 클릭 시 해당 구단 상세 페이지로 이동하는 함수
   const handleClubClick = (clubId) => {
-    navigate(`/club/detail/${clubId}`);  // 해당 구단의 상세 페이지로 이동
+    navigate(`/clubs/${clubId}`);  // 해당 구단의 상세 페이지로 이동
   };
 
   const MatchContainer = styled.div`
@@ -62,16 +62,16 @@ function ClubList() {
     <>
       <MatchContainer>
         <div className={club.container}>
-          {isLoggedIn && <p>Welcome, {userInfo.email}!</p>}  {/* 로그인된 사용자의 이메일 표시 */}
-          {clubList.map(club =>
-           <div key={club.clubId} onClick={() => handleClubClick(club.clubId)}>  {/* 구단 클릭 시 상세 페이지 이동 */}
+          {isLoggedIn && <p>Welcome, {userInfo.email}!</p>} {/* 로그인된 사용자의 이메일 표시 */}
+          {clubList.map((club) => (
             <ClubInfo
+              key={club.clubId}
               club={club}
+              onClick={() => handleClubClick(club.clubId)} // 클릭 이벤트를 props로 전달
             />
-          </div>
-          )}
+          ))}
         </div>
-        {isLoggedIn && <RegistClubButton />}  {/* 로그인 상태에 따라 버튼을 렌더링 */}
+          {isLoggedIn && <RegistClubButton />}  {/* 로그인 상태에 따라 버튼을 렌더링 */}
       </MatchContainer>
     </>
   )
