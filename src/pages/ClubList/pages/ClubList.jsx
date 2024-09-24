@@ -46,7 +46,7 @@ function ClubList() {
 
     // 구단 클릭 시 해당 구단 상세 페이지로 이동하는 함수
   const handleClubClick = (clubId) => {
-    navigate(`/clubs/${clubId}`);  // 해당 구단의 상세 페이지로 이동
+    navigate(`/club/detail/${clubId}`);  // 해당 구단의 상세 페이지로 이동
   };
 
   const MatchContainer = styled.div`
