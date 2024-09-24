@@ -5,8 +5,11 @@ import club from './ClubList.module.css';
 import RegistClubButton from '@/pages/Club/components/RegistClubButton';
 import styled from '@emotion/styled';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; 
 
 function ClubList() {
+
+  const navigate = useNavigate(); 
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [clubList, setClubList] = useState([]);
@@ -32,14 +35,19 @@ function ClubList() {
           
 
 
-      const clubList = getClubList();
+      // 구단 리스트 불러오기
+      getClubList().then(clubList => {
+        console.log(clubList);  // 데이터 확인용 로그
+        setClubList(clubList);
+      }).catch(error => {
+        console.error("클럽 리스트 불러오기 오류:", error);
+      });
+    }, []);
 
-      console.log(clubList); // 데이터 확인
-
-      setClubList(clubList);
-    },
-    []
-  );
+    // 구단 클릭 시 해당 구단 상세 페이지로 이동하는 함수
+  const handleClubClick = (clubId) => {
+    navigate(`/club/detail/${clubId}`);  // 해당 구단의 상세 페이지로 이동
+  };
 
   const MatchContainer = styled.div`
   width: 100%;
@@ -56,10 +64,11 @@ function ClubList() {
         <div className={club.container}>
           {isLoggedIn && <p>Welcome, {userInfo.email}!</p>}  {/* 로그인된 사용자의 이메일 표시 */}
           {clubList.map(club =>
+           <div key={club.clubId} onClick={() => handleClubClick(club.clubId)}>  {/* 구단 클릭 시 상세 페이지 이동 */}
             <ClubInfo
-              key={club.clubCode}
               club={club}
             />
+          </div>
           )}
         </div>
         {isLoggedIn && <RegistClubButton />}  {/* 로그인 상태에 따라 버튼을 렌더링 */}

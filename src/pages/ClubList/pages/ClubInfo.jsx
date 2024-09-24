@@ -1,24 +1,24 @@
 import clubStyle from './ClubInfo.module.css';
 
-function ClubInfo({ club:club }) {
+function ClubInfo({ club }) {
   const statusClass =
     club.clubStatus === '모집 완료' ? clubStyle.statusClosed : clubStyle.statusOpen;
 
   return (
     <div className={clubStyle.container}>
-      <img src={club.logo} alt={club.name} className={clubStyle.logo} />
+      <img src={club.logo} alt={club.clubName} className={clubStyle.logo} />  {/* logo를 불러와 이미지 렌더링 */}
       <div className={clubStyle.details}>
         <div className={clubStyle.header}>
-          <span className={clubStyle.clubName}>{club.name}</span>
-          <span className={clubStyle.playerQuantity}>👥 {club.playerQuantity}</span>
+          <span className={clubStyle.clubName}>{club.clubName}</span>  {/* 클럽 이름 표시 */}
+          <span className={clubStyle.playerQuantity}>👥 {club.memberCount}</span>  {/* 구단원 수 표시 */}
           <span className={`${clubStyle.clubStatus} ${statusClass}`}>
             {club.clubStatus}
           </span>
         </div>
         <div className={clubStyle.subInfo}>
-          <span>{club.location} * {club.stadium}</span>
-          <span>{club.gender} * {club.type} * {club.age}</span>
-          <span>{club.activityTime} * {club.level}</span>
+          <span>{club.city} * {club.stadiumName}</span>  {/* 활동 지역 및 경기장 */}
+          <span>{club.gender} * {club.type} * {club.ageGroup}</span>  {/* 성별, 종목, 연령대 */}
+          <span>{club.activityTime} * {club.skillLevel}</span>  {/* 활동 시간대 및 실력 */}
         </div>
       </div>
     </div>
