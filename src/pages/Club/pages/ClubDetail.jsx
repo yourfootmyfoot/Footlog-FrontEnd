@@ -13,7 +13,7 @@ function ClubDetail() {
     // 구단 상세 정보를 가져오는 함수
     const fetchClubDetail = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/api/clubs/${clubId}`, {
+            const response = await fetch(`http://192.168.0.32:8080/api/clubs/${clubId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,12 +43,13 @@ function ClubDetail() {
         const confirmDelete = window.confirm('정말로 이 구단을 삭제하시겠습니까?');
         if (confirmDelete) {
             try {
-                const response = await fetch(`http://localhost:8080/api/clubs/${clubId}`, {
+                const response = await fetch(`http://192.168.0.32:8080/api/clubs/${clubId}`, {
                     method: 'DELETE',
+                    credentials: 'include',
                 });
                 if (response.ok) {
                     alert('구단이 삭제되었습니다.');
-                    navigate('/clubs');  // 삭제 후 클럽 목록으로 이동
+                    navigate('/clublist');  // 삭제 후 클럽 목록으로 이동
                 } else {
                     throw new Error('구단 삭제에 실패했습니다.');
                 }

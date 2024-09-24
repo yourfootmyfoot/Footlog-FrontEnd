@@ -18,7 +18,7 @@ function ClubList() {
   useEffect(
     () => {
           // 로그인 여부 확인 API 호출
-          axios.get('http://localhost:8080/api/auth/status', { withCredentials: true })
+          axios.get('http://192.168.0.32:8080/api/auth/status', { withCredentials: true })
           .then(response => {
               const data = response.data;
               setIsLoggedIn(data.isLoggedIn);
@@ -46,7 +46,7 @@ function ClubList() {
 
     // 구단 클릭 시 해당 구단 상세 페이지로 이동하는 함수
   const handleClubClick = (clubId) => {
-    navigate(`/clubs/${clubId}`);  // 해당 구단의 상세 페이지로 이동
+    navigate(`/club/detail/${clubId}`);  // 해당 구단의 상세 페이지로 이동
   };
 
   const MatchContainer = styled.div`

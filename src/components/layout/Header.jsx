@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import alarmIcon from '@/assets/alarm.svg';
 import messageIcon from '@/assets/message_square.svg';
-import logoIcon from '@/assets/soccerball.svg';
+import logoIcon from '@/assets/froggy.png';
 
 const HeaderContainer = styled.header`
   display: flex;
