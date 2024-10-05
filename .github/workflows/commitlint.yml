@@ -1,10 +1,8 @@
 name: Commit Lint
-
 on:
   push:
     branches:
       - '**'
-
 jobs:
   commitlint:
     runs-on: ubuntu-latest
@@ -13,22 +11,18 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0  # 전체 히스토리 필요
-
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-
       - name: Install dependencies
         run: yarn install
-
       - name: Run commitlint
         run: |
           # 현재 브랜치 이름 가져오기
-          CURRENT_BRANCH=${GITHUB_REF#refs/heads/}CURRENT_BRANCH=${GITHUB_REF#refs/heads/}
+          CURRENT_BRANCH=${GITHUB_REF#refs/heads/}
           
-          # 원격 브랜치 정보 업데이트
-          git fetch origin $CURRENT_BRANCH
+          echo "Current branch: $CURRENT_BRANCH"
           
           # 가장 최근의 커밋 해시 가져오기
           LATEST_COMMIT=$(git rev-parse HEAD)
@@ -39,4 +33,4 @@ jobs:
           echo "Checking commits from $FIRST_COMMIT to $LATEST_COMMIT"
           
           # commitlint 실행 (모든 커밋 검사)
-          npx commitlint --from=$FIRST_COMMIT --to=$LATEST_COMMIT --config ./.config/.commitlintrc.cjs
+          npx commitlint --from=$FIRST_COMMIT --to=$LATEST_COMMIT --config ./.config/.commitlintrc.cj
