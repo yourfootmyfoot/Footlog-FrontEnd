@@ -31,7 +31,7 @@ const Login = () => {
   };
 
   const handleKakaoLogin = () => {
-    window.location.href = 'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=262c56061ee06d4004d2f9b94db133a4&redirect_uri=http://192.168.0.32:8080/api/auth/kakao/login';
+    window.location.href = 'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=262c56061ee06d4004d2f9b94db133a4&redirect_uri=http://localhost:8080/api/auth/kakao/login';
   };
   
   if (isLoading) {
@@ -41,7 +41,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="responsive-container">
-        <img className='h-1/3' src={froggy}/>
+        <img className='h-64' src={froggy}/>
         <h2>
           로그인하고 <span role="img" aria-label="soccer ball">⚽</span>을 차러 가볼까요?
         </h2>

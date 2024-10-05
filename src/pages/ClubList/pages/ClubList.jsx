@@ -18,7 +18,7 @@ function ClubList() {
   useEffect(
     () => {
           // 로그인 여부 확인 API 호출
-          axios.get('http://192.168.0.32:8080/api/auth/status', { withCredentials: true })
+          axios.get('http://localhost:8080/api/auth/status', { withCredentials: true })
           .then(response => {
               const data = response.data;
               setIsLoggedIn(data.isLoggedIn);
