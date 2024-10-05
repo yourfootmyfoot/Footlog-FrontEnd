@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import './Login.css';
 import KakaoLoginButton from '@/components/ui/KakaoLoginButton';
-import froggy from '@/assets/froggy.png'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -21,8 +21,7 @@ const Login = () => {
   const exchangeCodeForToken = async (code) => {
     try {
       console.log("exchangeCodeForToken Called!")
-
-
+      // 토큰 교환 로직...
       navigate('/match');
     } catch (error) {
       console.error('Failed to exchange code for token:', error.response ? error.response.data : error.message);
