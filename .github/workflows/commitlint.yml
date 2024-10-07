@@ -1,8 +1,13 @@
 name: Commit Lint
+
 on:
+  pull_request:
+    branches:
+      - '**'
   push:
     branches:
       - '**'
+
 jobs:
   commitlint:
     runs-on: ubuntu-latest
@@ -10,30 +15,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # 전체 히스토리 필요
+          fetch-depth: 0  # 공통 조상을 찾기 위해 전체 히스토리 필요
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
+
       - name: Install dependencies
         run: yarn install
+
       - name: Run commitlint
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
         run: |
-          # 현재 브랜치 이름 가져오기
-          CURRENT_BRANCH=${GITHUB_REF#refs/heads/}
+          # 공통 조상 찾기
+          BASE_SHA=$(git rev-parse origin/${BASE_REF})
+          HEAD_SHA=$(git rev-parse HEAD)
           
-          echo "Current branch: $CURRENT_BRANCH"
-          
-          # 원격 브랜치 정보 업데이트
-          git fetch origin $CURRENT_BRANCH
-          
-          # 가장 최근의 커밋 해시 가져오기
-          LATEST_COMMIT=$(git rev-parse HEAD)
-          
-          # 브랜치의 첫 번째 커밋 찾기
-          FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)
-          
-          echo "Checking commits from $FIRST_COMMIT to $LATEST_COMMIT"
-          
-          # commitlint 실행 (모든 커밋 검사)
-          npx commitlint --from=$FIRST_COMMIT --to=$LATEST_COMMIT --config ./.config/.commitlintrc.cjs
+          # commitlint 실행
+          npx commitlint --from=${BASE_SHA} --to=${HEAD_SHA} --config ./.config/.commitlintrc.cjs
