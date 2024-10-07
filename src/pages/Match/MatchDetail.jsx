@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getMatchDetail } from './apis/MatchAPI';
 import styled from '@emotion/styled';
 import ImageSlider from './ImageSlider';

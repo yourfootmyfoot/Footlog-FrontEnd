@@ -4,8 +4,6 @@ services:
     build:
       context: .
       args:
-        VITE_KAKAOMAP_KEY: ${VITE_KAKAOMAP_KEY}
+        VITE_KAKAO_MAP_API_KEY: ${VITE_KAKAO_MAP_API_KEY}
     ports:
       - "80:80"
-    environment:
-      - VITE_KAKAOMAP_KEY=${VITE_KAKAOMAP_KEY}
