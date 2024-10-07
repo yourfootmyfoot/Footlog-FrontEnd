@@ -1,9 +1,6 @@
 name: Commit Lint
 
 on:
-  pull_request:
-    branches:
-      - '**'
   push:
     branches:
       - '**'
