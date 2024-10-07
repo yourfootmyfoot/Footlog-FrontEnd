@@ -22,13 +22,13 @@ const FooterContainer = styled.footer`
   transform: translateX(-50%);
   z-index: 1000; /* High z-index to stay on top of other content */
 
-  /*@media (max-width: 768px) {
-    padding-right: 10px;
+  @media (max-width: 768px) {
+    padding: 12px 0;
   }
 
   @media (max-width: 480px) {
-    padding-right: 10px;
-  }*/
+    padding: 14px 0;
+  }
 `;
 
 const isClubPathActive = () => {
