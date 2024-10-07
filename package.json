@@ -11,9 +11,7 @@
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
     "commitlint": "commitlint --config .config/.commitlintrc.cjs",
     "prettier": "prettier --config .config/.prettierrc.json",
-    "start": "HOST=192.168.0.32 react-scripts start",
-    "proxy": "http://192.168.0.32:3000"
-
+    "start": "HOST=192.168.0.32 react-scripts start"
   },
   "commitlint": {
     "extends": [
