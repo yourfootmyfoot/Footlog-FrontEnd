@@ -30,7 +30,7 @@ function RegistSkillLevel() {
         setGauge(gaugeValue); // 게이지 상태 업데이트
     };
 
-    const API_URL = 'http://192.168.0.32:8080/api/clubs';
+    const API_URL = 'http://localhost:8080/api/clubs';
 
     // 쿠키에서 액세스 토큰 가져오기
     const getAccessTokenFromCookies = () => {
