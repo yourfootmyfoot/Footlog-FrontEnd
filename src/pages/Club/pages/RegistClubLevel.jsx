@@ -2,11 +2,28 @@ import { useNavigate } from 'react-router-dom'; // useNavigate 훅 사용
 import { useState, useEffect } from 'react';
 import useClubStore from '@/hooks/useClubStore';
 
-function RegistSkillLevel() {
+// 한글 레벨과 영어 enum 값을 매핑하는 객체
+const levelMap = {
+    '입문자': 'BEGINNER',
+    '아마추어': 'AMATEUR',
+    '세미프로': 'SEMI_PRO',
+    '프로': 'PRO',
+    '월드클래스': 'WORLD_CLASS',
+};
+
+const reverseLevelMap = {
+    'BEGINNER': '입문자',
+    'AMATEUR': '아마추어',
+    'SEMI_PRO': '세미프로',
+    'PRO': '프로',
+    'WORLD_CLASS': '월드클래스',
+};
+
+function RegistClubLevel() {
     const navigate = useNavigate();
-    const { clubName, clubCode, schedule, location, ageGender, skillLevel, setSkillLevel, reset } = useClubStore(); // zustand 상태 불러오기
-    const [selectedLevel, setSelectedLevel] = useState(skillLevel.level || ''); // zustand 상태로 초기화
-    const [gauge, setGauge] = useState(skillLevel.gauge || 0);
+    const { clubName, clubCode, schedule, location, ageGender, clubLevel = {}, setClubLevel, reset } = useClubStore(); // zustand 상태 불러오기, clubLevel에 기본값 {} 추가
+    const [selectedLevel, setSelectedLevel] = useState(reverseLevelMap[clubLevel.level] || ''); // clubLevel.level이 없을 경우 빈 문자열로 초기화
+    const [gauge, setGauge] = useState(clubLevel.gauge || 0); // clubLevel.gauge가 없을 경우 0으로 초기화
 
     const levels = ['입문자', '아마추어', '세미프로', '프로', '월드클래스'];
     const descriptions = {
@@ -18,12 +35,12 @@ function RegistSkillLevel() {
     };
 
     useEffect(() => {
-        // zustand 상태가 있으면 해당 값으로 초기화
-        if (skillLevel.level) {
-            setSelectedLevel(skillLevel.level);
-            setGauge(skillLevel.gauge);
+        // clubLevel이 존재할 경우 한글로 변환 후 초기화
+        if (clubLevel?.level) {
+            setSelectedLevel(reverseLevelMap[clubLevel.level]);  // 영어로 저장된 값을 한글로 변환하여 설정
+            setGauge(clubLevel.gauge);
         }
-    }, [skillLevel]);
+    }, [clubLevel]);
 
     const handleLevelClick = (level, gaugeValue) => {
         setSelectedLevel(level);
@@ -39,7 +56,6 @@ function RegistSkillLevel() {
         return tokenCookie ? tokenCookie.split('=')[1] : null;
     };
 
-
     const goBack = () => {
         navigate('/club/regist/age-gender'); // 이전 페이지로 이동
     };
@@ -47,20 +63,7 @@ function RegistSkillLevel() {
     const handleSubmit = async () => {
         const accessToken = getAccessTokenFromCookies(); // 쿠키에서 액세스 토큰 가져오기
         if (selectedLevel) {
-            setSkillLevel(selectedLevel, gauge); // zustand 상태 업데이트
-
-              // 서버로 데이터 전송하기 전에 각 필드 확인
-        console.log("Club Name:", clubName);
-        console.log("Club Code:", clubCode);
-        console.log("Schedule Days:", schedule.days);
-        console.log("Schedule Times:", schedule.times);
-        console.log("Location Stadium:", location.stadiumName);
-        console.log("Location City:", location.city);
-        console.log("Location Region:", location.region);
-        console.log("Age Group:", ageGender.ageGroup);
-        console.log("Gender:", ageGender.gender);
-        console.log("Selected Level:", selectedLevel);
-
+            setClubLevel(levelMap[selectedLevel], gauge); // zustand 상태 업데이트 (영어 enum 값으로 저장)
 
             // 서버로 데이터 전송
             const data = {
@@ -69,7 +72,7 @@ function RegistSkillLevel() {
                 erollDate: new Date().toISOString(), // ISO 8601 형식으로 날짜 전송
                 days: schedule.days, // days만 따로 보냄
                 times: schedule.times, // times만 따로 보냄
-                skillLevel: selectedLevel,  // 사용자가 선택한 실력 등급
+                clubLevel: levelMap[selectedLevel],  // 사용자가 선택한 한글을 영어로 변환해서 서버로 전송
                 stadiumName: location.stadiumName,  // 구장 이름
                 city: location.city,  // 도시
                 region: location.region,  // 지역
@@ -86,7 +89,7 @@ function RegistSkillLevel() {
                     credentials: 'include',
                     body: JSON.stringify(data)
                 });
-                console.log(response)
+                console.log(response);
 
                 if (response.ok) {
                     // 서버에 저장 성공 시 등록 성공 페이지로 이동
@@ -173,4 +176,4 @@ function RegistSkillLevel() {
     );
 }
 
-export default RegistSkillLevel;
+export default RegistClubLevel;

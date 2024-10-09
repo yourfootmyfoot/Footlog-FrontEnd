@@ -6,7 +6,7 @@ import styles from './ClubRegist.module.css'; // 외부 CSS 파일로 스타일�
 function ClubEdit() {
     const { clubId } = useParams();  // URL 파라미터에서 clubId 추출
     const navigate = useNavigate();
-    const { setClub, setSchedule, setSkillLevel, setLocation } = useClubStore();  // Zustand에서 상태 업데이트 함수 불러오기
+    const { setClub } = useClubStore();  // Zustand에서 상태 업데이트 함수 불러오기
     const [clubName, setClubName] = useState('');
     const [clubIntroduction, setClubIntroduction] = useState('');
     const [clubCode, setClubCode] = useState('');
@@ -18,6 +18,23 @@ function ClubEdit() {
     const [selectedRegion, setSelectedRegion] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    // 백엔드 enum 값과 프론트 표시 값을 매핑하는 객체
+const levelMap = {
+    BEGINNER: '입문자',
+    AMATEUR: '아마추어',
+    SEMI_PRO: '세미프로',
+    PRO: '프로',
+    WORLD_CLASS: '월드클래스',
+};
+
+const reverseLevelMap = {
+    '입문자': 'BEGINNER',
+    '아마추어': 'AMATEUR',
+    '세미프로': 'SEMI_PRO',
+    '프로': 'PRO',
+    '월드클래스': 'WORLD_CLASS',
+};
 
     const levels = ['입문자', '아마추어', '세미프로', '프로', '월드클래스'];
     const days = ['월', '화', '수', '목', '금', '토', '일'];
@@ -56,7 +73,7 @@ function ClubEdit() {
             setClubCode(data.clubCode);
             setSelectedDays(data.days);
             setSelectedTimes(data.times);
-            setSelectedLevel(data.skillLevel);
+            setSelectedLevel(data.clubLevel);
             setStadiumName(data.stadiumName);
             setSelectedCity(data.city);
             setSelectedRegion(data.region);
@@ -80,7 +97,7 @@ function ClubEdit() {
             clubCode,
             days: selectedDays,
             times: selectedTimes,
-            skillLevel: selectedLevel,
+            clubLevel: selectedLevel,
             stadiumName,
             city: selectedCity,
             region: selectedRegion
@@ -120,8 +137,9 @@ function ClubEdit() {
         );
     };
 
+    // 한글로 보여주고, 내부적으로는 영어 enum 값을 선택
     const handleLevelClick = (level) => {
-        setSelectedLevel(level);
+        setSelectedLevel(reverseLevelMap[level]);  // 한글을 영어로 변환해서 저장
     };
 
     if (loading) {
@@ -208,14 +226,14 @@ function ClubEdit() {
 
             {/* 실력 선택 UI */}
             <div className={styles['form-group']}>
-                <label htmlFor="skillLevel">실력</label>
+                <label htmlFor="clubLevel">실력</label>
                 <div className="flex flex-nowrap">
                     {levels.map((level) => (
                         <button
                             key={level}
                             onClick={() => handleLevelClick(level)}
                             className={`m-2 p-4 rounded-lg border ${
-                                selectedLevel === level
+                                levelMap[selectedLevel] === level  // 저장된 영어 값을 한글로 비교
                                     ? 'border-[#16C79A] text-[#16C79A]'
                                     : 'border-[#000000] text-black'
                             }`}
