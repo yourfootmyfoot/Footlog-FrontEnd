@@ -48,6 +48,11 @@ function ClubDetail() {
 
 
 
+    // 권한이 없는 경우 경고 메시지를 표시하는 함수
+    const handleAuthorizationError = (action) => {
+        alert(`구단주나 매니저만 ${action}할 수 있습니다.`);
+    };
+
     // 삭제 핸들러
     const handleDelete = async () => {
         const confirmDelete = window.confirm('정말로 이 구단을 삭제하시겠습니까?');
@@ -57,7 +62,11 @@ function ClubDetail() {
                     method: 'DELETE',
                     credentials: 'include',
                 });
-                if (response.ok) {
+
+                if (response.status === 403) {
+                    // 권한이 없을 때 경고 메시지
+                    handleAuthorizationError('삭제');
+                } else if (response.ok) {
                     alert('구단이 삭제되었습니다.');
                     navigate('/clublist');  // 삭제 후 클럽 목록으로 이동
                 } else {
@@ -67,6 +76,29 @@ function ClubDetail() {
                 console.error(error);
                 alert('삭제 중 오류가 발생했습니다.');
             }
+        }
+    };
+
+    // 수정 핸들러
+    const handleEdit = () => {
+        try {
+            // 수정 권한 확인을 위해 별도의 API를 호출하거나 권한이 필요한 동작을 시도
+            fetch(`http://localhost:8080/api/clubs/${clubId}/edit-check`, {
+                method: 'GET',
+                credentials: 'include',
+            }).then((response) => {
+                if (response.status === 403) {
+                    // 권한이 없을 때 경고 메시지
+                    handleAuthorizationError('수정');
+                } else if (response.ok) {
+                    navigate(`/clubs/edit/${clubId}`);
+                } else {
+                    throw new Error('구단 수정 권한을 확인하는 중 오류가 발생했습니다.');
+                }
+            });
+        } catch (error) {
+            console.error(error);
+            alert('구단 수정 중 오류가 발생했습니다.');
         }
     };
 
@@ -107,7 +139,7 @@ function ClubDetail() {
             </div>
 
             <div className={styles['club-actions']}>
-                <button className={styles['edit-btn']} onClick={() => navigate(`/clubs/edit/${clubId}`)}>수정</button>
+                <button className={styles['edit-btn']} onClick={handleEdit}>수정</button>
                 <button className={styles['delete-btn']} onClick={handleDelete}>삭제</button>
             </div>
         </div>

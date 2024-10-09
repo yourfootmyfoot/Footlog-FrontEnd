@@ -65,18 +65,6 @@ function RegistClubLevel() {
         if (selectedLevel) {
             setClubLevel(levelMap[selectedLevel], gauge); // zustand 상태 업데이트 (영어 enum 값으로 저장)
 
-            // 서버로 데이터 전송하기 전에 각 필드 확인
-            console.log("Club Name:", clubName);
-            console.log("Club Code:", clubCode);
-            console.log("Schedule Days:", schedule.days);
-            console.log("Schedule Times:", schedule.times);
-            console.log("Location Stadium:", location.stadiumName);
-            console.log("Location City:", location.city);
-            console.log("Location Region:", location.region);
-            console.log("Age Group:", ageGender.ageGroup);
-            console.log("Gender:", ageGender.gender);
-            console.log("Selected Level:", selectedLevel);
-
             // 서버로 데이터 전송
             const data = {
                 clubName,
