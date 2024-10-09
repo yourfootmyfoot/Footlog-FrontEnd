@@ -1,42 +1,23 @@
-name: Commit Lint
-
+name: Commitlint
 on:
   push:
-    branches:
-      - '**'
+    branches: [main, dev]
 
 jobs:
-  commitlint:
+  lint-commits:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # 전체 히스토리 필요
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Run commitlint
+          node-version: '18'
+      - run: npm install -g @commitlint/cli @commitlint/config-conventional
+      - name: Copy commitlint config
+        run: cp .commitlintrc.cjs commitlint.config.js
+      - name: Lint new commits
         run: |
-          # 현재 브랜치 이름 가져오기
-          CURRENT_BRANCH=${GITHUB_REF#refs/heads/}CURRENT_BRANCH=${GITHUB_REF#refs/heads/}
-          
-          # 원격 브랜치 정보 업데이트
-          git fetch origin $CURRENT_BRANCH
-          
-          # 가장 최근의 커밋 해시 가져오기
-          LATEST_COMMIT=$(git rev-parse HEAD)
-          
-          # 브랜치의 첫 번째 커밋 찾기
-          FIRST_COMMIT=$(git rev-list --max-parents=0 HEAD)
-          
-          echo "Checking commits from $FIRST_COMMIT to $LATEST_COMMIT"
-          
-          # commitlint 실행 (모든 커밋 검사)
-          npx commitlint --from=$FIRST_COMMIT --to=$LATEST_COMMIT --config ./.config/.commitlintrc.cjs
+          if [ "${{ github.event_name }}" = "push" ]; then
+            git log ${{ github.event.before }}..${{ github.event.after }} --format="%H" | xargs -I {} sh -c 'git show -s --format=%B {} | commitlint'
+          fi

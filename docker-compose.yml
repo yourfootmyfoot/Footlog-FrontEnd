@@ -7,5 +7,3 @@ services:
         VITE_KAKAO_MAP_API_KEY: ${VITE_KAKAO_MAP_API_KEY}
     ports:
       - "80:80"
-    #environment:
-    #  - VITE_KAKAO_MAP_API_KEY=${VITE_KAKAO_MAP_API_KEY}
