@@ -70,6 +70,13 @@ function ClubDetail() {
         }
     };
 
+    // 등록일 포맷을 지정하는 함수
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        const date = new Date(dateString);
+        return date.toLocaleDateString('ko-KR', options);
+    };
+
    // 컴포넌트가 처음 마운트될 때 구단 정보 로드
     useEffect(() => {
         fetchClubDetail();
@@ -90,7 +97,7 @@ function ClubDetail() {
 
             <div className={styles['club-info']}>
                 <p><strong>구단 코드:</strong> {club?.clubCode || '정보 없음'}</p>
-                <p><strong>등록일:</strong> {club?.erollDate ? new Date(club.erollDate).toLocaleDateString() : '정보 없음'}</p>
+                <p><strong>등록일:</strong> {club?.createdAt ? formatDate(club.createdAt) : '정보 없음'}</p> {/* 등록일을 createdAt으로 수정 */}
                 <p><strong>주 활동구장:</strong> {club?.stadiumName || '정보 없음'}</p>
                 <p><strong>도시:</strong> {club?.city || '정보 없음'}</p>
                 <p><strong>지역:</strong> {club?.region || '정보 없음'}</p>
