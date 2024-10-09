@@ -10,6 +10,16 @@ function ClubDetail() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+
+    // 영어 enum 값을 한글로 변환하는 매핑 객체
+    const reverseLevelMap = {
+        'BEGINNER': '입문자',
+        'AMATEUR': '아마추어',
+        'SEMI_PRO': '세미프로',
+        'PRO': '프로',
+        'WORLD_CLASS': '월드클래스',
+    };
+
     // 구단 상세 정보를 가져오는 함수
     const fetchClubDetail = async () => {
         try {
@@ -86,7 +96,7 @@ function ClubDetail() {
                 <p><strong>지역:</strong> {club?.region || '정보 없음'}</p>
                 <p><strong>활동 요일:</strong> {club?.days?.length ? club.days.join(', ') : '정보 없음'}</p>
                 <p><strong>활동 시간대:</strong> {club?.times?.length ? club.times.join(', ') : '정보 없음'}</p>
-                <p><strong>실력:</strong> {club?.skillLevel || '정보 없음'}</p>
+                <p><strong>실력:</strong> {reverseLevelMap[club?.clubLevel] || '정보 없음'}</p>
             </div>
 
             <div className={styles['club-actions']}>
