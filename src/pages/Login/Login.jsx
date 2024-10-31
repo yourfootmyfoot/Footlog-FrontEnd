@@ -5,6 +5,7 @@ import KakaoLoginButton from '@/components/ui/KakaoLoginButton';
 import styled from '@emotion/styled';
 import checkIcon from '@/assets/check-button.svg';
 import mascotIcon from '@/assets/mascot.svg';
+import { useUserStore } from '@/hooks/useUserStore';
 
 const LoginContainer = styled.div`
   display: flex;
@@ -71,6 +72,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
+  const { updateUserId } = useUserStore();
 
   // 백엔드로 인가 코드를 전달하여 엑세스 토큰을 받아오는 함수
   const exchangeCodeForToken = useCallback(async (code) => {
@@ -86,7 +88,7 @@ const Login = () => {
 
       // 엑세스 토큰을 로컬 스토리지에 저장
       localStorage.setItem('accessToken', data.accessToken);
-
+      updateUserId(data.userId);
       // /match 페이지로 리다이렉트
       navigate('/match');
     } catch (error) {
@@ -111,7 +113,7 @@ const Login = () => {
 
    // 카카오 로그인 버튼 클릭 시 인증 요청
   const handleKakaoLogin = () => {
-    window.location.href = 'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=262c56061ee06d4004d2f9b94db133a4&redirect_uri=http://192.168.0.35:3000/login';  // 클라이언트로 리다이렉트 설정
+    window.location.href = 'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=262c56061ee06d4004d2f9b94db133a4&redirect_uri=http://localhost:3000/login';  // 클라이언트로 리다이렉트 설정
   };
   
   if (isLoading) {
