@@ -38,7 +38,7 @@ function MatchDetailCard({ match }) {
   };
 
   const handleApplyClick = async () => {
-    if (로그인여부 === true) {
+    if (!localStorage.getItem("accessToken")) {
       alert('로그인이 필요해요');
       return;
     }
@@ -154,9 +154,7 @@ function MatchDetailCard({ match }) {
         </div>
       </div>
 
-      {userId === '' ? (
-        <></>
-      ) : userId === matchEnrollUserId ? (
+      {userId === matchEnrollUserId ? (
         localMatchStatus === 'WAITING' ? (
           <div className="text-center mt-4">매칭 대기중 ⏳</div>
         ) : localMatchStatus === 'PENDING' ? (
@@ -189,7 +187,7 @@ function MatchDetailCard({ match }) {
           매칭 시도
         </Button>
       ) : localMatchStatus === 'PENDING' ? (
-        <div className="text-center mt-4">매칭 대기중 ⏳</div>
+        <div className="text-center mt-4">수락 대기중 ⏳</div>
       ) : (
         onGoingStatus && (
           <div className="flex justify-center items-center mt-6 p-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg shadow-lg">
