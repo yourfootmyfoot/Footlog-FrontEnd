@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import MatchCard from './components/MatchCard';
 import EnrollMatchButton from './components/EnrollButton';
 import { getMatchList } from './services/match';
+import Loading from './components/Loading';
 
 function MatchListPage() {
   const [matches, setMatches] = useState([]);
@@ -23,7 +24,7 @@ function MatchListPage() {
   }, []);
 
   if (loading) {
-    return <div>Loading matches...</div>;
+    return <Loading />;
   }
 
   if (error) {
