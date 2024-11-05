@@ -65,6 +65,7 @@ const Settings = () => {
           alert('로그아웃되었습니다!');
           setIsLoggedIn(false);  // 로그아웃 상태로 설정
           localStorage.removeItem('accessToken'); // 로컬 스토리지에서 엑세스 토큰 삭제
+          localStorage.removeItem('userId');
           navigate('/login'); // 로그인 페이지로 이동
         })
         .catch(error => {

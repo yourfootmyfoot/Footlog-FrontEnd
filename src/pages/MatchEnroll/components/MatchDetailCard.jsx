@@ -5,6 +5,7 @@ import ClubLevelBadge from './badge/ClubLevelBadge';
 import SelectClubList from './SelectClubList';
 import { applyForMatch, acceptMatch, rejectMatch } from '../services/match';
 import { getCardBackgroundStyles } from '../utils';
+import { useUserStore } from '@/hooks/useUserStore';
 
 function MatchDetailCard({ match }) {
   const {
@@ -25,6 +26,8 @@ function MatchDetailCard({ match }) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedClub, setSelectedClub] = useState(null);
+  const [localMatchStatus, setLocalMatchStatus] = useState(matchStatus);
+  const { userId } = useUserStore();
 
   // 상대팀이 없는 경우 처리
   const enemyClubName = enemyClub ? enemyClub.clubName : '상대가 아직 없습니다';
@@ -35,20 +38,25 @@ function MatchDetailCard({ match }) {
   };
 
   const handleApplyClick = async () => {
+    if (!localStorage.getItem("accessToken")) {
+      alert('로그인이 필요해요');
+      return;
+    }
     if (myClub.clubId === parseInt(selectedClub)) {
       alert('본인의 경기에 신청 못합니다.');
+      setIsModalOpen(false);
       return;
     }
     if (selectedClub) {
       try {
-        const result = await applyForMatch(match.matchId, selectedClub);
+        await applyForMatch(match.matchId, selectedClub);
         alert('신청이 완료되었습니다.');
+        setLocalMatchStatus('PENDING');
         setIsModalOpen(false);
       } catch (error) {
         alert('신청에 실패했습니다.');
+        setLocalMatchStatus('WAITING');
       }
-    } else {
-      alert('클럽을 선택해주세요.');
     }
   };
 
@@ -56,8 +64,10 @@ function MatchDetailCard({ match }) {
     try {
       await acceptMatch(match.matchId);
       alert('경기가 수락되었습니다.');
+      setLocalMatchStatus('PENDING');
     } catch (error) {
       alert('경기 수락에 실패했습니다.');
+      setLocalMatchStatus('WAITING');
     }
   };
 
@@ -65,16 +75,20 @@ function MatchDetailCard({ match }) {
     try {
       await rejectMatch(match.matchId);
       alert('경기가 거절되었습니다.');
+      setLocalMatchStatus('WAITING');
     } catch (error) {
       alert('경기 거절에 실패했습니다.');
     }
   };
 
+  const onGoingStatus =
+    localMatchStatus === 'ACCEPTED' || 'PLAYING' || 'FINISHED';
+
   return (
     <div
-      className={`max-w-2xl mx-auto ${getCardBackgroundStyles(matchStatus)} shadow-md rounded-lg overflow-hidden p-2`}
+      className={`max-w-2xl mx-auto ${getCardBackgroundStyles(localMatchStatus)} shadow-md rounded-lg overflow-hidden p-2`}
     >
-      <MatchStatusBadge status={matchStatus} />
+      <MatchStatusBadge status={localMatchStatus} />
       <div className="p-4">
         <h2 className="text-2xl font-bold overflow-hidden text-ellipsis whitespace-nowrap transition-all duration-500 ease-in-out transform hover:-translate-x-2">
           {myClub.clubName} vs {enemyClubName}
@@ -140,24 +154,52 @@ function MatchDetailCard({ match }) {
         </div>
       </div>
 
-      {matchStatus === 'WAITING' && (
+      {userId === matchEnrollUserId ? (
+        localMatchStatus === 'WAITING' ? (
+          <div className="text-center mt-4">매칭 대기중 ⏳</div>
+        ) : localMatchStatus === 'PENDING' ? (
+          <div className="flex space-x-4 justify-center mt-4">
+            <Button className="bg-main" onClick={handleAccept}>
+              수락
+            </Button>
+            <Button className="bg-red-200" onClick={handleReject}>
+              거절
+            </Button>
+          </div>
+        ) : (
+          onGoingStatus && (
+            <div className="flex justify-center items-center mt-6 p-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg shadow-lg">
+              <span role="img" aria-label="celebration" className="mr-2">
+                🎉
+              </span>
+              같이 즐겨요
+              <span role="img" aria-label="celebration" className="ml-2">
+                🎉
+              </span>
+            </div>
+          )
+        )
+      ) : localMatchStatus === 'WAITING' ? (
         <Button
           className="w-full text-center bg-main"
           onClick={() => setIsModalOpen(true)}
         >
           매칭 시도
         </Button>
-      )}
-
-      {matchStatus === 'PENDING' && (
-        <div className="flex space-x-4 justify-center mt-4">
-          <Button className="bg-main" onClick={handleAccept}>
-            수락
-          </Button>
-          <Button className="bg-red-200" onClick={handleReject}>
-            거절
-          </Button>
-        </div>
+      ) : localMatchStatus === 'PENDING' ? (
+        <div className="text-center mt-4">수락 대기중 ⏳</div>
+      ) : (
+        onGoingStatus && (
+          <div className="flex justify-center items-center mt-6 p-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg shadow-lg">
+            <span role="img" aria-label="celebration" className="mr-2">
+              🎉
+            </span>
+            같이 즐겨요
+            <span role="img" aria-label="celebration" className="ml-2">
+              🎉
+            </span>
+          </div>
+        )
       )}
 
       {isModalOpen && (
