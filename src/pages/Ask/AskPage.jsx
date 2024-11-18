@@ -1,39 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // axios 사용
 import styles from './AskPage.module.css';
 
 const AskPage = () => {
   const navigate = useNavigate();
   const [sortOption, setSortOption] = useState('default');
-  const [inquiries, setInquiries] = useState([
-    {
-      id: 1,
-      title: '결제 문제 해결 부탁드립니다.',
-      category: '결제 문제',
-      message: '결제가 두 번 중복되었습니다. 확인 부탁드립니다.',
-      date: '2024-10-21',
-      userId: 'user123',
-      answered: false,
-    },
-    {
-      id: 2,
-      title: '서비스 피드백 드립니다.',
-      category: '서비스 피드백',
-      message: '서비스를 사용하면서 느낀 점은...',
-      date: '2024-10-20',
-      userId: 'user456',
-      answered: true,
-    },
-    {
-      id: 3,
-      title: '기술 지원 요청',
-      category: '기술 지원',
-      message: '로그인 시 오류가 발생하고 있습니다.',
-      date: '2024-10-19',
-      userId: 'user789',
-      answered: false,
-    },
-  ]);
+  const [inquiries, setInquiries] = useState([]); // 초기값 비워두기
+  const [loading, setLoading] = useState(true); // 로딩 상태 추가
+  const [error, setError] = useState(null); // 에러 상태 추가
+
+  // 데이터 가져오기
+  useEffect(() => {
+    const fetchInquiries = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await axios.get('http://localhost:8080/api/ask'); // 서버 API URL
+        setInquiries(response.data); // 서버에서 받은 데이터로 상태 업데이트
+      } catch (err) {
+        console.error('문의 데이터를 가져오는 중 오류 발생:', err);
+        setError('문의 데이터를 가져오는 데 실패했습니다.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInquiries();
+  }, []);
 
   // 정렬 방식에 따라 데이터를 정렬
   const sortInquiries = () => {
@@ -50,6 +45,9 @@ const AskPage = () => {
   const handleInquiryClick = (id) => {
     navigate(`ask/answer/${id}`); // 문의 ID를 기반으로 답변 페이지로 이동
   };
+
+  if (loading) return <div>로딩 중...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className={styles.container}>
