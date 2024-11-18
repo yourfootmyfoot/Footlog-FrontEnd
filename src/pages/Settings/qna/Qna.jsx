@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import './Qna.css';
 
 const Qna = () => {
@@ -7,21 +8,30 @@ const Qna = () => {
   const [message, setMessage] = useState('');
 
   // 제출 버튼 클릭 시 실행되는 함수
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (title.trim() === '' || message.trim() === '') {
       alert('제목과 내용을 모두 입력해주세요.');
       return;
     }
 
-    // 문의 내용을 처리하는 로직 (API 호출 등)
-    console.log('문의 제목:', title);
-    console.log('문의 내용:', message);
-    alert('문의가 성공적으로 제출되었습니다.');
+    try {
+      // POST 요청 보내기
+      const response = await axios.post('http://localhost:8080/api/ask', {
+        title, // 요청 본문에 제목 전달
+        message, // 요청 본문에 내용 전달
+      });
 
-    // 제출 후 입력 필드 초기화
-    setTitle('');
-    setMessage('');
+      console.log('응답 데이터:', response.data);
+      alert('문의가 성공적으로 제출되었습니다.');
+
+      // 제출 후 입력 필드 초기화
+      setTitle('');
+      setMessage('');
+    } catch (error) {
+      console.error('문의 제출 중 오류 발생:', error);
+      alert('문의 제출에 실패했습니다. 다시 시도해주세요.');
+    }
   };
 
   return (
