@@ -94,7 +94,7 @@ const Settings = () => {
       {/* 1대1 문의 */}
       <div className="setting-item">
         <h3>1대1 문의</h3>
-        <button className="inquiry-button" onClick={() => alert('1대1 문의로 이동합니다!')}>문의하기</button>
+        <button className="inquiry-button" onClick={() => navigate('/ask/regist')}>문의하기</button>
       </div>
 
       {/* 알림 설정 */}
