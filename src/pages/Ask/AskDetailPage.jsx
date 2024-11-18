@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './AskDetailPage.module.css'; // CSS 모듈 파일을 임포트
 
