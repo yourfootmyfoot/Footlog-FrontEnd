@@ -1,46 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import styles from './AskDetailPage.module.css'; // CSS 모듈 파일을 임포트
+import axios from 'axios';
+import styles from './AskDetailPage.module.css';
 
 const AskDetailPage = () => {
   const { id } = useParams(); // URL에서 문의 ID 가져오기
+  const [inquiry, setInquiry] = useState(null); // 문의 데이터 상태 관리
+  const [loading, setLoading] = useState(true); // 로딩 상태 관리
+  const [error, setError] = useState(null); // 에러 상태 관리
 
-  // 임시 데이터 설정
-  const [inquiries] = useState([
-    {
-      id: 1,
-      title: '결제 문제 해결 부탁드립니다.',
-      category: '결제 문제',
-      message: '결제가 두 번 중복되었습니다. 결제 기록을 확인해 주시고 환불 요청 드립니다.',
-      date: '2024-10-21',
-      answered: false,
-      user: 'user123',
-      response: '',
-    },
-    {
-      id: 2,
-      title: '서비스 피드백 드립니다.',
-      category: '서비스 피드백',
-      message: '서비스 사용 중 발견한 몇 가지 개선 사항을 전달드립니다...',
-      date: '2024-10-20',
-      answered: true,
-      user: 'user456',
-      response: '서비스 개선 의견 감사드립니다. 향후 업데이트에 반영하도록 하겠습니다.',
-    },
-    {
-      id: 3,
-      title: '기술 지원 요청',
-      category: '기술 지원',
-      message: '로그인 시 "오류 코드 500" 메시지가 발생하고 있습니다. 확인 부탁드립니다.',
-      date: '2024-10-19',
-      answered: false,
-      user: 'user789',
-      response: '',
-    },
-  ]);
+  useEffect(() => {
+    const fetchInquiry = async () => {
+      setLoading(true);
+      setError(null);
 
-  // 문의 ID로 필터링하여 해당 문의 가져오기
-  const inquiry = inquiries.find(inquiry => inquiry.id === parseInt(id));
+      try {
+        const response = await axios.get(`http://localhost:8080/api/ask/${id}`); // 문의 ID를 기반으로 요청
+        setInquiry(response.data); // 요청 성공 시 데이터 설정
+      } catch (err) {
+        console.error('문의 데이터를 가져오는 중 오류 발생:', err);
+        setError('문의 데이터를 가져오는 데 실패했습니다.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInquiry();
+  }, [id]);
+
+  if (loading) return <div>로딩 중...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className={styles.container}>
@@ -82,7 +71,7 @@ const AskDetailPage = () => {
           </div>
         </div>
       ) : (
-        <p>문의 내역을 불러오는 중입니다...</p>
+        <p>문의 내역을 불러올 수 없습니다.</p>
       )}
     </div>
   );
