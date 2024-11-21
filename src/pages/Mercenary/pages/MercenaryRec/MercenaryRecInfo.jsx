@@ -2,15 +2,25 @@ import recStyle from './MercenaryRecInfo.module.css';
 // import styles from '../MercenaryChoice.module.css';
 
 function MercenaryRecInfo({ recruitment }) {
-  const formatDateTime = (dateTime) => {
-    const date = new Date(dateTime);
+  if (!recruitment) {
+    return <div>로딩 중...</div>;
+  }
+
+  const formatDateTime = () => {
+    if (!recruitment.matchDate || !recruitment.matchStartTime) {
+      return {
+        date: '날짜 미정',
+        time: '시간 미정'
+      };
+    }
+
     return {
-      date: date.toLocaleDateString(),
-      time: date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      date: recruitment.matchDate,
+      time: `${recruitment.matchStartTime} - ${recruitment.matchEndTime}`
     };
   };
 
-  const { date, time } = formatDateTime(recruitment.matchDateTime);
+  const { date, time } = formatDateTime();
 
   return (
     <div className={recStyle.container}>
@@ -29,7 +39,7 @@ function MercenaryRecInfo({ recruitment }) {
 
         <div style={{ marginLeft: '0px' }}>
           <div className={recStyle.infoRow}>
-            <span>{recruitment.club.name}</span>
+            <span>{recruitment.club?.name || '구단명 없음'}</span>
           </div>
           <div className={recStyle.infoRow}>
             <div>
@@ -38,7 +48,7 @@ function MercenaryRecInfo({ recruitment }) {
             </div>
           </div>
           <div className={recStyle.infoRow}>
-            <span>{recruitment.location}</span>
+            <span>{recruitment.location || '장소 미정'}</span>
           </div>
         </div>
       </div>

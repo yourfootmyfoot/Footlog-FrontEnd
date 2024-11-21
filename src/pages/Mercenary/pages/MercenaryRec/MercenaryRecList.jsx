@@ -15,6 +15,7 @@ function MercenaryRecList() {
       try {
         setLoading(true);
         const data = await getMercenaryRecList();
+        console.log('받아온 데이터:', data);
         setMercenaryRecList(data);
         setError(null);
       } catch (err) {
@@ -45,10 +46,10 @@ function MercenaryRecList() {
       <ListContainer>
         <div className={MercenaryRec.container}>
           {mercenaryRecList.length > 0 ? (
-            mercenaryRecList.map(mercenary => (
+            mercenaryRecList.map(recruitment => (
               <MercenaryRecInfo
-                key={mercenary.id}
-                mercenary={mercenary}
+                key={recruitment.id}
+                recruitment={recruitment}
               />
             ))
           ) : (
