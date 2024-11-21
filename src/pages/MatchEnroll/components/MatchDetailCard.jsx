@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import MatchStatusBadge from './badge/MatchStatusBadge';
 import ClubLevelBadge from './badge/ClubLevelBadge';
@@ -6,6 +6,7 @@ import SelectClubList from './SelectClubList';
 import { applyForMatch, acceptMatch, rejectMatch } from '../services/match';
 import { getCardBackgroundStyles } from '../utils';
 import { useUserStore } from '@/hooks/useUserStore';
+import KakaoMap from './KakaoMap';
 
 function MatchDetailCard({ match }) {
   const {
@@ -16,7 +17,7 @@ function MatchDetailCard({ match }) {
     matchSchedule: { matchDate, matchStartTime, matchEndTime },
     matchPlayerQuantity,
     quarterQuantity,
-    fieldLocation,
+    fieldLocation, // 필드 위치
     matchCost,
     pro: { isPro, proQuantity },
     clubLevel,
@@ -29,7 +30,37 @@ function MatchDetailCard({ match }) {
   const [localMatchStatus, setLocalMatchStatus] = useState(matchStatus);
   const { userId } = useUserStore();
 
-  // 상대팀이 없는 경우 처리
+  const [mapData, setMapData] = useState([]);
+
+  useEffect(() => {
+    const initializeMapData = async () => {
+      if (!fieldLocation) return;
+  
+      if (typeof fieldLocation === 'string') {
+        const ps = new window.kakao.maps.services.Places();
+        ps.keywordSearch(fieldLocation, (data, status) => {
+          if (status === window.kakao.maps.services.Status.OK && data.length > 0) {
+            const { x, y } = data[0];
+            console.log('주소 변환된 좌표:', { x, y });
+            setMapData([{ x: parseFloat(x), y: parseFloat(y) }]);
+          } else {
+            console.error('주소 검색 실패:', fieldLocation);
+          }
+        });
+      } else if (fieldLocation?.x && fieldLocation?.y) {
+        console.log('좌표 데이터:', fieldLocation);
+        setMapData([{ x: fieldLocation.x, y: fieldLocation.y }]);
+      } else {
+        console.error('fieldLocation의 형식이 잘못되었습니다:', fieldLocation);
+      }
+    };
+  
+    if (fieldLocation) {
+      initializeMapData();
+    }
+  }, [fieldLocation, match]);
+
+  // 상대팀 이름 처리
   const enemyClubName = enemyClub ? enemyClub.clubName : '상대가 아직 없습니다';
 
   // 클럽 선택 핸들러
@@ -37,13 +68,14 @@ function MatchDetailCard({ match }) {
     setSelectedClub(clubId);
   };
 
+  // 경기 신청 핸들러
   const handleApplyClick = async () => {
-    if (!localStorage.getItem("accessToken")) {
+    if (!localStorage.getItem('accessToken')) {
       alert('로그인이 필요해요');
       return;
     }
     if (myClub.clubId === parseInt(selectedClub)) {
-      alert('본인의 경기에 신청 못합니다.');
+      alert('본인의 경기에 신청할 수 없습니다.');
       setIsModalOpen(false);
       return;
     }
@@ -82,7 +114,7 @@ function MatchDetailCard({ match }) {
   };
 
   const onGoingStatus =
-    localMatchStatus === 'ACCEPTED' || 'PLAYING' || 'FINISHED';
+    localMatchStatus === 'ACCEPTED' || localMatchStatus === 'PLAYING' || localMatchStatus === 'FINISHED';
 
   return (
     <div
@@ -96,7 +128,7 @@ function MatchDetailCard({ match }) {
       </div>
 
       {/* 등록자 정보 */}
-      <p className="text-sm text-gray-700 p-4">
+      <p className="text-sm text-gray-700 py-2 px-4">
         <strong>등록자 ID:</strong> {matchEnrollUserId}
       </p>
 
@@ -125,9 +157,9 @@ function MatchDetailCard({ match }) {
             ⏰ {matchStartTime} - {matchEndTime}
           </span>
         </div>
-
+        <KakaoMap mapData={mapData} />
         <div className="text-base text-gray-700 mb-4">
-          📍 경기 장소: {fieldLocation}
+          📍 경기 장소: {typeof fieldLocation === 'string' ? fieldLocation : fieldLocation.address || '위치 정보 없음'}
         </div>
 
         <div className="flex space-x-2 mb-4">
