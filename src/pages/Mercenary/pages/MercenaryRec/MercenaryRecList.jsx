@@ -73,7 +73,7 @@ function MercenaryRecList() {
   return (
     <ListContainer>
       <Header>
-        <Title>용병 모집</Title>
+        <Title>용병 모집 리스트</Title>
       </Header>
       <div className={MercenaryRec.container}>
         {mercenaryRecList.length > 0 ? (
