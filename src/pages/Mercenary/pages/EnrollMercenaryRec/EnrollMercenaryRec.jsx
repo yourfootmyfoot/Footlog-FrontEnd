@@ -27,6 +27,8 @@ function MercenaryEnrollForm() {
       }
 
       const formData = {
+        title: data.title,
+        userId: parseInt(localStorage.getItem('userId')),
         clubId: parseInt(data.myClub),
         matchDate: data.date,
         matchStartTime: data.timeStart,
@@ -55,6 +57,20 @@ function MercenaryEnrollForm() {
       {error && <ErrorMessage>{error}</ErrorMessage>}
       
       <form onSubmit={handleSubmit(onSubmit)}>
+        <InputField
+          id="title"
+          label="모집글 제목"
+          type="text"
+          register={register('title', {
+            required: '제목을 입력해주세요',
+            maxLength: {
+              value: 50,
+              message: '제목은 50자 이내로 입력해주세요'
+            }
+          })}
+          error={errors.title?.message}
+        />
+        
         {clubList === null ? (
           <ErrorMessage>가입한 구단 정보가 없습니다</ErrorMessage>
         ) : (

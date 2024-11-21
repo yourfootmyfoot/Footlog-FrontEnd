@@ -21,6 +21,7 @@ export async function postMercenaryEnroll(data) {
         'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
+        title: data.title,
         clubId: data.clubId,
         matchDate: data.matchDate,
         matchStartTime: data.matchStartTime,
@@ -37,7 +38,8 @@ export async function postMercenaryEnroll(data) {
       if (response.status === 403) {
         throw new Error('로그인이 필요한 서비스입니다.');
       }
-      throw new Error('모집글 등록에 실패했습니다.');
+      const errorData = await response.json();
+      throw new Error(errorData.message || '모집글 등록에 실패했습니다.');
     }
 
     const result = await response.json();
