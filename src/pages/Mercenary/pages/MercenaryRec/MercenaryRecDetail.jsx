@@ -95,7 +95,6 @@ const isAuthor = userId && String(userId) === String(recruitment.matchEnrollUser
   const { date, time } = formatDateTime(recruitment);
 
   return (
-    <div className="max-w-4xl mx-auto p-6 mb-32">
       <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
         {/* 제목 */}
         <h1 className="text-2xl font-bold text-gray-800 flex items-center mb-6">
@@ -190,37 +189,31 @@ const isAuthor = userId && String(userId) === String(recruitment.matchEnrollUser
 
 
         {/* 하단 버튼 영역 */}
-        <div className="flex justify-between items-center mt-8">
-        <button 
-            onClick={handleGoBack}
-            className="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2 transform hover:-translate-y-0.5"
-        >
-            뒤로가기
-        </button>
+        <div className="flex justify-end items-center gap-[16px] mt-4 px-4">
+            <button 
+                onClick={handleGoBack}
+                className="px-4 py-2 bg-[#6B7684] text-white rounded-[12px] hover:bg-[#566371] transition-colors w-[160px]"
+            >
+                뒤로가기
+            </button>
 
-        {/* 조건부 렌더링: 
-            1. 작성자인 경우 -> 수정하기 버튼
-            2. 작성자가 아니고 해당 클럽 소속이 아닌 경우 -> 용병신청하기 버튼
-            3. 작성자가 아니고 해당 클럽 소속인 경우 -> 버튼 없음
-        */}
-        {isAuthor ? (
-            <button 
-            onClick={handleEdit}
-            className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-            >
-            수정하기
-            </button>
-        ) : !isAuthor && !isClubMember && (
-            <button 
-            onClick={handleApply}
-            className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-            >
-            용병신청하기
-            </button>
-        )}
+            {isAuthor ? (
+                <button 
+                    onClick={handleEdit}
+                    className="px-4 py-2 bg-[#14B389] text-white rounded-[12px] hover:bg-[#5aa694] transition-colors w-[160px]"
+                >
+                    수정하기
+                </button>
+            ) : !isAuthor && !isClubMember && (
+                <button 
+                    onClick={handleApply}
+                    className="px-4 py-2 bg-[#14B389] text-white rounded-[12px] hover:bg-[#5aa694] transition-colors w-[160px]"
+                >
+                    용병신청하기
+                </button>
+            )}
         </div>
       </div>
-    </div>
   );
 }
 
