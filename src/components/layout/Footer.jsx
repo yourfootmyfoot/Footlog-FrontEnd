@@ -16,11 +16,11 @@ const FooterContainer = styled.footer`
   width: 100%;
   max-width: 400px;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  position: absolute; /* Always fixed at the bottom */
+  position: fixed;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1000; /* High z-index to stay on top of other content */
+  z-index: 1000;
 
   @media (max-width: 768px) {
     padding: 12px 0;
