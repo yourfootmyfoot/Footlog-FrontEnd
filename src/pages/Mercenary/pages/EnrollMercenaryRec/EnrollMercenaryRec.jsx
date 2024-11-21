@@ -39,9 +39,9 @@ function MercenaryEnrollForm() {
       };
 
       console.log('서버로 전송되는 데이터:', formData);
-      const response = await postMercenaryEnroll(formData);
+      await postMercenaryEnroll(formData);
       alert('모집글이 등록되었습니다.');
-      navigate(`/mercenary/rec/${response.id}`);
+      navigate('/mercenary/rec-list');
     } catch (error) {
       console.error('Form submission error:', error);
       setError(error.message);
