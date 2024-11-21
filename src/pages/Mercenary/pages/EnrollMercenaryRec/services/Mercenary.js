@@ -49,3 +49,65 @@ export async function postMercenaryEnroll(data) {
     throw error;
   }
 }
+
+export async function getMercenaryRecDetail(id) {
+  try {
+    const token = getAuthToken();
+    const response = await fetch(`${BASE_URL}/guest-recruitments/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      if (response.status === 403) {
+        throw new Error('로그인이 필요한 서비스입니다.');
+      }
+      throw new Error('모집글을 불러오는데 실패했습니다.');
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+}
+
+export async function updateMercenaryRec(id, data) {
+  try {
+    const token = getAuthToken();
+    const response = await fetch(`${BASE_URL}/guest-recruitments/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        title: data.title,
+        clubId: data.clubId,
+        matchDate: data.matchDate,
+        matchStartTime: data.matchStartTime,
+        matchEndTime: data.matchEndTime,
+        location: data.location,
+        requiredNumber: data.requiredNumber,
+        requiredPositions: data.requiredPositions,
+        pay: data.pay,
+        description: data.description
+      }),
+    });
+
+    if (!response.ok) {
+      if (response.status === 403) {
+        throw new Error('로그인이 필요한 서비스입니다.');
+      }
+      const errorData = await response.json();
+      throw new Error(errorData.message || '모집글 수정에 실패했습니다.');
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+}

@@ -17,12 +17,14 @@ function MercenaryRecList() {
       try {
         setLoading(true);
         const data = await getMercenaryRecList();
-        console.log('받아온 데이터:', data);
+        if (!data) {
+          throw new Error('데이터를 불러올 수 없습니다.');
+        }
         setMercenaryRecList(data);
         setError(null);
       } catch (err) {
         setError('모집글을 불러오는데 실패했습니다.');
-        console.error('Error:', err);
+        console.error('Error details:', err);
       } finally {
         setLoading(false);
       }

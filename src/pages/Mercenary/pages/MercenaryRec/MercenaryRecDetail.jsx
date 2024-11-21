@@ -27,9 +27,22 @@ const formatDateTime = (recruitment) => {
 function MercenaryRecDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { userId } = useUserStore();
+  const [userId, setUserId] = useState(null); // 새로운 상태 추가
   const [recruitment, setRecruitment] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // localStorage에서 userId를 가져옴
+    const storedUserId = localStorage.getItem('userId');
+    // userId가 객체 형태로 저장되어 있을 수 있으므로 파싱 시도
+    try {
+      const parsedUserId = JSON.parse(storedUserId);
+      setUserId(parsedUserId.state?.userId || parsedUserId);
+    } catch (e) {
+      // JSON 파싱에 실패하면 그대로 사용
+      setUserId(storedUserId);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchRecruitmentDetail = async () => {
@@ -40,10 +53,8 @@ function MercenaryRecDetail() {
           navigate('/login');
           return;
         }
-
+  
         const response = await getMercenaryRecInfo(id);
-        console.log('Current userId:', userId);
-        console.log('Full recruitment data:', response);
         setRecruitment(response);
         setIsLoading(false);
       } catch (err) {
@@ -54,14 +65,14 @@ function MercenaryRecDetail() {
         }
       }
     };
-
+  
     fetchRecruitmentDetail();
-  }, [id, navigate]);
+  }, [id, navigate, userId]);// userId 의존성 추가
 
   if (isLoading) return <div>로딩 중...</div>;
-  if (!recruitment) return <div>데이터를 불러오는데 실패했습니다.</div>;
+if (!recruitment) return <div>데이터를 불러오는데 실패했습니다.</div>;
 
-  const isAuthor = String(userId) === String(recruitment.userId);
+const isAuthor = userId && String(userId) === String(recruitment.matchEnrollUserId || recruitment.userId);
   const isClubMember = recruitment.club?.members?.includes(userId);
 
   const handleEdit = () => {
@@ -177,30 +188,36 @@ function MercenaryRecDetail() {
           )}
         </div>
 
+
         {/* 하단 버튼 영역 */}
         <div className="flex justify-between items-center mt-8">
-          <button 
+        <button 
             onClick={handleGoBack}
             className="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2 transform hover:-translate-y-0.5"
-          >
+        >
             뒤로가기
-          </button>
+        </button>
 
-          {isAuthor ? (
+        {/* 조건부 렌더링: 
+            1. 작성자인 경우 -> 수정하기 버튼
+            2. 작성자가 아니고 해당 클럽 소속이 아닌 경우 -> 용병신청하기 버튼
+            3. 작성자가 아니고 해당 클럽 소속인 경우 -> 버튼 없음
+        */}
+        {isAuthor ? (
             <button 
-              onClick={handleEdit}
-              className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+            onClick={handleEdit}
+            className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
             >
-              수정하기
+            수정하기
             </button>
-          ) : !isAuthor && !isClubMember && (
+        ) : !isAuthor && !isClubMember && (
             <button 
-              onClick={handleApply}
-              className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+            onClick={handleApply}
+            className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
             >
-              용병신청하기
+            용병신청하기
             </button>
-          )}
+        )}
         </div>
       </div>
     </div>
