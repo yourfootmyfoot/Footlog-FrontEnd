@@ -36,15 +36,29 @@ function EditMercenaryRec() {
         const data = await getMercenaryRecDetail(id);
         setValue('title', data.title);
         setValue('date', data.matchDate);
-        setValue('timeStart', data.matchStartTime);
-        setValue('timeEnd', data.matchEndTime);
+        
+        if (data.matchStartTime) {
+          const startTime = data.matchStartTime.substring(0, 5);
+          setValue('timeStart', startTime);
+        }
+        
+        if (data.matchEndTime) {
+          const endTime = data.matchEndTime.substring(0, 5);
+          setValue('timeEnd', endTime);
+        }
+
         setValue('location', data.location);
         setValue('requiredNumber', data.requiredNumber);
         setValue('positions', data.requiredPositions);
         setValue('pay', data.pay);
         setValue('description', data.description);
+        
+        console.log('Fetched Data:', data);
+        console.log('Start Time:', data.matchStartTime);
+        console.log('End Time:', data.matchEndTime);
       } catch (error) {
         setError('데이터를 불러오는데 실패했습니다.');
+        console.error('Error:', error);
         navigate(-1);
       }
     };
