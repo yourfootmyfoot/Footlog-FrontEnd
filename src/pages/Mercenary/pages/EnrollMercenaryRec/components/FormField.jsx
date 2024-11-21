@@ -160,35 +160,63 @@ export function SelectField({ id, label, options, register, error }) {
   );
 }
 
-export function TimeRangeSelect({ id, endId, label, register, endRegister, error, endError }) {
+export const TimeRangeSelect = ({ id, endId, label, register, endRegister, error, endError }) => {
+  const generateTimeOptions = () => {
+    const options = [];
+    for (let hour = 0; hour < 24; hour++) {
+      for (let minute = 0; minute < 60; minute += 30) {
+        const formattedHour = hour.toString().padStart(2, '0');
+        const formattedMinute = minute.toString().padStart(2, '0');
+        const time = `${formattedHour}:${formattedMinute}`;
+        options.push(time);
+      }
+    }
+    return options;
+  };
+
+  const timeOptions = generateTimeOptions();
+
   return (
-    <InputLabel>
-      {label}
-      <TimeSelectContainer>
-        <SelectWrapper>
-          <TimeLabel>시작 시간</TimeLabel>
-          <input
-            type="time"
+    <div className="mb-4">
+      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={id}>
+        {label}
+      </label>
+      <div className="flex gap-2">
+        <div className="flex-1">
+          <select
             id={id}
-            step="1800"
+            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             {...register}
-          />
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-        </SelectWrapper>
-        <SelectWrapper>
-          <TimeLabel>종료 시간</TimeLabel>
-          <input
-            type="time"
+          >
+            <option value="">시작 시간</option>
+            {timeOptions.map((time) => (
+              <option key={`start-${time}`} value={time}>
+                {time}
+              </option>
+            ))}
+          </select>
+          {error && <p className="text-red-500 text-xs italic">{error}</p>}
+        </div>
+        <span className="self-center">~</span>
+        <div className="flex-1">
+          <select
             id={endId}
-            step="1800"
+            className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             {...endRegister}
-          />
-          {endError && <ErrorMessage>{endError}</ErrorMessage>}
-        </SelectWrapper>
-      </TimeSelectContainer>
-    </InputLabel>
+          >
+            <option value="">종료 시간</option>
+            {timeOptions.map((time) => (
+              <option key={`end-${time}`} value={time}>
+                {time}
+              </option>
+            ))}
+          </select>
+          {endError && <p className="text-red-500 text-xs italic">{endError}</p>}
+        </div>
+      </div>
+    </div>
   );
-}
+};
 
 export function TextAreaField({ id, label, register, error }) {
   return (
