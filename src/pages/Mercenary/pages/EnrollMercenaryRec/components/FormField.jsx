@@ -160,55 +160,79 @@ export function SelectField({ id, label, options, register, error }) {
   );
 }
 
-export function TimeRangeSelect({ id, label, register, error }) {
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
-
-  const startTimeSlots = Array.from({ length: 48 }, (_, i) => {
-    const hour = Math.floor(i / 2);
-    const minute = i % 2 === 0 ? '00' : '30';
-    return `${hour.toString().padStart(2, '0')}:${minute}`;
-  });
-
-  const endTimeSlots = [...startTimeSlots, '24:00'];
-
-  const handleStartTimeSelect = (e) => {
-    setStartTime(e.target.value);
-    register.onChange({ target: { name: `${id}Start`, value: e.target.value } });
-  };
-
-  const handleEndTimeSelect = (e) => {
-    setEndTime(e.target.value);
-    register.onChange({ target: { name: `${id}End`, value: e.target.value } });
-  };
-
+export function TimeRangeSelect({ id, endId, label, register, endRegister, error, endError }) {
   return (
-    <InputLabel htmlFor={id}>
+    <InputLabel>
       {label}
       <TimeSelectContainer>
         <SelectWrapper>
           <TimeLabel>시작 시간</TimeLabel>
-          <StyledSelect value={startTime} onChange={handleStartTimeSelect}>
-            <option value="">선택해주세요</option>
-            {startTimeSlots.map((time) => (
-              <option key={time} value={time} disabled={endTime && time >= endTime}>
-                {time}
-              </option>
-            ))}
-          </StyledSelect>
+          <input
+            type="time"
+            id={id}
+            step="1800"
+            {...register}
+          />
+          {error && <ErrorMessage>{error}</ErrorMessage>}
         </SelectWrapper>
         <SelectWrapper>
           <TimeLabel>종료 시간</TimeLabel>
-          <StyledSelect value={endTime} onChange={handleEndTimeSelect}>
-            <option value="">선택해주세요</option>
-            {endTimeSlots.map((time) => (
-              <option key={time} value={time} disabled={startTime && time <= startTime}>
-                {time}
-              </option>
-            ))}
-          </StyledSelect>
+          <input
+            type="time"
+            id={endId}
+            step="1800"
+            {...endRegister}
+          />
+          {endError && <ErrorMessage>{endError}</ErrorMessage>}
         </SelectWrapper>
       </TimeSelectContainer>
+    </InputLabel>
+  );
+}
+
+export function TextAreaField({ id, label, register, error }) {
+  return (
+    <InputLabel htmlFor={id}>
+      {label}
+      <StyledTextArea 
+        id={id}
+        {...register}
+        placeholder="추가 설명을 입력해주세요"
+      />
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+    </InputLabel>
+  );
+}
+
+const StyledTextArea = styled.textarea`
+  width: 100%;
+  height: 100px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-family: inherit;
+  
+  &:focus {
+    outline: none;
+    border-color: #16C79A;
+  }
+`;
+
+export function ObjectSelectField({ id, label, options, register, error }) {
+  return (
+    <InputLabel htmlFor={id}>
+      {label}
+      <Select id={id} {...register}>
+        <option value="" disabled>
+          {`${label} 선택`}
+        </option>
+        {options.map((option) => (
+          <option key={option.clubId} value={option.clubId}>
+            {option.clubName}
+          </option>
+        ))}
+      </Select>
       {error && <ErrorMessage>{error}</ErrorMessage>}
     </InputLabel>
   );

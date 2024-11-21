@@ -1,40 +1,49 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
 import { postMercenaryEnroll } from './services/Mercenary';
-import { FormContainer, Button } from './components/Basic';
-import { InputField, TimeRangeSelect, SelectField } from './components/FormField';
-
-const Title = styled.h1`
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #16C79A;
-  margin-bottom: 20px;
-`;
-
-const ErrorMessage = styled.div`
-  color: red;
-  margin-bottom: 10px;
-  text-align: center;
-`;
+import { getMyClubList } from '../../services/club';
+import { FormContainer, Title, ErrorMessage, Button } from './components/Basic';
+import { InputField, SelectField, ObjectSelectField, TimeRangeSelect, TextAreaField } from './components/FormField';
 
 function MercenaryEnrollForm() {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+  const [clubList, setClubList] = useState(null);
   const { register, handleSubmit, formState: { errors } } = useForm();
+
+  useEffect(() => {
+    const fetchMyClubList = async () => {
+      const result = await getMyClubList();
+      setClubList(result);
+    };
+    fetchMyClubList();
+  }, []);
 
   const onSubmit = async (data) => {
     try {
-      await postMercenaryEnroll({
-        ...data,
-        matchDateTime: new Date(`${data.date}T${data.timeStart}`).toISOString(),
-        requiredPositions: data.requiredPositions.split(',').map(pos => pos.trim())
-      });
+      if (!data.date || !data.timeStart || !data.timeEnd) {
+        throw new Error('날짜와 시간을 모두 입력해주세요.');
+      }
+
+      const formData = {
+        clubId: parseInt(data.myClub),
+        matchDate: data.date,
+        matchStartTime: data.timeStart,
+        matchEndTime: data.timeEnd,
+        location: data.location,
+        requiredNumber: parseInt(data.requiredNumber),
+        requiredPositions: data.positions,
+        pay: parseInt(data.pay),
+        description: data.description || ''
+      };
+
+      console.log('서버로 전송되는 데이터:', formData);
+      const response = await postMercenaryEnroll(formData);
       alert('모집글이 등록되었습니다.');
-      navigate('/mercenary/rec');
+      navigate(`/mercenary/rec/${response.id}`);
     } catch (error) {
+      console.error('Form submission error:', error);
       setError(error.message);
       alert(error.message);
     }
@@ -46,23 +55,50 @@ function MercenaryEnrollForm() {
       {error && <ErrorMessage>{error}</ErrorMessage>}
       
       <form onSubmit={handleSubmit(onSubmit)}>
+        {clubList === null ? (
+          <ErrorMessage>가입한 구단 정보가 없습니다</ErrorMessage>
+        ) : (
+          <ObjectSelectField
+            id="myClub"
+            label="내 구단정보"
+            options={clubList}
+            register={register('myClub', {
+              required: '구단을 선택해주세요.',
+            })}
+            error={errors.myClub?.message}
+          />
+        )}
+
         <InputField
           id="date"
           label="경기 날짜"
           type="date"
           register={register('date', {
-            required: '경기 날짜 선택해주세요'
+            required: '경기 날짜를 선택해주세요'
           })}
           error={errors.date?.message}
         />
 
         <TimeRangeSelect
-          id="time"
+          id="timeStart"
+          endId="timeEnd"
           label="경기 시간"
-          register={register('time', {
-            required: '경기 시간을 선택해주세요'
+          register={register('timeStart', {
+            required: '시작 시간을 선택해주세요',
+            validate: (value) => {
+              if (!value) return '시작 시간을 선택해주세요';
+              return true;
+            }
           })}
-          error={errors.time?.message}
+          endRegister={register('timeEnd', {
+            required: '종료 시간을 선택해주세요',
+            validate: (value) => {
+              if (!value) return '종료 시간을 선택해주세요';
+              return true;
+            }
+          })}
+          error={errors.timeStart?.message}
+          endError={errors.timeEnd?.message}
         />
 
         <InputField
@@ -87,43 +123,43 @@ function MercenaryEnrollForm() {
         />
 
         <SelectField
-          id="requiredPositions"
+          id="positions"
           label="필요 포지션"
-          multiple
-          register={register('requiredPositions', {
+          multiple={true}
+          register={register('positions', {
             required: '필요 포지션을 선택해주세요'
           })}
           options={[
-            { value: 'FW', label: '공격수' },
-            { value: 'MF', label: '미드필더' },
-            { value: 'DF', label: '수비수' },
+            { value: 'ST', label: '스트라이커' },
+            { value: 'RW', label: '오른쪽 윙어' },
+            { value: 'LW', label: '왼쪽 윙어' },
+            { value: 'CM', label: '중앙 미드필더' },
+            { value: 'LB', label: '왼쪽 수비수' },
+            { value: 'CB', label: '중앙 수비수' },
+            { value: 'RB', label: '오른쪽 수비수' },
             { value: 'GK', label: '골키퍼' }
           ]}
-          error={errors.requiredPositions?.message}
+          error={errors.positions?.message}
         />
 
         <InputField
           id="pay"
           label="용병비"
           type="number"
-          min={0}
-          step={1000}
-          placeholder="1000원 단위로 입력해주세요"
+          step="1000"
           register={register('pay', {
             required: '용병비를 입력해주세요',
             min: { value: 0, message: '0원 이상이어야 합니다' },
             validate: {
               isThousandUnit: value => value % 1000 === 0 || '1000원 단위로 입력해주세요'
-            },
-            valueAsNumber: true
+            }
           })}
           error={errors.pay?.message}
         />
 
-        <InputField
+        <TextAreaField
           id="description"
           label="추가 설명"
-          type="textarea"
           register={register('description')}
           error={errors.description?.message}
         />

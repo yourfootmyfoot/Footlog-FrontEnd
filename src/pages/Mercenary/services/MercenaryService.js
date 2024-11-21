@@ -103,4 +103,39 @@ export const guestRecruitmentAPI = {
     });
     return response.json();
   },
+};
+
+export const getMercenaryRecDetail = async (id) => {
+  const response = await fetch(`${BASE_URL}/guest-recruitments/${id}`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch recruitment detail');
+  }
+  return response.json();
+};
+
+export const updateMercenaryRec = async (id, data) => {
+  const response = await fetch(`${BASE_URL}/guest-recruitments/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  if (!response.ok) {
+    throw new Error('Failed to update recruitment');
+  }
+  return response.json();
+};
+
+export const applyMercenary = async (id) => {
+  const response = await fetch(`${BASE_URL}/guest-recruitments/${id}/applications`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
+  if (!response.ok) {
+    throw new Error('Failed to apply for recruitment');
+  }
+  return response.json();
 }; 
