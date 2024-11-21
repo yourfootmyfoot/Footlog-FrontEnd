@@ -43,10 +43,11 @@
     "react-router-dom": "^6.26.2",
     "react-scripts": "^5.0.1",
     "shadcn": "^2.0.1",
+    "styled-components": "^6.1.13",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "ui": "https://github.com/shadcn/ui.git",
-    "zustand": "^5.0.0-rc.2"
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.0",

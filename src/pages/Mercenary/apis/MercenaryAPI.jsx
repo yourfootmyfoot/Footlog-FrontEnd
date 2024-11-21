@@ -58,13 +58,49 @@ export async function getMercenaryRecList() {
 // MercenaryApp 정보를 가져온다.
 export async function getMercenaryRecInfo(recruitmentId) {
   try {
-    const response = await fetch(`${BASE_URL}/guest-recruitments/${recruitmentId}`);
+    const token = getAuthToken();
+    const response = await fetch(`${BASE_URL}/guest-recruitments/${recruitmentId}`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
     if (!response.ok) {
+      if (response.status === 403) {
+        throw new Error('로그인이 필요한 서비스입니다.');
+      }
       throw new Error('서버 응답이 실패했습니다');
     }
     return await response.json();
   } catch (error) {
     console.error('Error fetching recruitment details:', error);
+    throw error;
+  }
+}
+
+export async function applyForRecruitment(recruitmentId) {
+  try {
+    const token = getAuthToken();
+    const response = await fetch(`${BASE_URL}/guest-recruitments/${recruitmentId}/applications`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
+    if (!response.ok) {
+      if (response.status === 403) {
+        throw new Error('로그인이 필요한 서비스입니다.');
+      }
+      throw new Error('신청에 실패했습니다');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error applying for recruitment:', error);
     throw error;
   }
 }

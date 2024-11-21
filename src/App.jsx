@@ -35,6 +35,8 @@ import ClubMembers from './pages/Club/pages/ClubMembers';
 import Mercenary from './pages/Mercenary/pages/MercenaryChoice';
 import MercenaryAppList from './pages/Mercenary/pages/MercenaryApp/MercenaryAppList';
 import MercenaryRecList from './pages/Mercenary/pages/MercenaryRec/MercenaryRecList';
+import MercenaryRecDetail from './pages/Mercenary/pages/MercenaryRec/MercenaryRecDetail';
+import EditMercenaryRec from './pages/Mercenary/pages/MercenaryRec/EditMercenaryRec';
 
 import Profile from './pages/Profile/Profile';
 import EnrollMercenaryApp from './pages/Mercenary/pages/EnrollMercenaryApp/EnrollMercenaryApp';
@@ -74,6 +76,8 @@ const App = () => {
             <Route path="/mercenary/rec-list" element={<MercenaryRecList />} />
             <Route path="/mercenary/enroll-app" element={<EnrollMercenaryApp />} />
             <Route path="/mercenary/enroll-rec" element={<EnrollMercenaryRec />} />
+            <Route path="/mercenary/recruitment/:id" element={<MercenaryRecDetail />} />
+            <Route path="/mercenary/recruitment/edit/:id" element={<EditMercenaryRec />} />
             
             <Route path="/clublist" element={<ClubList />} />
             <Route path="/chat" element={<ChatRoomListPage />} />

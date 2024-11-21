@@ -1,56 +1,215 @@
 .container {
-  background-color: #f9f9f9; /* 카드의 배경색 */
-  cursor: pointer;
-  width: 95%; /* 카드의 유동적인 너비 */
-  margin: 10px auto; /* 가운데 정렬 */
-  padding: 15px; /* 카드 내부 여백 */
-  border-radius: 10px; /* 모서리 둥글게 */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자로 입체감 추가 */
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* 애니메이션 */
+  background: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin: 6px 0;
+  padding: 10px;
+  transition: all 0.2s ease;
+  border: 1px solid #eaeaea;
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
 .container:hover {
-  background-color: rgb(241, 254, 239); /* 호버 시 배경색 */
-  color: rgb(0, 0, 0); /* 글자색 */
-  transform: translateY(-5px); /* 호버 시 카드가 살짝 올라가는 효과 */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* 더 명확한 호버 시 그림자 */
+  transform: translateX(4px);
+  border-color: #2ecc71;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .section {
-    padding: 10px 0; /* 각 섹션에 내부 여백 추가 */
-}
-
-.section:last-child {
-  border-bottom: none; /* 마지막 섹션은 경계선 제거 */
+  padding: 4px 0;
 }
 
 .infoRow {
-    display: flex;
-    justify-content: flex-start; /* 좌측 정렬 */
-    margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2px;
+  color: #4a5568;
+  font-size: 0.85rem;
 }
 
 .label {
-    font-weight: bold;
-    width: 120px; /* 라벨의 고정 너비 설정 */
+  font-weight: 600;
+  color: #2d3748;
+  min-width: 70px;
+  margin-right: 8px;
 }
 
-h4 {
-  font-size: 16px; /* 글씨 크기 */
-  font-weight: 500; /* 글씨 두께 */
-  color: #333; /* 기본 글씨 색상 */
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #f0f0f0;
+  margin: 6px 0;
 }
 
-h4:first-child {
-  font-size: 18px; /* 첫 번째 제목의 크기 더 강조 */
-  font-weight: 600; /* 더 두꺼운 글씨 */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  background-color: #f8fafb;
+  padding: 6px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  margin: 4px 0;
 }
 
-.container:hover h4 {
-  color: #1e7e34; /* 호버 시 제목 글씨 색상 변경 */
+.description {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 2px;
+  padding: 4px;
+  background-color: #f8fafb;
+  border-radius: 4px;
 }
 
-.emptyRow {
-  display: block;
-  height: 1.6rem; /* 원하는 만큼의 높이를 설정 */
+.highlight {
+  color: #2ecc71;
+  font-weight: 500;
+}
+
+.detailContainer {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.detailHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.detailHeader h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin: 0;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.editButton, .applyButton {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.editButton {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.editButton:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+.applyButton {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.applyButton:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.section {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #fafafa;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.section:hover {
+  background: #f5f5f5;
+  transform: translateY(-2px);
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.8rem 0;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+.label {
+  font-weight: 600;
+  color: #666;
+  min-width: 120px;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background: #e0e0e0;
+  margin: 1.5rem 0;
+}
+
+.section p {
+  line-height: 1.6;
+  color: #444;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  .detailContainer {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .detailHeader {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .infoRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.backButton {
+  padding: 0.5rem 1rem;
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 0.375rem;
+  color: #4b5563;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.backButton:hover {
+  background-color: #e5e7eb;
 }

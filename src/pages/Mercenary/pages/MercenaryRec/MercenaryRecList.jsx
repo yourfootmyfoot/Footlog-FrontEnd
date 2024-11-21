@@ -31,36 +31,73 @@ function MercenaryRecList() {
 
   const ListContainer = styled.div`
     width: 100%;
-    padding: 2vh 0;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    min-height: 100vh;
   `;
 
-  if (loading) return <div style={{ textAlign: 'center', padding: '20px' }}>로딩중...</div>;
-  if (error) return <div style={{ textAlign: 'center', padding: '20px', color: 'red' }}>{error}</div>;
+  const Header = styled.div`
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 24px;
+    text-align: center;
+  `;
+
+  const Title = styled.h1`
+    font-size: 1.75rem;
+    color: #2d3748;
+    margin-bottom: 8px;
+  `;
+
+  const Subtitle = styled.p`
+    color: #718096;
+    font-size: 1rem;
+  `;
+
+  const LoadingSpinner = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    color: #2ecc71;
+    font-size: 1.2rem;
+  `;
+
+  if (loading) return <LoadingSpinner>로딩중...</LoadingSpinner>;
+  if (error) return <div style={{ textAlign: 'center', padding: '20px', color: '#e53e3e' }}>{error}</div>;
 
   return (
-    <>
-      <ListContainer>
-        <div className={MercenaryRec.container}>
-          {mercenaryRecList.length > 0 ? (
-            mercenaryRecList.map(recruitment => (
-              <MercenaryRecInfo
-                key={recruitment.id}
-                recruitment={recruitment}
-              />
-            ))
-          ) : (
-            <div style={{ textAlign: 'center', padding: '20px' }}>
-              등록된 모집글이 없습니다.
-            </div>
-          )}
-        </div>
-        <EnrollMerButton />
-      </ListContainer>
-    </>
+    <ListContainer>
+      <Header>
+        <Title>용병 모집</Title>
+      </Header>
+      <div className={MercenaryRec.container}>
+        {mercenaryRecList.length > 0 ? (
+          mercenaryRecList.map(recruitment => (
+            <MercenaryRecInfo
+              key={recruitment.id}
+              recruitment={recruitment}
+            />
+          ))
+        ) : (
+          <div style={{
+            textAlign: 'center',
+            padding: '40px',
+            color: '#718096',
+            backgroundColor: '#fff',
+            borderRadius: '12px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+          }}>
+            등록된 모집글이 없습니다.
+          </div>
+        )}
+      </div>
+      <EnrollMerButton />
+    </ListContainer>
   );
 }
 

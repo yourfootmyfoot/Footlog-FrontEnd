@@ -1,7 +1,14 @@
 import recStyle from './MercenaryRecInfo.module.css';
 // import styles from '../MercenaryChoice.module.css';
+import { useNavigate } from 'react-router-dom';
 
 function MercenaryRecInfo({ recruitment }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/mercenary/recruitment/${recruitment.id}`);
+  };
+
   if (!recruitment) {
     return <div>로딩 중...</div>;
   }
@@ -14,16 +21,21 @@ function MercenaryRecInfo({ recruitment }) {
       };
     }
 
+    const formatTime = (timeString) => {
+      const [hours, minutes] = timeString.split(':');
+      return `${hours}:${minutes}`;
+    };
+
     return {
       date: recruitment.matchDate,
-      time: `${recruitment.matchStartTime} - ${recruitment.matchEndTime}`
+      time: `${formatTime(recruitment.matchStartTime)} - ${formatTime(recruitment.matchEndTime)}`
     };
   };
 
   const { date, time } = formatDateTime();
 
   return (
-    <div className={recStyle.container}>
+    <div className={recStyle.container} onClick={handleClick}>
       <div className={recStyle.section} style={{ display: 'flex' }}>
         <div>
           <div className={recStyle.infoRow}>
@@ -31,6 +43,9 @@ function MercenaryRecInfo({ recruitment }) {
           </div>
           <div className={recStyle.infoRow}>
             <span className={recStyle.label}>매치 일정</span>
+          </div>
+          <div className={recStyle.infoRow}>
+            <span className={recStyle.label}>시간</span>
           </div>
           <div className={recStyle.infoRow}>
             <span className={recStyle.label}>지역</span>
@@ -42,10 +57,10 @@ function MercenaryRecInfo({ recruitment }) {
             <span>{recruitment.club?.name || '구단명 없음'}</span>
           </div>
           <div className={recStyle.infoRow}>
-            <div>
-              <div>{date}</div>
-              <div>{time}</div>
-            </div>
+            <div>{date}</div>
+          </div>
+          <div className={recStyle.infoRow}>
+            <div>{time}</div>
           </div>
           <div className={recStyle.infoRow}>
             <span>{recruitment.location || '장소 미정'}</span>
@@ -66,13 +81,6 @@ function MercenaryRecInfo({ recruitment }) {
           <span>{recruitment.pay}원</span>
           <span>{recruitment.requiredPositions.join(', ')}</span>
         </div>
-      </div>
-
-      <hr className={recStyle.divider} />
-
-      <div className={recStyle.section}>
-        <span className={recStyle.label}>추가 설명</span><br />
-        {recruitment.description}
       </div>
     </div>
   );
