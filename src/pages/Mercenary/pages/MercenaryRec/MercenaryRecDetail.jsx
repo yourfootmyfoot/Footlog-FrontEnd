@@ -27,9 +27,22 @@ const formatDateTime = (recruitment) => {
 function MercenaryRecDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { userId } = useUserStore();
+  const [userId, setUserId] = useState(null); // 새로운 상태 추가
   const [recruitment, setRecruitment] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // localStorage에서 userId를 가져옴
+    const storedUserId = localStorage.getItem('userId');
+    // userId가 객체 형태로 저장되어 있을 수 있으므로 파싱 시도
+    try {
+      const parsedUserId = JSON.parse(storedUserId);
+      setUserId(parsedUserId.state?.userId || parsedUserId);
+    } catch (e) {
+      // JSON 파싱에 실패하면 그대로 사용
+      setUserId(storedUserId);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchRecruitmentDetail = async () => {
@@ -40,10 +53,8 @@ function MercenaryRecDetail() {
           navigate('/login');
           return;
         }
-
+  
         const response = await getMercenaryRecInfo(id);
-        console.log('Current userId:', userId);
-        console.log('Full recruitment data:', response);
         setRecruitment(response);
         setIsLoading(false);
       } catch (err) {
@@ -54,14 +65,14 @@ function MercenaryRecDetail() {
         }
       }
     };
-
+  
     fetchRecruitmentDetail();
-  }, [id, navigate]);
+  }, [id, navigate, userId]);// userId 의존성 추가
 
   if (isLoading) return <div>로딩 중...</div>;
-  if (!recruitment) return <div>데이터를 불러오는데 실패했습니다.</div>;
+if (!recruitment) return <div>데이터를 불러오는데 실패했습니다.</div>;
 
-  const isAuthor = String(userId) === String(recruitment.userId);
+const isAuthor = userId && String(userId) === String(recruitment.matchEnrollUserId || recruitment.userId);
   const isClubMember = recruitment.club?.members?.includes(userId);
 
   const handleEdit = () => {
@@ -84,7 +95,6 @@ function MercenaryRecDetail() {
   const { date, time } = formatDateTime(recruitment);
 
   return (
-    <div className="max-w-4xl mx-auto p-6 mb-32">
       <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
         {/* 제목 */}
         <h1 className="text-2xl font-bold text-gray-800 flex items-center mb-6">
@@ -177,33 +187,33 @@ function MercenaryRecDetail() {
           )}
         </div>
 
-        {/* 하단 버튼 영역 */}
-        <div className="flex justify-between items-center mt-8">
-          <button 
-            onClick={handleGoBack}
-            className="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2 transform hover:-translate-y-0.5"
-          >
-            뒤로가기
-          </button>
 
-          {isAuthor ? (
+        {/* 하단 버튼 영역 */}
+        <div className="flex justify-end items-center gap-[16px] mt-4 px-4">
             <button 
-              onClick={handleEdit}
-              className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                onClick={handleGoBack}
+                className="px-4 py-2 bg-[#6B7684] text-white rounded-[12px] hover:bg-[#566371] transition-colors w-[160px]"
             >
-              수정하기
+                뒤로가기
             </button>
-          ) : !isAuthor && !isClubMember && (
-            <button 
-              onClick={handleApply}
-              className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-            >
-              용병신청하기
-            </button>
-          )}
+
+            {isAuthor ? (
+                <button 
+                    onClick={handleEdit}
+                    className="px-4 py-2 bg-[#14B389] text-white rounded-[12px] hover:bg-[#5aa694] transition-colors w-[160px]"
+                >
+                    수정하기
+                </button>
+            ) : !isAuthor && !isClubMember && (
+                <button 
+                    onClick={handleApply}
+                    className="px-4 py-2 bg-[#14B389] text-white rounded-[12px] hover:bg-[#5aa694] transition-colors w-[160px]"
+                >
+                    용병신청하기
+                </button>
+            )}
         </div>
       </div>
-    </div>
   );
 }
 

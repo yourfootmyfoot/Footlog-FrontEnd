@@ -146,7 +146,7 @@ function MercenaryEnrollForm() {
             required: '필요 포지션을 선택해주세요'
           })}
           options={[
-            { value: 'ST', label: '스트라이커' },
+            { value: 'ST', label: '공격수' },
             { value: 'RW', label: '오른쪽 윙어' },
             { value: 'LW', label: '왼쪽 윙어' },
             { value: 'CM', label: '중앙 미드필더' },
