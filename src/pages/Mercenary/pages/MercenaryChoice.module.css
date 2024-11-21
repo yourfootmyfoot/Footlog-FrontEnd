@@ -10,11 +10,16 @@
     cursor: pointer;
     font-size: 16px;
     margin-top: 3vh;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .buttonStyle:hover {
     background-color: #13a682;
+    transform: scale(1.05);
+}
+
+.buttonStyle:active {
+    transform: scale(0.95);
 }
 
 /*
@@ -28,3 +33,25 @@
     height: 100vh; /* 화면 전체 높이를 설정하여 수직으로 가운데 정렬 */
     text-align: center;
 }
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .buttonStyle {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .soccerImage {
+    width: 100%; /* 이미지 너비를 100%로 설정 */
+    max-width: 600px; /* 최대 너비 설정 */
+    height: auto; /* 비율 유지 */
+    margin-top: -100px; /* 이미지 위로 올리기 위해 마진 조정 */
+    margin-bottom: 10px; /* 버튼과의 간격 */
+  }
