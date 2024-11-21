@@ -17,9 +17,10 @@ const HeaderContainer = styled.header`
   margin: 0 auto;
 `;
 
-const LogoContainer = styled.div`
+const LogoContainer = styled(Link)`
   display: flex;
   align-items: center;
+  text-decoration: none;
 `;
 
 const LogoImage = styled.img`
@@ -58,7 +59,7 @@ const IconButton = styled(Link)`
 const Header = () => {
   return (
     <HeaderContainer>
-      <LogoContainer>
+      <LogoContainer to="/">
         <LogoImage src={logoIcon} alt="FootLog Logo" />
         <Title>FootLog</Title>
       </LogoContainer>

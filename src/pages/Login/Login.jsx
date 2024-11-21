@@ -11,9 +11,9 @@ const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 100vh;
-  padding: 5vh 1vw;
+  padding: 2vh 1vw;
   background-color: #fff;
 `;
 
