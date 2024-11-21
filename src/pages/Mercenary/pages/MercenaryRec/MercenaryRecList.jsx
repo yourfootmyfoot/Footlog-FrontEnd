@@ -4,11 +4,13 @@ import MercenaryRecInfo from './MercenaryRecInfo';
 import MercenaryRec from './MercenaryRecList.module.css';
 import EnrollMerButton from '../../EnrollMerButton';
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
 
 function MercenaryRecList() {
   const [mercenaryRecList, setMercenaryRecList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRecruitments = async () => {
@@ -67,21 +69,41 @@ function MercenaryRecList() {
     font-size: 1.2rem;
   `;
 
+  const ListItem = styled.div`
+    width: 100%;
+    max-width: 700px;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  `;
+
   if (loading) return <LoadingSpinner>로딩중...</LoadingSpinner>;
   if (error) return <div style={{ textAlign: 'center', padding: '20px', color: '#e53e3e' }}>{error}</div>;
 
   return (
     <ListContainer>
       <Header>
-        <Title>용병 모집 리스트</Title>
+        <Title>용병 모집</Title>
       </Header>
       <div className={MercenaryRec.container}>
         {mercenaryRecList.length > 0 ? (
           mercenaryRecList.map(recruitment => (
-            <MercenaryRecInfo
-              key={recruitment.id}
-              recruitment={recruitment}
-            />
+            <ListItem key={recruitment.id} onClick={() => navigate(`/mercenary/recruitment/${recruitment.id}`)}>
+              <div className="flex flex-col gap-2">
+                <MercenaryRecInfo
+                  recruitment={recruitment}
+                />
+              </div>
+            </ListItem>
           ))
         ) : (
           <div style={{

@@ -56,7 +56,12 @@ export const guestRecruitmentAPI = {
 
   // 용병 모집글 상세 조회
   getRecruitment: async (recruitmentId) => {
-    const response = await fetch(`${BASE_URL}/guest-recruitments/${recruitmentId}`);
+    const token = localStorage.getItem('accessToken');
+    const response = await fetch(`${BASE_URL}/guest-recruitments/${recruitmentId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
     return response.json();
   },
 
