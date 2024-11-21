@@ -21,13 +21,15 @@ export async function postMercenaryEnroll(data) {
         'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
-        clubId: parseInt(data.clubId),
-        matchDateTime: data.matchDateTime,
+        clubId: data.clubId,
+        matchDate: data.matchDate,
+        matchStartTime: data.matchStartTime,
+        matchEndTime: data.matchEndTime,
         location: data.location,
-        requiredNumber: parseInt(data.requiredNumber),
+        requiredNumber: data.requiredNumber,
         requiredPositions: data.requiredPositions,
-        pay: parseInt(data.pay),
-        description: data.description || ''
+        pay: data.pay,
+        description: data.description
       }),
     });
 

@@ -160,59 +160,32 @@ export function SelectField({ id, label, options, register, error }) {
   );
 }
 
-export function TimeRangeSelect({ id, label, register, error }) {
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
-
-  const handleStartTimeSelect = (e) => {
-    const newStartTime = e.target.value;
-    setStartTime(newStartTime);
-    if (register && register.onChange) {
-      register.onChange(e);
-    }
-  };
-
-  const handleEndTimeSelect = (e) => {
-    const newEndTime = e.target.value;
-    setEndTime(newEndTime);
-  };
-
+export function TimeRangeSelect({ id, endId, label, register, endRegister, error, endError }) {
   return (
-    <InputLabel htmlFor={id}>
+    <InputLabel>
       {label}
       <TimeSelectContainer>
         <SelectWrapper>
           <TimeLabel>시작 시간</TimeLabel>
-          <StyledSelect 
+          <input
+            type="time"
+            id={id}
+            step="1800"
             {...register}
-            value={startTime} 
-            onChange={handleStartTimeSelect}
-          >
-            <option value="">선택해주세요</option>
-            {Array.from({ length: 24 }, (_, i) => 
-              `${String(i).padStart(2, '0')}:00`
-            ).map((time) => (
-              <option key={time} value={time} disabled={endTime && time >= endTime}>
-                {time}
-              </option>
-            ))}
-          </StyledSelect>
+          />
+          {error && <ErrorMessage>{error}</ErrorMessage>}
         </SelectWrapper>
         <SelectWrapper>
           <TimeLabel>종료 시간</TimeLabel>
-          <StyledSelect value={endTime} onChange={handleEndTimeSelect}>
-            <option value="">선택해주세요</option>
-            {Array.from({ length: 24 }, (_, i) => 
-              `${String(i).padStart(2, '0')}:00`
-            ).map((time) => (
-              <option key={time} value={time} disabled={startTime && time <= startTime}>
-                {time}
-              </option>
-            ))}
-          </StyledSelect>
+          <input
+            type="time"
+            id={endId}
+            step="1800"
+            {...endRegister}
+          />
+          {endError && <ErrorMessage>{endError}</ErrorMessage>}
         </SelectWrapper>
       </TimeSelectContainer>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
     </InputLabel>
   );
 }

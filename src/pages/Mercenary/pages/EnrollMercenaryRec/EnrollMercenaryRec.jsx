@@ -22,19 +22,28 @@ function MercenaryEnrollForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await postMercenaryEnroll({
+      if (!data.date || !data.timeStart || !data.timeEnd) {
+        throw new Error('날짜와 시간을 모두 입력해주세요.');
+      }
+
+      const formData = {
         clubId: parseInt(data.myClub),
-        matchDateTime: new Date(`${data.date}T${data.timeStart}`).toISOString(),
+        matchDate: data.date,
+        matchStartTime: data.timeStart,
+        matchEndTime: data.timeEnd,
         location: data.location,
         requiredNumber: parseInt(data.requiredNumber),
         requiredPositions: data.positions,
         pay: parseInt(data.pay),
         description: data.description || ''
-      });
-      
+      };
+
+      console.log('서버로 전송되는 데이터:', formData);
+      const response = await postMercenaryEnroll(formData);
       alert('모집글이 등록되었습니다.');
       navigate(`/mercenary/rec/${response.id}`);
     } catch (error) {
+      console.error('Form submission error:', error);
       setError(error.message);
       alert(error.message);
     }
@@ -72,11 +81,24 @@ function MercenaryEnrollForm() {
 
         <TimeRangeSelect
           id="timeStart"
+          endId="timeEnd"
           label="경기 시간"
           register={register('timeStart', {
-            required: '경기 시간을 선택해주세요'
+            required: '시작 시간을 선택해주세요',
+            validate: (value) => {
+              if (!value) return '시작 시간을 선택해주세요';
+              return true;
+            }
+          })}
+          endRegister={register('timeEnd', {
+            required: '종료 시간을 선택해주세요',
+            validate: (value) => {
+              if (!value) return '종료 시간을 선택해주세요';
+              return true;
+            }
           })}
           error={errors.timeStart?.message}
+          endError={errors.timeEnd?.message}
         />
 
         <InputField
@@ -108,10 +130,14 @@ function MercenaryEnrollForm() {
             required: '필요 포지션을 선택해주세요'
           })}
           options={[
-            { value: 'STRIKER', label: '공격수' },
-            { value: 'MIDFIELDER', label: '미드필더' },
-            { value: 'DEFENDER', label: '수비수' },
-            { value: 'GOALKEEPER', label: '골키퍼' }
+            { value: 'ST', label: '스트라이커' },
+            { value: 'RW', label: '오른쪽 윙어' },
+            { value: 'LW', label: '왼쪽 윙어' },
+            { value: 'CM', label: '중앙 미드필더' },
+            { value: 'LB', label: '왼쪽 수비수' },
+            { value: 'CB', label: '중앙 수비수' },
+            { value: 'RB', label: '오른쪽 수비수' },
+            { value: 'GK', label: '골키퍼' }
           ]}
           error={errors.positions?.message}
         />
@@ -120,9 +146,13 @@ function MercenaryEnrollForm() {
           id="pay"
           label="용병비"
           type="number"
+          step="1000"
           register={register('pay', {
             required: '용병비를 입력해주세요',
-            min: { value: 0, message: '0원 이상이어야 합니다' }
+            min: { value: 0, message: '0원 이상이어야 합니다' },
+            validate: {
+              isThousandUnit: value => value % 1000 === 0 || '1000원 단위로 입력해주세요'
+            }
           })}
           error={errors.pay?.message}
         />
