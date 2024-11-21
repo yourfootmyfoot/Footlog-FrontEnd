@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './MercenaryChoice.module.css';
-import soccerImage from './soccer-image.jpg';
+import soccerImage from './MercenaryRec/soccer-Image.jpg';
 
 const MercenaryChoice = () => {
   const navigate = useNavigate();

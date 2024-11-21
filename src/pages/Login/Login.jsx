@@ -14,13 +14,20 @@ const LoginContainer = styled.div`
   justify-content: flex-start;
   min-height: 100vh;
   padding: 2vh 1vw;
-  background-color: #fff;
+  background: white;
 `;
 
 const MascotImage = styled.img`
   width: clamp(120px, 24vh, 180px);
   height: auto;
   margin-bottom: 4vh;
+  animation: float 3s ease-in-out infinite;
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
 `;
 
 const Title = styled.h2`
@@ -39,32 +46,67 @@ const Subtitle = styled.p`
 
 const ServiceList = styled.ul`
   display: block;
-  justify-content: baseline;
   list-style-type: none;
   padding: 0;
-  margin-bottom: 4vh;
+  margin-bottom: 2rem;
   width: 100%;
-  max-width: min(280px, 90vw);
+  max-width: 320px;
 `;
 
 const ServiceItem = styled.li`
   display: flex;
   align-items: center;
-  margin-left: 5vw;
-  margin-right: 1vw;
-  margin-bottom: 2vh;
-  font-size: clamp(12px, 3vw, 16px);
+  margin: 0 0 1rem 0;
+  font-size: 16px;
+  padding: 1rem;
+  background: rgba(237, 255, 236, 0.95);
+  border-radius: 0.5rem;
+  border: 1px solid #e6e6e6;
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.05),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:nth-of-type(2) {
+    background: rgba(237, 255, 236, 0.95);
+  }
+
+  &:nth-of-type(3) {
+    background: rgba(237, 255, 236, 0.95);
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+      0 10px 20px rgba(22, 199, 154, 0.1),
+      0 6px 6px rgba(0, 0, 0, 0.1);
+    
+    img {
+      transform: scale(1.1);
+    }
+  }
 `;
 
 const CheckIcon = styled.img`
-  width: clamp(16px, 4vw, 20px);
-  height: auto;
-  margin-right: 2vw;
+  width: 20px;
+  height: 20px;
+  margin-right: 1rem;
+  transition: transform 0.3s ease;
 `;
 
 const StyledKakaoButton = styled(KakaoLoginButton)`
   width: 100%;
   max-width: min(280px, 90vw);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
 `;
 
 

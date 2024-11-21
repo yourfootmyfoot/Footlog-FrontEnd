@@ -3,9 +3,9 @@ import mercenariesApp from '../data/MercenaryApp.json';
 import mercenariesRec from '../data/MercenaryRec.json';
 
 // 백엔드 API 기본 URL
-const BASE_URL = 'http://localhost:8080/api';
+export const BASE_URL = 'http://localhost:8080/api';
 
-const getAuthToken = () => {
+export const getAuthToken = () => {
   return localStorage.getItem('accessToken');
 };
 
