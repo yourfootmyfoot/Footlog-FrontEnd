@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import { ErrorMessage } from './Basic';
 
@@ -14,22 +15,91 @@ const Input = styled.input`
   margin-bottom: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  
+  &:focus {
+    outline: none;
+    border-color: #16C79A;
+    box-shadow: 0 0 0 2px rgba(22, 199, 154, 0.2);
+  }
+
+  &[type="number"] {
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      opacity: 1;
+      background-color: white;
+    }
+  }
+`;
+
+const SelectContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 5px;
+`;
+
+const PositionButton = styled.button`
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: ${props => props.selected ? '#16C79A' : 'white'};
+  color: ${props => props.selected ? 'white' : '#333'};
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: ${props => props.selected ? '#14B389' : '#f0f0f0'};
+  }
 `;
 
 const Select = styled.select`
   width: 100%;
   padding: 10px;
+  margin-bottom: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: white;
+  
+  &:focus {
+    outline: none;
+    border-color: #16C79A;
+    box-shadow: 0 0 0 2px rgba(22, 199, 154, 0.2);
+  }
 `;
 
-const Checkbox = styled.input`
-  width: auto;
-  margin: 0 10px;
+const TimeSelectContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  margin-top: 5px;
 `;
 
-// 텍스트, 숫자, 날짜 등의 입력을 받는 필드
-// 텍스트, 숫자, 날짜 등의 입력을 받는 필드
+const SelectWrapper = styled.div`
+  flex: 1;
+`;
+
+const StyledSelect = styled.select`
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+  
+  &:focus {
+    outline: none;
+    border-color: #16C79A;
+    box-shadow: 0 0 0 2px rgba(22, 199, 154, 0.1);
+  }
+`;
+
+const TimeLabel = styled.div`
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: bold;
+`;
+
 export function InputField({
   id,
   label,
@@ -37,9 +107,9 @@ export function InputField({
   placeholder,
   register,
   error,
-  onChange,
-  value,
-  disabled = false // 새로 추가된 disabled 속성 (기본값 false)
+  min = type === 'number' ? 0 : undefined,
+  step = type === 'number' ? 1 : undefined,
+  disabled = false
 }) {
   return (
     <InputLabel htmlFor={id}>
@@ -48,42 +118,98 @@ export function InputField({
         id={id}
         type={type}
         placeholder={placeholder}
-        {...register} // React Hook Form의 필드 등록
-        value={value} // 외부에서 전달된 value
-        onChange={onChange} // 외부에서 전달된 onChange 핸들러
-        disabled={disabled} // disabled 속성 추가
+        min={min}
+        step={step}
+        {...register}
+        disabled={disabled}
       />
       {error && <ErrorMessage>{error}</ErrorMessage>}
     </InputLabel>
   );
 }
 
-// 드롭다운 선택 필드
-export function SelectField({ id, label, matchList, register, error }) {
+export function SelectField({ id, label, options, register, error }) {
+  const [selectedPositions, setSelectedPositions] = useState([]);
+
+  const togglePosition = (value) => {
+    const newPositions = selectedPositions.includes(value)
+      ? selectedPositions.filter(pos => pos !== value)
+      : [...selectedPositions, value];
+    
+    setSelectedPositions(newPositions);
+    register.onChange({ target: { name: id, value: newPositions } });
+  };
+
   return (
     <InputLabel htmlFor={id}>
       {label}
-      <Select id={id} {...register}>
-        <option value="">
-          경기를 선택해주세요 {/* 기본 선택 옵션 */}
-        </option>
-        {matchList.map((match) => (
-          <option key={match.matchCode} value={match.matchCode}>
-            {match.myClub.clubName}: {match.schedule.date} ({match.schedule.day}) {match.schedule.startTime} ~ {match.schedule.endTime}
-          </option>
+      <SelectContainer>
+        {options.map((option) => (
+          <PositionButton
+            key={option.value}
+            type="button"
+            selected={selectedPositions.includes(option.value)}
+            onClick={() => togglePosition(option.value)}
+          >
+            {option.label}
+          </PositionButton>
         ))}
-      </Select>
+      </SelectContainer>
       {error && <ErrorMessage>{error}</ErrorMessage>}
     </InputLabel>
   );
 }
 
-// 체크 박스 입력 필드
-export function CheckboxField({ label, register }) {
+export function TimeRangeSelect({ id, label, register, error }) {
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
+
+  const startTimeSlots = Array.from({ length: 48 }, (_, i) => {
+    const hour = Math.floor(i / 2);
+    const minute = i % 2 === 0 ? '00' : '30';
+    return `${hour.toString().padStart(2, '0')}:${minute}`;
+  });
+
+  const endTimeSlots = [...startTimeSlots, '24:00'];
+
+  const handleStartTimeSelect = (e) => {
+    setStartTime(e.target.value);
+    register.onChange({ target: { name: `${id}Start`, value: e.target.value } });
+  };
+
+  const handleEndTimeSelect = (e) => {
+    setEndTime(e.target.value);
+    register.onChange({ target: { name: `${id}End`, value: e.target.value } });
+  };
+
   return (
-    <InputLabel>
+    <InputLabel htmlFor={id}>
       {label}
-      <Checkbox type="checkbox" {...register} />
+      <TimeSelectContainer>
+        <SelectWrapper>
+          <TimeLabel>시작 시간</TimeLabel>
+          <StyledSelect value={startTime} onChange={handleStartTimeSelect}>
+            <option value="">선택해주세요</option>
+            {startTimeSlots.map((time) => (
+              <option key={time} value={time} disabled={endTime && time >= endTime}>
+                {time}
+              </option>
+            ))}
+          </StyledSelect>
+        </SelectWrapper>
+        <SelectWrapper>
+          <TimeLabel>종료 시간</TimeLabel>
+          <StyledSelect value={endTime} onChange={handleEndTimeSelect}>
+            <option value="">선택해주세요</option>
+            {endTimeSlots.map((time) => (
+              <option key={time} value={time} disabled={startTime && time <= startTime}>
+                {time}
+              </option>
+            ))}
+          </StyledSelect>
+        </SelectWrapper>
+      </TimeSelectContainer>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
     </InputLabel>
   );
 }

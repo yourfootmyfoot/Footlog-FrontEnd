@@ -128,9 +128,9 @@ const Landing = () => {
       path: '/login'
     },
     {
-      title: '경기 등록',
-      description: '새로운 경기를 등록하고 관리하세요',
-      path: '/match/enroll'
+      title: '구단 목록',
+      description: '구단을 등록하고 관리하세요',
+      path: '/clublist'
     },
     {
       title: '경기 목록',
