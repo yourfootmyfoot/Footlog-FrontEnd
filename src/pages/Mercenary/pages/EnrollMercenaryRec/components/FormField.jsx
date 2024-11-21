@@ -164,22 +164,17 @@ export function TimeRangeSelect({ id, label, register, error }) {
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
 
-  const startTimeSlots = Array.from({ length: 48 }, (_, i) => {
-    const hour = Math.floor(i / 2);
-    const minute = i % 2 === 0 ? '00' : '30';
-    return `${hour.toString().padStart(2, '0')}:${minute}`;
-  });
-
-  const endTimeSlots = [...startTimeSlots, '24:00'];
-
   const handleStartTimeSelect = (e) => {
-    setStartTime(e.target.value);
-    register.onChange({ target: { name: `${id}Start`, value: e.target.value } });
+    const newStartTime = e.target.value;
+    setStartTime(newStartTime);
+    if (register && register.onChange) {
+      register.onChange(e);
+    }
   };
 
   const handleEndTimeSelect = (e) => {
-    setEndTime(e.target.value);
-    register.onChange({ target: { name: `${id}End`, value: e.target.value } });
+    const newEndTime = e.target.value;
+    setEndTime(newEndTime);
   };
 
   return (
@@ -188,9 +183,15 @@ export function TimeRangeSelect({ id, label, register, error }) {
       <TimeSelectContainer>
         <SelectWrapper>
           <TimeLabel>시작 시간</TimeLabel>
-          <StyledSelect value={startTime} onChange={handleStartTimeSelect}>
+          <StyledSelect 
+            {...register}
+            value={startTime} 
+            onChange={handleStartTimeSelect}
+          >
             <option value="">선택해주세요</option>
-            {startTimeSlots.map((time) => (
+            {Array.from({ length: 24 }, (_, i) => 
+              `${String(i).padStart(2, '0')}:00`
+            ).map((time) => (
               <option key={time} value={time} disabled={endTime && time >= endTime}>
                 {time}
               </option>
@@ -201,7 +202,9 @@ export function TimeRangeSelect({ id, label, register, error }) {
           <TimeLabel>종료 시간</TimeLabel>
           <StyledSelect value={endTime} onChange={handleEndTimeSelect}>
             <option value="">선택해주세요</option>
-            {endTimeSlots.map((time) => (
+            {Array.from({ length: 24 }, (_, i) => 
+              `${String(i).padStart(2, '0')}:00`
+            ).map((time) => (
               <option key={time} value={time} disabled={startTime && time <= startTime}>
                 {time}
               </option>

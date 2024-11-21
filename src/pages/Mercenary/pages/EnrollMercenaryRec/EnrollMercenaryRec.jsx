@@ -27,13 +27,14 @@ function MercenaryEnrollForm() {
 
   const onSubmit = async (data) => {
     try {
-      await postMercenaryEnroll({
+      const response = await postMercenaryEnroll({
         ...data,
         matchDateTime: new Date(`${data.date}T${data.timeStart}`).toISOString(),
-        requiredPositions: data.requiredPositions.split(',').map(pos => pos.trim())
+        requiredPositions: data.requiredPositions
       });
+      
       alert('모집글이 등록되었습니다.');
-      navigate('/mercenary/rec');
+      navigate(`/mercenary/rec/${response.id}`);
     } catch (error) {
       setError(error.message);
       alert(error.message);
@@ -51,18 +52,18 @@ function MercenaryEnrollForm() {
           label="경기 날짜"
           type="date"
           register={register('date', {
-            required: '경기 날짜 선택해주세요'
+            required: '경기 날짜를 선택해주세요'
           })}
           error={errors.date?.message}
         />
 
         <TimeRangeSelect
-          id="time"
+          id="timeStart"
           label="경기 시간"
-          register={register('time', {
+          register={register('timeStart', {
             required: '경기 시간을 선택해주세요'
           })}
-          error={errors.time?.message}
+          error={errors.timeStart?.message}
         />
 
         <InputField

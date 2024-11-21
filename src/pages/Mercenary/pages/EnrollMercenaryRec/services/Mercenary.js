@@ -21,13 +21,12 @@ export async function postMercenaryEnroll(data) {
         'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
-        clubId: data.clubId,
-        matchDateTime: new Date(`${data.date}T${data.startTime}`).toISOString(),
+        matchDateTime: data.matchDateTime,
         location: data.location,
         requiredNumber: parseInt(data.requiredNumber),
         requiredPositions: data.requiredPositions,
         pay: parseInt(data.pay),
-        description: data.description
+        description: data.description || ''
       }),
     });
 
