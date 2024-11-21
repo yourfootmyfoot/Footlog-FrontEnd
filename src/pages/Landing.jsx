@@ -8,9 +8,8 @@ const Container = styled.div`
   align-items: center;
   padding: 2rem;
   padding-bottom: calc(2rem + 80px);
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
-  overflow-y: auto;
+  height: 100%;
+  background: white;
 `;
 
 const Logo = styled.img`
@@ -36,11 +35,15 @@ const Title = styled.h1`
 
 const CardGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   width: 100%;
-  max-width: 1200px;
+  max-width: 400px;
   padding: 0 1rem;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Card = styled.button`
@@ -48,36 +51,70 @@ const Card = styled.button`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  background: white;
-  border: none;
+  padding: 1.5rem;
+  background: ${({ index }) => {
+    const colors = [
+      'rgba(236, 254, 255, 0.95)',
+      'rgba(254, 243, 199, 0.95)',
+      'rgba(237, 255, 236, 0.95)',
+      'rgba(254, 242, 242, 0.95)'
+    ];
+    return colors[index % colors.length];
+  }};
+  border: 1px solid #e6e6e6;
   border-radius: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.05),
+    0 1px 3px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  aspect-ratio: 1;
+  position: relative;
+  overflow: hidden;
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-    background: #16C79A;
-    color: white;
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 
+      0 10px 20px rgba(22, 199, 154, 0.1),
+      0 6px 6px rgba(0, 0, 0, 0.1),
+      0 0 100px -20px rgba(22, 199, 154, 0.15);
+    border-color: rgba(22, 199, 154, 0.3);
+    background: white;
   }
 
   h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 0.5rem;
     font-weight: 600;
+    color: #2d3748;
+    position: relative;
+    z-index: 1;
   }
 
   p {
-    font-size: 0.9rem;
-    color: #666;
+    font-size: 0.8rem;
+    color: #4A5568;
     text-align: center;
     margin: 0;
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+  }
+
+  &:hover h3 {
+    color: #16C79A;
   }
 
   &:hover p {
-    color: #f0f0f0;
+    color: #4A5568;
+  }
+
+  &:active {
+    transform: translateY(-2px) scale(0.98);
+    box-shadow: 
+      0 5px 10px rgba(22, 199, 154, 0.1),
+      0 3px 3px rgba(0, 0, 0, 0.1);
   }
 `;
 
@@ -96,19 +133,14 @@ const Landing = () => {
       path: '/match/enroll'
     },
     {
-      title: '경기 상세',
+      title: '경기 목록',
       description: '등록된 경기의 상세 정보를 확인하세요',
-      path: '/matchDetail'
+      path: '/match'
     },
     {
       title: '용병 찾기',
       description: '용병을 구하거나 용병 신청을 할 수 있습니다',
       path: '/Mercenary'
-    },
-    {
-      title: '용병 모집',
-      description: '새로운 용병 모집 공고를 등록하세요',
-      path: '/EnrollMercenaryRec'
     }
   ];
 
@@ -120,6 +152,7 @@ const Landing = () => {
         {cards.map((card, index) => (
           <Card
             key={index}
+            index={index}
             onClick={() => navigate(card.path)}
           >
             <h3>{card.title}</h3>
