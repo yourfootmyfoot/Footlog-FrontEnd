@@ -216,3 +216,51 @@ export function TimeRangeSelect({ id, label, register, error }) {
     </InputLabel>
   );
 }
+
+export function TextAreaField({ id, label, register, error }) {
+  return (
+    <InputLabel htmlFor={id}>
+      {label}
+      <StyledTextArea 
+        id={id}
+        {...register}
+        placeholder="추가 설명을 입력해주세요"
+      />
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+    </InputLabel>
+  );
+}
+
+const StyledTextArea = styled.textarea`
+  width: 100%;
+  height: 100px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-family: inherit;
+  
+  &:focus {
+    outline: none;
+    border-color: #16C79A;
+  }
+`;
+
+export function ObjectSelectField({ id, label, options, register, error }) {
+  return (
+    <InputLabel htmlFor={id}>
+      {label}
+      <Select id={id} {...register}>
+        <option value="" disabled>
+          {`${label} 선택`}
+        </option>
+        {options.map((option) => (
+          <option key={option.clubId} value={option.clubId}>
+            {option.clubName}
+          </option>
+        ))}
+      </Select>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+    </InputLabel>
+  );
+}

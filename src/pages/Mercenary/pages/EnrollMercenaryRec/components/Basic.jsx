@@ -78,3 +78,11 @@ export const ErrorMessage = styled.p`
   font-weight: bold;
   margin: 0;
 `;
+
+export const Title = styled.h1`
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+`;

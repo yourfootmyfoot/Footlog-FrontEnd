@@ -21,6 +21,7 @@ export async function postMercenaryEnroll(data) {
         'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
+        clubId: parseInt(data.clubId),
         matchDateTime: data.matchDateTime,
         location: data.location,
         requiredNumber: parseInt(data.requiredNumber),

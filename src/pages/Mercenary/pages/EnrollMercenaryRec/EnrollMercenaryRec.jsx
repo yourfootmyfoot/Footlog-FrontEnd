@@ -1,36 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
 import { postMercenaryEnroll } from './services/Mercenary';
-import { FormContainer, Button } from './components/Basic';
-import { InputField, TimeRangeSelect, SelectField } from './components/FormField';
-
-const Title = styled.h1`
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #16C79A;
-  margin-bottom: 20px;
-`;
-
-const ErrorMessage = styled.div`
-  color: red;
-  margin-bottom: 10px;
-  text-align: center;
-`;
+import { getMyClubList } from '../../services/club';
+import { FormContainer, Title, ErrorMessage, Button } from './components/Basic';
+import { InputField, SelectField, ObjectSelectField, TimeRangeSelect, TextAreaField } from './components/FormField';
 
 function MercenaryEnrollForm() {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+  const [clubList, setClubList] = useState(null);
   const { register, handleSubmit, formState: { errors } } = useForm();
+
+  useEffect(() => {
+    const fetchMyClubList = async () => {
+      const result = await getMyClubList();
+      setClubList(result);
+    };
+    fetchMyClubList();
+  }, []);
 
   const onSubmit = async (data) => {
     try {
       const response = await postMercenaryEnroll({
-        ...data,
+        clubId: parseInt(data.myClub),
         matchDateTime: new Date(`${data.date}T${data.timeStart}`).toISOString(),
-        requiredPositions: data.requiredPositions
+        location: data.location,
+        requiredNumber: parseInt(data.requiredNumber),
+        requiredPositions: data.positions,
+        pay: parseInt(data.pay),
+        description: data.description || ''
       });
       
       alert('모집글이 등록되었습니다.');
@@ -47,6 +46,20 @@ function MercenaryEnrollForm() {
       {error && <ErrorMessage>{error}</ErrorMessage>}
       
       <form onSubmit={handleSubmit(onSubmit)}>
+        {clubList === null ? (
+          <ErrorMessage>가입한 구단 정보가 없습니다</ErrorMessage>
+        ) : (
+          <ObjectSelectField
+            id="myClub"
+            label="내 구단정보"
+            options={clubList}
+            register={register('myClub', {
+              required: '구단을 선택해주세요.',
+            })}
+            error={errors.myClub?.message}
+          />
+        )}
+
         <InputField
           id="date"
           label="경기 날짜"
@@ -88,43 +101,35 @@ function MercenaryEnrollForm() {
         />
 
         <SelectField
-          id="requiredPositions"
+          id="positions"
           label="필요 포지션"
-          multiple
-          register={register('requiredPositions', {
+          multiple={true}
+          register={register('positions', {
             required: '필요 포지션을 선택해주세요'
           })}
           options={[
-            { value: 'FW', label: '공격수' },
-            { value: 'MF', label: '미드필더' },
-            { value: 'DF', label: '수비수' },
-            { value: 'GK', label: '골키퍼' }
+            { value: 'STRIKER', label: '공격수' },
+            { value: 'MIDFIELDER', label: '미드필더' },
+            { value: 'DEFENDER', label: '수비수' },
+            { value: 'GOALKEEPER', label: '골키퍼' }
           ]}
-          error={errors.requiredPositions?.message}
+          error={errors.positions?.message}
         />
 
         <InputField
           id="pay"
           label="용병비"
           type="number"
-          min={0}
-          step={1000}
-          placeholder="1000원 단위로 입력해주세요"
           register={register('pay', {
             required: '용병비를 입력해주세요',
-            min: { value: 0, message: '0원 이상이어야 합니다' },
-            validate: {
-              isThousandUnit: value => value % 1000 === 0 || '1000원 단위로 입력해주세요'
-            },
-            valueAsNumber: true
+            min: { value: 0, message: '0원 이상이어야 합니다' }
           })}
           error={errors.pay?.message}
         />
 
-        <InputField
+        <TextAreaField
           id="description"
           label="추가 설명"
-          type="textarea"
           register={register('description')}
           error={errors.description?.message}
         />
