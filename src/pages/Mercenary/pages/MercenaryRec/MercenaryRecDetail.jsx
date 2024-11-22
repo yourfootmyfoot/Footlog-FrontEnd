@@ -51,10 +51,10 @@ const getMyApplicationStatus = async (recruitmentId) => {
 function MercenaryRecDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [userId, setUserId] = useState(null);
   const [recruitment, setRecruitment] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [applicationStatus, setApplicationStatus] = useState(null);
+  const [isAuthor, setIsAuthor] = useState(false);
 
   useEffect(() => {
     const fetchRecruitmentDetail = async () => {
@@ -69,9 +69,16 @@ function MercenaryRecDetail() {
         const response = await getMercenaryRecInfo(id);
         setRecruitment(response);
         
-        // 내 신청 상태 확인
-        const status = await getMyApplicationStatus(id);
-        setApplicationStatus(status);
+        // 작성자 여부 확인
+        const decodedToken = JSON.parse(atob(token.split('.')[1]));
+        const currentUserId = decodedToken.userId;
+        setIsAuthor(currentUserId === response.userId);
+        
+        // 작성자가 아닌 경우에만 신청 상태 확인
+        if (currentUserId !== response.userId) {
+          const status = await getMyApplicationStatus(id);
+          setApplicationStatus(status);
+        }
         
         setIsLoading(false);
       } catch (err) {
@@ -89,8 +96,7 @@ function MercenaryRecDetail() {
   if (isLoading) return <div>로딩 중...</div>;
 if (!recruitment) return <div>데이터를 불러오는데 실패했습니다.</div>;
 
-const isAuthor = userId && String(userId) === String(recruitment.matchEnrollUserId || recruitment.userId);
-  const isClubMember = recruitment.club?.members?.includes(userId);
+const isClubMember = recruitment.club?.members?.includes(userId);
 
   const handleEdit = () => {
     navigate(`/mercenary/recruitment/edit/${id}`);
@@ -115,16 +121,24 @@ const isAuthor = userId && String(userId) === String(recruitment.matchEnrollUser
   const renderActionButton = () => {
     if (isAuthor) {
       return (
-        <button 
-          onClick={handleEdit}
-          className="px-4 py-2 bg-[rgba(22,199,154,0.3)] text-[#16C79A] rounded-[12px] hover:bg-[rgba(22,199,154,0.4)] transition-colors w-[160px]"
-        >
-          수정하기
-        </button>
+        <>
+          <button 
+            onClick={() => navigate(`/mercenary/recruitment/${id}/applications`)}
+            className="px-4 py-2 bg-[rgba(22,199,154,0.3)] text-[#16C79A] rounded-[12px] hover:bg-[rgba(22,199,154,0.4)] transition-colors w-[160px]"
+          >
+            신청 목록
+          </button>
+          <button 
+            onClick={handleEdit}
+            className="px-4 py-2 bg-[rgba(22,199,154,0.3)] text-[#16C79A] rounded-[12px] hover:bg-[rgba(22,199,154,0.4)] transition-colors w-[160px]"
+          >
+            수정하기
+          </button>
+        </>
       );
     }
 
-    if (!isAuthor && !isClubMember) {
+    if (!isAuthor) {
       switch (applicationStatus) {
         case 'PENDING':
           return (
@@ -263,14 +277,14 @@ const isAuthor = userId && String(userId) === String(recruitment.matchEnrollUser
 
 
         {/* 하단 버튼 영역 */}
-        <div className="flex justify-end items-center gap-[16px] mt-4 px-4">
-            <button 
-                onClick={handleGoBack}
-                className="px-4 py-2 bg-[#6B7684] text-white rounded-[12px] hover:bg-[#566371] transition-colors w-[160px]"
-            >
-                뒤로가기
-            </button>
-            {renderActionButton()}
+        <div className="flex justify-end items-center gap-[16px] mt-4">
+          <button 
+            onClick={handleGoBack}
+            className="px-4 py-2 bg-[#6B7684] text-white rounded-[12px] hover:bg-[#566371] transition-colors w-[160px]"
+          >
+            뒤로가기
+          </button>
+          {renderActionButton()}
         </div>
       </div>
   );
