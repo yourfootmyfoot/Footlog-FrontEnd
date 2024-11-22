@@ -24,25 +24,37 @@ const formatDateTime = (recruitment) => {
   };
 };
 
+// API 함수 추가
+const getMyApplicationStatus = async (recruitmentId) => {
+  try {
+    const token = localStorage.getItem('accessToken');
+    const response = await fetch(`http://localhost:8080/api/guest-recruitments/applications/my`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
+    if (!response.ok) {
+      return null;
+    }
+    
+    const applications = await response.json();
+    // 현재 모집글에 대한 신청 찾기
+    const currentApplication = applications.find(app => app.recruitmentId === parseInt(recruitmentId));
+    return currentApplication ? currentApplication.status : null;
+  } catch (error) {
+    console.error('Error checking application status:', error);
+    return null;
+  }
+};
+
 function MercenaryRecDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [userId, setUserId] = useState(null); // 새로운 상태 추가
+  const [userId, setUserId] = useState(null);
   const [recruitment, setRecruitment] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // localStorage에서 userId를 가져옴
-    const storedUserId = localStorage.getItem('userId');
-    // userId가 객체 형태로 저장되어 있을 수 있으므로 파싱 시도
-    try {
-      const parsedUserId = JSON.parse(storedUserId);
-      setUserId(parsedUserId.state?.userId || parsedUserId);
-    } catch (e) {
-      // JSON 파싱에 실패하면 그대로 사용
-      setUserId(storedUserId);
-    }
-  }, []);
+  const [applicationStatus, setApplicationStatus] = useState(null);
 
   useEffect(() => {
     const fetchRecruitmentDetail = async () => {
@@ -56,6 +68,11 @@ function MercenaryRecDetail() {
   
         const response = await getMercenaryRecInfo(id);
         setRecruitment(response);
+        
+        // 내 신청 상태 확인
+        const status = await getMyApplicationStatus(id);
+        setApplicationStatus(status);
+        
         setIsLoading(false);
       } catch (err) {
         console.error('Error:', err);
@@ -67,7 +84,7 @@ function MercenaryRecDetail() {
     };
   
     fetchRecruitmentDetail();
-  }, [id, navigate, userId]);// userId 의존성 추가
+  }, [id, navigate]);
 
   if (isLoading) return <div>로딩 중...</div>;
 if (!recruitment) return <div>데이터를 불러오는데 실패했습니다.</div>;
@@ -81,7 +98,8 @@ const isAuthor = userId && String(userId) === String(recruitment.matchEnrollUser
 
   const handleApply = async () => {
     try {
-      await applyForRecruitment(id);
+      const response = await applyForRecruitment(id);
+      setApplicationStatus(response.status);
       alert('신청이 완료되었습니다.');
     } catch (error) {
       alert('신청에 실패했습니다.');
@@ -93,6 +111,62 @@ const isAuthor = userId && String(userId) === String(recruitment.matchEnrollUser
   };
 
   const { date, time } = formatDateTime(recruitment);
+
+  const renderActionButton = () => {
+    if (isAuthor) {
+      return (
+        <button 
+          onClick={handleEdit}
+          className="px-4 py-2 bg-[rgba(22,199,154,0.3)] text-[#16C79A] rounded-[12px] hover:bg-[rgba(22,199,154,0.4)] transition-colors w-[160px]"
+        >
+          수정하기
+        </button>
+      );
+    }
+
+    if (!isAuthor && !isClubMember) {
+      switch (applicationStatus) {
+        case 'PENDING':
+          return (
+            <button 
+              disabled
+              className="px-4 py-2 bg-gray-300 text-gray-600 rounded-[12px] w-[160px] cursor-not-allowed"
+            >
+              신청 대기중
+            </button>
+          );
+        case 'APPROVED':
+          return (
+            <button 
+              disabled
+              className="px-4 py-2 bg-blue-100 text-blue-600 rounded-[12px] w-[160px] cursor-not-allowed"
+            >
+              신청 승인됨
+            </button>
+          );
+        case 'REJECTED':
+          return (
+            <button 
+              disabled
+              className="px-4 py-2 bg-red-100 text-red-600 rounded-[12px] w-[160px] cursor-not-allowed"
+            >
+              신청 거절됨
+            </button>
+          );
+        default:
+          return (
+            <button 
+              onClick={handleApply}
+              className="px-4 py-2 bg-[rgba(22,199,154,0.3)] text-[#16C79A] rounded-[12px] hover:bg-[rgba(22,199,154,0.4)] transition-colors w-[160px]"
+            >
+              용병신청하기
+            </button>
+          );
+      }
+    }
+
+    return null;
+  };
 
   return (
       <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100">
@@ -196,22 +270,7 @@ const isAuthor = userId && String(userId) === String(recruitment.matchEnrollUser
             >
                 뒤로가기
             </button>
-
-            {isAuthor ? (
-                <button 
-                    onClick={handleEdit}
-                    className="px-4 py-2 bg-[#14B389] text-white rounded-[12px] hover:bg-[#5aa694] transition-colors w-[160px]"
-                >
-                    수정하기
-                </button>
-            ) : !isAuthor && !isClubMember && (
-                <button 
-                    onClick={handleApply}
-                    className="px-4 py-2 bg-[#14B389] text-white rounded-[12px] hover:bg-[#5aa694] transition-colors w-[160px]"
-                >
-                    용병신청하기
-                </button>
-            )}
+            {renderActionButton()}
         </div>
       </div>
   );
