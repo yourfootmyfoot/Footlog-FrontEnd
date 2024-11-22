@@ -116,7 +116,7 @@ const isAuthor = userId && String(userId) === String(recruitment.matchEnrollUser
             <div className="bg-gray-50 p-4 rounded-lg">
               <div className="flex justify-between items-center">
                 <span className="text-gray-600 font-medium">구단명</span>
-                <span className="font-semibold text-gray-800">{recruitment.club?.name || '구단명 없음'}</span>
+                <span className="font-semibold text-gray-800">{recruitment.club?.clubName || '구단명 없음'}</span>
               </div>
             </div>
           </div>
