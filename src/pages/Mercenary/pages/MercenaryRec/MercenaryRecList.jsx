@@ -36,8 +36,8 @@ function MercenaryRecList() {
   const ListContainer = styled.div`
     width: 100%;
     max-width: 900px;
-    margin: 0 auto;
-    padding: 16px;
+    margin: 0 0;
+    padding: 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,14 +47,15 @@ function MercenaryRecList() {
   const Header = styled.div`
     width: 100%;
     max-width: 700px;
-    margin-bottom: 24px;
+    margin-bottom: 0px;
     text-align: center;
   `;
 
   const Title = styled.h1`
     font-size: 1.75rem;
+    font-weight: bold;
     color: #2d3748;
-    margin-bottom: 8px;
+    margin-bottom: 0px;
   `;
 
   const Subtitle = styled.p`
@@ -76,7 +77,7 @@ function MercenaryRecList() {
     max-width: 700px;
     background: white;
     border-radius: 8px;
-    padding: 20px;
+    padding: 0px;
     margin-bottom: 16px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
