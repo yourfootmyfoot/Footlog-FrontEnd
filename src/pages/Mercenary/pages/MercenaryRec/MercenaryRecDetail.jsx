@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import useUserStore from '../../../../stores/userStore';
-import recStyle from './MercenaryRecInfo.module.css';
 import { getMercenaryRecInfo, applyForRecruitment } from '../../apis/MercenaryAPI';
 
 // formatDateTime 유틸리티 함수
